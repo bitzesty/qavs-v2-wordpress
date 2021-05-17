@@ -1,0 +1,543 @@
+/**
+ * Settings page admin styling.
+ */
+
+/* Admin Page
+---------------------------------------------------------------------------- */
+
+/* Page
+--------------------------------------------- */
+
+.toplevel_page_genesis-blocks-settings #wpcontent,
+.genesis-blocks_page_genesis-blocks-getting-started #wpcontent {
+	padding-left: 0;
+}
+
+.toplevel_page_genesis-blocks-settings #update-nag {
+	display: none;
+}
+
+.genesis-blocks-settings-page.wrap {
+	background-color: #fff;
+	margin: 0;
+	overflow: hidden;
+	padding-bottom: 4%;
+}
+
+/* Header
+--------------------------------------------- */
+
+.genesis-blocks-settings-page .intro-wrap {
+	background-color: #06c;
+	background-image: linear-gradient(90deg, #06c 0%, #4eb0d3 100%);
+	padding: 40px 0 0 0;
+}
+
+.genesis-blocks_page_genesis-blocks-pro .intro-wrap,
+.genesis-blocks_page_genesis-blocks-pro .genesis-blocks-settings-page {
+	background: none;
+}
+
+.genesis-blocks-settings-page .intro {
+	box-sizing: border-box;
+	display: flex;
+	padding: 0 4% 40px 4%;
+	vertical-align: top;
+	width: 100%;
+	align-items: center;
+}
+
+.genesis-blocks-settings-page .intro h1,
+.genesis-blocks-settings-page .intro h3 {
+	color: #fff;
+	display: inline-block;
+	font-weight: 500;
+	font-size: 28px;
+	line-height: 1.2;
+	margin: 0;
+	padding-top: 2px;
+}
+
+.genesis-blocks-settings-page .intro img,
+.genesis-blocks_page_genesis-blocks-getting-started .intro img {
+	width: 65px;
+	margin-right: 15px;
+}
+
+.grow {
+	flex-grow: 1;
+}
+
+/* Buttons & Links
+---------------------------------------------------------------------------- */
+
+/* Base Button Styles
+--------------------------------------------- */
+
+.genesis-blocks-settings-page .components-button {
+	border-radius: 3px;
+	border-width: 0;
+	font-size: 16px;
+	height: auto;
+	padding: 10px 15px;
+	text-shadow: none;
+	transition: all 0.25s ease-in-out;
+}
+
+.genesis-blocks-settings-sections .is-primary.genesis-blocks-settings-save {
+	margin: 0;
+}
+
+/* Links & Text Buttons
+--------------------------------------------- */
+
+.genesis-blocks-settings-page a,
+.genesis-blocks-settings-page .components-button.is-link {
+	color: #06c;
+}
+
+.genesis-blocks-settings-page a:active,
+.genesis-blocks-settings-page a:focus,
+.genesis-blocks-settings-page a:hover,
+.components-button.is-link:active:not(:disabled),
+.components-button.is-link:focus:not(:disabled),
+.components-button.is-link:hover:not(:disabled) {
+	color: #06c;
+	text-decoration: none;
+}
+
+/* Disabled Buttons
+--------------------------------------------- */
+
+.genesis-blocks-settings-page.wrap .components-button.is-primary:disabled,
+.genesis-blocks-settings-page.wrap .components-button.is-primary[aria-disabled="true"],
+.genesis-blocks-settings-page.wrap .components-button.is-primary[aria-disabled="true"]:focus,
+.genesis-blocks-settings-page.wrap .components-button.is-primary[aria-disabled="true"]:hover,
+.genesis-blocks-settings-page.wrap .components-button.is-secondary.is-busy,
+.genesis-blocks-settings-page.wrap .components-button.is-secondary:disabled,
+.genesis-blocks-settings-page.wrap .components-button.is-secondary[aria-disabled="true"],
+.genesis-blocks-settings-page.wrap .components-button.is-secondary[aria-disabled="true"]:focus,
+.genesis-blocks-settings-page.wrap .components-button.is-secondary[aria-disabled="true"]:hover {
+	background-color: #eee;
+	border-color: #ddd;
+	box-shadow: inset 0 0 0 1px #ddd;
+	color: #a1afbd;
+}
+
+.genesis-blocks-settings-page.wrap .components-button.is-primary.is-busy,
+.genesis-blocks-settings-page.wrap .components-button.is-primary.is-busy:disabled,
+.genesis-blocks-settings-page.wrap .components-button.is-primary.is-busy[aria-disabled="true"] {
+	background-image: linear-gradient(-45deg, #23282d 28%, #39414a 0, #39414a 72%, #23282d 0);
+	background-size: 100px 100%;
+	border-color: #ddd;
+	box-shadow: inset 0 0 0 1px #a1afbd;
+	color: #a1afbd;
+}
+
+/* Primary Buttons
+--------------------------------------------- */
+
+.genesis-blocks-settings-page.wrap .components-button.is-primary:not(:disabled) {
+	background-color: #06c;
+	box-shadow: none;
+	color: #fff;
+}
+
+.genesis-blocks-settings-page.wrap .components-button.is-primary:active:not(:disabled),
+.genesis-blocks-settings-page.wrap .components-button.is-primary:focus:not(:disabled),
+.genesis-blocks-settings-page.wrap .components-button.is-primary:hover:not(:disabled):not([aria-disabled="true"]) {
+	background-color: #23282d;
+	box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.12);
+}
+
+.components-button.review-button {
+	background: #fff;
+	color: #000;
+}
+
+.components-button.review-button:hover {
+	background: #fff;
+	color: #06c;
+}
+
+.review-button span {
+	margin-right: 5px;
+}
+
+/* Secondary Buttons
+--------------------------------------------- */
+
+.genesis-blocks-settings-page.wrap .components-button.is-secondary:not(:disabled) {
+	background-color: #f3f5f6;
+	border-color: #06c;
+	box-shadow: inset 0 0 0 1px #06c;
+	color: #06c;
+	outline: none;
+}
+
+.genesis-blocks-settings-page.wrap .components-button.is-secondary:active:not(:disabled),
+.genesis-blocks-settings-page.wrap .components-button.is-secondary:focus:not(:disabled),
+.genesis-blocks-settings-page.wrap .components-button.is-secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+	background-color: #fff;
+	border-color: #23282d;
+	box-shadow: inset 0 0 0 1px #23282d;
+	color: #23282d;
+}
+
+/* Destructive Buttons
+--------------------------------------------- */
+
+.genesis-blocks-settings-page.wrap .components-button.is-destructive:not(:disabled),
+.genesis-blocks-settings-page.wrap .components-button.is-destructive:active:not(:disabled),
+.genesis-blocks-settings-page.wrap .components-button.is-destructive:focus:not(:disabled),
+.genesis-blocks-settings-page.wrap .components-button.is-destructive:hover:not(:disabled) {
+	box-shadow: none;
+	color: #d94f4f;
+	outline: none;
+}
+
+
+/* Setting Tabs
+---------------------------------------------------------------------------- */
+
+/* Tab Buttons
+--------------------------------------------- */
+
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs {
+	background-color: #06c;
+	background-image: linear-gradient(90deg, #06c 0%, #4eb0d3 100%);
+	padding: 0 4%;
+}
+
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button,
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:focus:not(:disabled),
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:hover:not(:disabled) {
+	color: #fff;
+	border-radius: 3px 3px 0 0;
+	box-shadow: none !important;
+	font-size: 18px;
+	height: auto;
+	padding: 25px 30px;
+	outline: none;
+	text-decoration: none;
+}
+
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:hover:not(:disabled):not(.is-active) {
+	background-color: rgba(255, 255, 255, 0.15) !important;
+	color: #fff !important;
+}
+
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button.is-active,
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button.is-active:hover:not(:disabled) {
+	background: #fff;
+	border: none;
+	box-shadow: none;
+	color: #06c;
+	text-decoration: none;
+}
+
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:focus:not(.is-active):not(:disabled) {
+	background-color: transparent;
+}
+
+.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button.is-active:focus:not(:disabled) {
+	color: #23282d !important;
+}
+
+/* Tab Panels
+--------------------------------------------- */
+
+.genesis-blocks-settings-sections .components-tab-panel__tab-content {
+	background-color: #fff;
+	box-sizing: border-box;
+	display: inline-block;
+	font-size: 16px;
+	padding: 4%;
+	transition: all 0.25s ease-in-out;
+	width: 100%;
+}
+
+.genesis-blocks-settings-sections .components-tab-panel__tab-content hr {
+	border-width: 0;
+	border-top: 2px solid #e6eaed;
+	height: 1px;
+	margin: 2em 0;
+}
+
+.genesis-blocks-settings-sections .components-tab-panel__tab-content p {
+	font-size: 19px;
+	line-height: 1.7;
+}
+
+.genesis-blocks-settings-sections .components-base-control {
+	max-width: 800px;
+}
+
+.genesis-blocks-settings-sections .components-base-control,
+.genesis-blocks-settings-sections .genesis-blocks-settings-image {
+	padding: 0 2em;
+	margin-bottom: 2em;
+}
+
+.genesis-blocks-settings-sections .components-base-control + .components-base-control {
+	border-top: 1px dotted #e6eaed;
+	padding-top: 2em;
+}
+
+.genesis-blocks-section-heading.components-base-control {
+	background-color: #f1f4f7;
+	border-radius: 5px;
+	padding: 0.5em 2em 1.5em;
+}
+
+.genesis-blocks-settings-sections h2 {
+	font-size: 24px;
+}
+
+.genesis-blocks-settings-sections p.components-base-control__help {
+	color: #666;
+	font-size: 16px;
+	font-style: italic;
+	margin: 5px 0;
+}
+
+/* Form Elements
+---------------------------------------------------------------------------- */
+
+.genesis-blocks-settings-sections .components-select-control__input,
+.genesis-blocks-settings-sections .components-text-control__input,
+.genesis-blocks-settings-sections .components-textarea-control__input {
+	border-radius: 5px;
+	font-size: 18px;
+	height: auto;
+	padding: 12px;
+}
+
+.genesis-blocks-settings-sections .components-text-control__input:focus,
+.genesis-blocks-settings-sections .components-textarea-control__input:focus,
+.genesis-blocks-settings-sections .components-radio-control__input:focus,
+.genesis-blocks-settings-sections .components-select-control__input:focus {
+	border-color: #06c;
+	box-shadow: 0 0 0 1px #06c;
+}
+
+.genesis-blocks-settings-sections .components-radio-control__input[type="radio"]:checked::before {
+	border: none;
+}
+
+.genesis-blocks-settings-sections .components-select-control__input:focus {
+	color: #06c;
+}
+
+.genesis-blocks-settings-sections .components-checkbox-control__input[type="checkbox"]:focus {
+	border-color: #06c;
+}
+
+.genesis-blocks-settings-sections .components-checkbox-control__input[type="checkbox"]:checked {
+	background-color: #06c;
+	border-color: #06c;
+}
+
+.genesis-blocks-settings-sections label {
+	font-size: 18px;
+}
+
+.genesis-blocks-settings-sections .components-base-control__label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.genesis-blocks-settings-page.wrap .components-button.is-secondary.genesis-blocks-settings-image__preview {
+	background-color: transparent;
+	border: 1px solid #7e8993;
+	border-radius: 0;
+	box-shadow: none;
+	display: block;
+	min-width: 150px;
+	margin-bottom: 15px;
+	padding: 0;
+}
+
+.genesis-blocks-settings-page.wrap .components-button.is-secondary.genesis-blocks-settings-image__preview:hover,
+.genesis-blocks-settings-page.wrap .components-button.is-secondary.genesis-blocks-settings-image__preview:focus {
+	border-color: #06c;
+}
+
+/* Notices
+---------------------------------------------------------------------------- */
+
+.genesis-blocks-save-notice {
+	font-size: 15px;
+	font-weight: 700;
+}
+
+.genesis-blocks-save-notice.success {
+	color: #008000;
+}
+
+.genesis-blocks-save-notice.fail {
+	color: #d94f4f;
+}
+
+.genesis-blocks-settings-sections .is-primary.genesis-blocks-settings-save.has-notices {
+	margin: 0 2%;
+}
+
+/* Grid
+--------------------------------------------- */
+
+.genesis-blocks-grid-2 {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: "col1 col2";
+	grid-gap: 0 2em;
+}
+
+.genesis-blocks-grid-3 {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: "col1 col2 col3";
+	grid-gap: 0 2em;
+}
+
+/* Getting Started
+---------------------------------------------------------------------------- */
+.genesis-gs-intro {
+	align-items: center;
+	grid-gap: 0 5em;
+	padding: 5%;
+	background: #eceff1;
+	border-radius: 10px;
+}
+
+.genesis-gs-intro-tag {
+	background: #06c;
+	border-radius: 50px;
+	color: #fff;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	display: inline-block;
+}
+
+.genesis-gs-intro h2 {
+	font-size: 46px;
+	line-height: 1.2;
+	margin: 0;
+}
+
+.genesis-gs-intro-text p:last-child {
+	margin-bottom: 0;
+}
+
+.genesis-gs-resources {
+	margin-top: 3%;
+}
+
+.genesis-gs-resource {
+	background: #eceff1;
+	padding: 50px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.genesis-gs-resource h3 {
+	margin-top: 0;
+}
+
+.genesis-gs-resource img {
+	max-width: 50px;
+	margin-bottom: 25px;
+}
+
+/* Media Queries
+---------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+	.genesis-blocks-settings-page .components-button {
+		transition-duration: 0s;
+	}
+
+}
+
+@media only screen and (max-width: 1140px) {
+
+	.genesis-blocks_page_genesis-blocks-getting-started.auto-fold #wpcontent {
+		padding-left: 0;
+	}
+
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button,
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:focus:not(:disabled),
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:hover:not(:disabled) {
+		font-size: 16px;
+		padding: 15px 20px;
+	}
+
+	.genesis-blocks-grid-2 {
+		grid-template-columns: 1fr;
+		grid-template-areas: "col1";
+		grid-gap: 0 2em;
+	}
+
+	.genesis-blocks-grid-3 {
+		grid-template-columns: 1fr;
+		grid-template-areas: "col1";
+		grid-gap: 0 2em;
+	}
+
+	.genesis-gs-intro h2 {
+		font-size: 32px;
+	}
+
+	.genesis-gs-resources {
+		margin-top: 30px;
+	}
+
+	.genesis-gs-resource {
+		padding: 30px;
+		margin-bottom: 30px;
+	}
+
+	.hide-mobile {
+		display: none;
+	}
+
+}
+
+@media only screen and (max-width: 782px) {
+
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs {
+		display: block;
+		padding-bottom: 2.5%;
+	}
+
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button,
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:focus:not(:disabled),
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.2);
+		border-radius: 3px;
+		margin: 0 10px 10px 0;
+	}
+
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.9);
+		color: #06c;
+	}
+
+	.genesis-blocks-settings-page .genesis-blocks-settings-sections .components-tab-panel__tabs .components-button:focus:not(:disabled) {
+		background-color: #fff;
+		color: #23282d;
+	}
+
+	.grow {
+		flex-grow: 0;
+	}
+
+	.hide-mobile {
+		display: none;
+	}
+
+}

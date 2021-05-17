@@ -1,0 +1,53 @@
+.commitee-member {
+  margin: 20px 0;
+  position: relative;
+}
+
+.commitee-member__image {
+  width: 15em !important;
+  height: 15em !important;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 1.5rem;
+  background: #fafafa;
+}
+
+.commitee-member__details {
+
+}
+
+.commitee-member__name {
+
+}
+
+.commitee-member__detail {
+  margin-bottom: 1rem;
+}
+
+.commitee-member__detail dt {
+  font-weight: 600;
+}
+
+.commitee-member__detail dd {
+  padding: 0;
+  margin: 0;
+}
+
+.commitee-member__detail dd p {
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 800px) {
+  .commitee-member {
+    padding-left: 16.5rem;
+  }
+
+  .commitee-member__image {
+    margin-bottom: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

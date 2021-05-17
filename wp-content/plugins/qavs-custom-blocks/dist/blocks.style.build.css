@@ -1,0 +1,101 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.commitee-member {
+  margin: 20px 0;
+  position: relative; }
+
+.commitee-member + .commitee-member {
+  border-top: 1px solid gray;
+  padding-top: 2rem; }
+
+.commitee-member__image {
+  width: 15em !important;
+  height: 15em !important;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  margin-bottom: 1.5rem;
+  background: #fafafa; }
+
+.commitee-member__detail {
+  margin-bottom: 1rem; }
+
+.commitee-member__detail dt {
+  font-weight: 600; }
+
+.commitee-member__detail dd {
+  padding: 0;
+  margin: 0; }
+
+.commitee-member__detail dd p {
+  margin: 0;
+  padding: 0; }
+
+@media (min-width: 800px) {
+  .commitee-member {
+    padding-left: 16.5rem; }
+  .commitee-member__image {
+    margin-bottom: 0;
+    position: absolute;
+    padding-top: 2rem;
+    top: 0;
+    left: 0; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.notice {
+  border: 1px solid #d0d0d0;
+  padding: 1em 1em 1em 4em;
+  position: relative; }
+  .notice:before {
+    content: " ";
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    top: 0.825rem;
+    left: 1rem;
+    background: red; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.resource {
+  border: 1px solid #d0d0d0;
+  padding: 1em 1em 1em 4em;
+  position: relative; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.resource {
+  border: 1px solid #d0d0d0;
+  padding: 1em 1em 1em 4em;
+  position: relative; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.section {
+  padding: 4em;
+  color: black; }
+
+.section.is-style-default {
+  background: #f7f7f7; }
+
+.section.is-style-white {
+  background: white; }
