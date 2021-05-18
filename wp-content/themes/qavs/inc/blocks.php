@@ -46,9 +46,16 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     'tax_query' => [
       'taxonomy' => 'category',
       'field' => 'term_id',
-      'terms' => $block_attributes["categoryID"]
+      'terms' => $block_attributes["categoryID"],
+      'operator' => 'IN'
     ]
   ) );
+
+  if ($_GET['debug']) {
+    var_dump($featured_awardees);
+    var_dump($block_attributes["categoryID"]);
+    exit;
+  }
 
   $html = "";
 
