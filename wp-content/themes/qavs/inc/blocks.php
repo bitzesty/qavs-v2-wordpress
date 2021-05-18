@@ -44,10 +44,12 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     'posts_per_page' => 3,
     'post_status' => 'publish',
     'tax_query' => [
-      'taxonomy' => 'category',
-      'field' => 'term_id',
-      'terms' => $block_attributes["categoryID"],
-      'operator' => 'IN'
+      [
+        'taxonomy' => 'category',
+        'field' => 'term_id',
+        'terms' => $block_attributes["categoryID"],
+        'operator' => 'IN'
+      ]
     ]
   ) );
 
