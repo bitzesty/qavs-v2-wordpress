@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 20</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="QAVS_news-2-UI_11-05-2021" transform="translate(-459.000000, -2177.000000)">
-            <g id="Group-20" transform="translate(460.000000, 2178.000000)">
-                <g id="Group-10">
-                    <circle id="Oval-Copy-4" stroke="#136C85" fill="#FFFFFF" cx="19" cy="19" r="19"></circle>
-                    <g id="Group-19" transform="translate(14.000000, 8.000000)" fill="#136C85">
-                        <path d="M9.97732426,0.613553114 L9.97732426,3.63553114 L8.16431511,3.63553114 C7.50223627,3.63553114 7.05572468,3.7728924 6.82476694,4.04761905 C6.59380921,4.3223457 6.47833207,4.73442949 6.47833207,5.28388278 L6.47833207,7.44734432 L9.86184597,7.44734432 L9.41148064,10.8356227 L6.47833207,10.8356227 L6.47833207,19.5238095 L2.9446964,19.5238095 L2.9446964,10.8356227 L0,10.8356227 L0,7.44734432 L2.9446964,7.44734432 L2.9446964,4.95192308 C2.9446964,3.53250206 3.34501713,2.43170416 4.14567061,1.64949634 C4.9463241,0.867288519 6.01256298,0.476190476 7.34441925,0.476190476 C8.47611215,0.476190476 9.35373838,0.521977564 9.97732426,0.613553114 Z" id="facebook"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" fill="none" fill-rule="evenodd"><circle stroke="#136C85" fill="#FFF" cx="19" cy="19" r="19"/><path d="M23.977 8.614v3.022h-1.813c-.662 0-1.108.137-1.34.412-.23.274-.346.686-.346 1.236v2.163h3.384l-.45 3.389h-2.934v8.688h-3.533v-8.688H14v-3.389h2.945v-2.495c0-1.42.4-2.52 1.2-3.303.801-.782 1.868-1.173 3.2-1.173 1.131 0 2.009.046 2.632.138z" fill="#136C85"/></g></svg>
