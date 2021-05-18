@@ -68,7 +68,7 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     $html .= '<div class="featured-awardee__meta">';
     $html .= qavs_posted_on($awardee["ID"]);
     $html .= '</div>';
-    $html .= '<a href="' . esc_url( get_permalink($awardee["ID"]) ) . '" rel="bookmark" aria-labelledby="title-' . $awardee["ID"] . '" title="Click to read article" class="featured-awardee__cta arrow-link">Read article</a></div></article>';
+    $html .= '<a href="' . esc_url( get_permalink($awardee["ID"]) ) . '" rel="bookmark" aria-labelledby="title-' . $awardee["ID"] . '" title="Click to read article" class="featured-awardee__cta">View article</a></div></article>';
   }
   
   $html .= '</div></div>';
