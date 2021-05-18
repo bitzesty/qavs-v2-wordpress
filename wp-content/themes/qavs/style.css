@@ -1089,7 +1089,7 @@ p:last-child {
 }
 
 *:last-child {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
 
@@ -1273,6 +1273,14 @@ p:last-child {
 
 .ab-cta-button a {
   background: #8A0DA6 !important;
+  font-weight: 500;
+  font-size: 1rem !important;
+}
+
+.ab-cta-button a:hover,
+.ab-cta-button a:focus {
+  background: #1f1f1f !important;
+  color: white;
   font-weight: 500;
   font-size: 1rem !important;
 }
@@ -1909,12 +1917,41 @@ p.has-medium-font-size {
   color: white;
   font-weight: 500;
   border-radius: 0;
+  font-size: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  border: 2px solid #8A0DA6 !important;
+  font-weight: 500;
 }
 
-.is-style-outline .wp-block-button__link{
+.wp-block-button__link:hover,
+.is-style-outline .wp-block-button__link:hover,
+.wp-block-button__link:focus,
+.is-style-outline .wp-block-button__link:focus  {
+  text-decoration: none;
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus {
+  background: #1f1f1f !important;
+  border-color: #1f1f1f !important;
+  color: white !important;
+}
+
+.is-style-outline .wp-block-button__link:hover,
+.is-style-outline .wp-block-button__link:focus {
+  background: #8A0DA6 !important;
+  color: white !important;
+}
+
+
+.is-style-outline .wp-block-button__link {
   background: transparent !important;
   color: #8A0DA6 !important;
   border: 2px solid #8A0DA6 !important;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  font-weight: 500;
 }
 
 
@@ -1922,11 +1959,21 @@ p.has-medium-font-size {
   border-top: 1px solid #8A0DA6;
   border-bottom: 1px solid #8A0DA6;
   margin: 1rem 0;
+  
+}
+
+.wp-block-pb-accordion-item.is-open {
+  padding-bottom: 1rem;
 }
 
 .c-accordion__title {
   margin: 1rem 0 !important;
 }
+
+.c-accordion__title:focus {
+  outline: 0;
+}
+
 
 .section ol,
 .section ul {
@@ -2008,3 +2055,13 @@ p.has-medium-font-size {
   background-position: center;
 }
 
+.border-top-bottom h4 {
+  margin-top: 0.2rem !important;
+  margin-bottom: 0.2rem !important;
+}
+
+.news-categories a:focus,
+.news-categories a:hover {
+  color: white !important;
+  background: #8A0DA6 !important;
+}
