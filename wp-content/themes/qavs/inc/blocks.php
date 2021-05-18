@@ -53,12 +53,6 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     ]
   ) );
 
-  if (isset($_GET['debug'])) {
-    var_dump($block_attributes["categoryID"]);
-    var_dump(get_category($block_attributes["categoryID"]));
-    exit;
-  }
-
   $html = "";
 
   if(empty($featured_awardees)) {
@@ -74,8 +68,11 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     $html .= qavs_post_thumbnail($awardee->ID);
     $html .= '<div class="featured-awardee__details">';
     $html .= '<h2 class="featured-awardee__title" id="title-' . $awardee->ID . '">' . get_the_title($awardee->ID) . '</h2>';
-    $html .= '<div class="featured-awardee__meta">';
-    $html .= qavs_posted_on($awardee->ID);
+    // $html .= '<div class="featured-awardee__meta">';
+    // $html .= qavs_posted_on($awardee->ID);
+    // $html .= '</div>';
+    $html .= '<div class="featured-awardee__escerpt">';
+    $html .= get_the_excerpt($awardee->ID);
     $html .= '</div>';
     $html .= '<a href="' . esc_url( get_permalink($awardee->ID) ) . '" rel="bookmark" aria-labelledby="title-' . $awardee->ID . '" title="Click to read article" class="featured-awardee__cta">View article</a></div></article>';
   }
