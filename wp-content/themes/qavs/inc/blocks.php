@@ -68,14 +68,14 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
   $html .= "<p class='featured-awardees-text'>Take a look at some of the fantastic volunteer groups who have received a Queen’s Award for Voluntary Service in our showcase below.</p><div class='featured-awardees'>";
 
   foreach($featured_awardees as $awardee) {
-    $html .= '<article id="post-' . $awardee["ID"]. '" class="featured-awardee">';
-    $html .= qavs_post_thumbnail($awardee["ID"]);
+    $html .= '<article id="post-' . $awardee->ID. '" class="featured-awardee">';
+    $html .= qavs_post_thumbnail($awardee->ID);
     $html .= '<div class="featured-awardee__details">';
-    $html .= '<h2 class="featured-awardee__title" id="title-' . $awardee["ID"] . '">' . get_the_title($awardee["ID"]) . '</h2>';
+    $html .= '<h2 class="featured-awardee__title" id="title-' . $awardee->ID . '">' . get_the_title($awardee->ID) . '</h2>';
     $html .= '<div class="featured-awardee__meta">';
-    $html .= qavs_posted_on($awardee["ID"]);
+    $html .= qavs_posted_on($awardee->ID);
     $html .= '</div>';
-    $html .= '<a href="' . esc_url( get_permalink($awardee["ID"]) ) . '" rel="bookmark" aria-labelledby="title-' . $awardee["ID"] . '" title="Click to read article" class="featured-awardee__cta">View article</a></div></article>';
+    $html .= '<a href="' . esc_url( get_permalink($awardee->ID) ) . '" rel="bookmark" aria-labelledby="title-' . $awardee->ID . '" title="Click to read article" class="featured-awardee__cta">View article</a></div></article>';
   }
   
   $html .= '</div></div>';
