@@ -40,8 +40,8 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     return "";
   }
 
-  $featured_awardees = wp_get_recent_posts( array(
-    'numberposts' => 3,
+  $featured_awardees = get_posts( array(
+    'posts_per_page' => 3,
     'post_status' => 'publish',
     'tax_query' => [
       'taxonomy' => 'category',
