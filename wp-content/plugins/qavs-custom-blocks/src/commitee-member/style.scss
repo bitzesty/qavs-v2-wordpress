@@ -1,11 +1,15 @@
 .commitee-member {
-  margin: 20px 0;
+  margin: 4rem 0;
   position: relative;
+  padding-right: 2rem;
 }
 
-.commitee-member + .commitee-member {
-  border-top: 1px solid gray;
-  padding-top: 2rem;
+.commitee-member:nth-child(even) {
+  border-right: 8px solid #47A14E;
+}
+
+.commitee-member:nth-child(odd) {
+  border-right: 8px solid #8A0DA6;
 }
 
 .commitee-member__image {
@@ -23,11 +27,13 @@
 }
 
 .commitee-member__name {
-
+  font-size: 1.167em !important;
+  margin-bottom: 1rem;
 }
 
 .commitee-member__detail {
   margin-bottom: 1rem;
+  font-size: 0.917em;
 }
 
 .commitee-member__detail dt {
@@ -52,8 +58,7 @@
   .commitee-member__image {
     margin-bottom: 0;
     position: absolute;
-    padding-top: 2rem;
-    top: 0;
+    top: 0rem;
     left: 0;
   }
 }

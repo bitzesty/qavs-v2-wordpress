@@ -15,6 +15,7 @@ import './expander/block.js';
 import './resource/block.js';
 import './section/block.js';
 import './parental-tabs/block.js';
+import './parental-pagination/block.js';
 import './featured-news/block.js';
 import './featured-awardees/block.js';
 import './promoted-article/block.js';

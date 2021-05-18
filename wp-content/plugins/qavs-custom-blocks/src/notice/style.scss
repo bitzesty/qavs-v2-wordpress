@@ -1,15 +1,21 @@
 .notice {
-  border: 1px solid #d0d0d0;
   padding: 1em 1em 1em 4em;
   position: relative;
+  border: none !important;
+  font-weight: bold;
+  max-width: 33.333rem;
+  margin: 1.5em 0 2rem !important;
 
   &:before {
     content: " ";
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 2.500rem;
+    height: 2.500rem;
     position: absolute;
-    top: 0.825rem;
-    left: 1rem;
-    background: red;
+    top: calc(50% - 1.25rem);
+    left: 0;
+    background-image: url(/wp-content/themes/qavs/images/icon_warning.svg);
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }

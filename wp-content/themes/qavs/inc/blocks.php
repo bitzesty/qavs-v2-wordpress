@@ -122,6 +122,33 @@ function qavs_block__parental_tabs( $block_attributes, $content ) {
   
   return $html;
 }
+
+function qavs_block__parental_pagination( $block_attributes, $content ) {
+
+  $parent_id = wp_get_post_parent_id(get_the_ID());
+  $pages = get_pages();
+  $children = get_page_children( $parent_id, $pages );
+  $index = null;
+  $found = false;
+
+  foreach ($children as $idx => $child ) {
+
+    if ($child->ID == get_the_ID()) {
+      $index = $idx;
+      $found = true;
+    }
+  }
+
+  if (!$found || $index + 1 >= count($children)) {
+    return "";
+  }
+
+  $next = $children[$index + 1];
+  $permalink = get_permalink($next->ID);
+  $title = get_the_title($next->ID);
+
+  return '<div class="parental-navigation"><a href="' . $permalink . '" rel="next"><span class="nav-subtitle">Next</span> <span class="nav-title">' . $title . '</span></a></div>';
+}
  
 function qavs_dynamic_blocks() { 
   register_block_type( 'qavs/featured-news', array(
@@ -142,6 +169,11 @@ function qavs_dynamic_blocks() {
   register_block_type( 'qavs/parental-tabs', array(
     'api_version' => 2,
     'render_callback' => 'qavs_block__parental_tabs'
+  ) );
+
+  register_block_type( 'qavs/parental-pagination', array(
+    'api_version' => 2,
+    'render_callback' => 'qavs_block__parental_pagination'
   ) );
 }
 add_action( 'init', 'qavs_dynamic_blocks' );

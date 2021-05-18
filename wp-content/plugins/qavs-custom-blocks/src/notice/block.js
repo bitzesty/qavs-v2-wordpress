@@ -17,7 +17,7 @@ const renderNotice = (attributes, className) => {
   return (
     <div className={`notice ${className}`}>
       <div className="notice__content">
-        <RichText.Content tagName="div" value={attributes.content} />
+        <RichText.Content value={attributes.content} />
       </div>
     </div>
   );
@@ -85,7 +85,6 @@ registerBlockType( 'qavs/notice', {
         <div className="rich-text-wrapper">
           <RichText
             {...blockProps}
-            tagName="div"
             value={attributes.content}
             onChange={(val) => setAttributes({ content: val })}
           />
