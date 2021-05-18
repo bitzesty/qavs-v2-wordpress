@@ -57,7 +57,7 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
   }
 
   $html .= "<div class='featured-awardees-wrapper'><h2>Featured awardees</h2>";
-  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse">View all awardees</a>';
+  $html .= '<a href="' . get_category_link($block_attributes["categoryID"]) . '" class="button button--inverse">View all awardees</a>';
   $html .= "<p class='featured-awardees-text'>Take a look at some of the fantastic volunteer groups who have received a Queen’s Award for Voluntary Service in our showcase below.</p><div class='featured-awardees'>";
 
   foreach($featured_awardees as $awardee) {

@@ -12,6 +12,13 @@
  * @package QAVS
  */
 
+$featured_news = wp_get_recent_posts( array(
+  'numberposts' => 1,
+  'post_status' => 'publish',
+  'meta_key' => 'featured_news',
+  'meta_value' => '1'
+) );
+
 get_header();
 ?>
 
@@ -52,19 +59,23 @@ get_header();
         </div>
       </div>
     </div>
+    <?php if (!empty($featured_news)): ?>
     <div class="container">
+      <?php foreach ($featured_news as $news): ?>
       <div class="featured-news-article">
         <div class="featured-news-article__details">
-          <h3>Lorem ipsum dolor sit amet</h3>
-          <p class="featured-news-article__meta">11 April 2021</p>
+          <h3><?php echo get_the_title($news->ID); ?></h3>
+          <p class="featured-news-article__meta"><?php echo qavs_posted_on($news->ID); ?></p>
           <p class="featured-news-article__excerpt">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus ea provident dolores fugiat reprehenderit, iusto pariatur sit facere, ullam iste ipsa consectetur laborum nam cum repellat eum nostrum natus blanditiis!
+            <?php echo get_the_excerpt($news->ID); ?>
           </p>
-          <a href="" class="featured-news-article__cta">Read article</a>
+          <a href="<?php echo get_the_permalink($news->ID); ?>" aria-label="Read article titled: <?php echo get_the_title($news->ID); ?>" class="featured-news-article__cta arrow-link">Read article</a>
         </div>
         <img src="https://via.placeholder.com/400" alt="" class="featured-news-article__image">
       </div>
+      <?php endforeach; ?>
     </div>
+    <?php endif; ?>
 
     <?php if ( have_posts() ) : ?>
       <div class="container">

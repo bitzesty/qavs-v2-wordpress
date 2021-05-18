@@ -39,7 +39,7 @@ add_action( 'wp_head', 'qavs_pingback_header' );
 
 function qavs_get_categories() {
   $categories = [];
-  $cats = get_categories();
+  $cats = get_categories('category', ['hide_empty' => 0]);
 
   foreach ($cats as $category ) {
     $categories[] = [
