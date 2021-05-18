@@ -51,7 +51,7 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     ]
   ) );
 
-  if ($_GET['debug']) {
+  if (isset($_GET['debug'])) {
     var_dump($block_attributes["categoryID"]);
     var_dump(get_category($block_attributes["categoryID"]));
     exit;
