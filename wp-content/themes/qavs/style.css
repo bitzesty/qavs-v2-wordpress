@@ -1909,3 +1909,47 @@ p.has-medium-font-size {
   border-bottom: 1px solid #ccc;
   padding: 20px 0;
 }
+
+
+.promoted-article {
+  display: flex;
+  margin: 2rem 0;
+  background: #f7f7f7;
+  border-right: 10px solid #8A0DA6;
+  padding: 3rem 0;
+  align-items: center;
+}
+
+.promoted-article img {
+  max-width: 50%;
+  width: 580px;
+  height: auto;
+  max-height: 380px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.promoted-article__details {
+  padding: 1rem 2rem;
+}
+
+.arrow-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.arrow-link:hover,
+.arrow-link:focus {
+  text-decoration: underline;
+}
+
+.arrow-link:after {
+  content: " ";
+  display: inline-block;
+  width: 32px;
+  height: 16px;
+  background-image: url(/wp-content/themes/qavs/images/next.svg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
