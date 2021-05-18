@@ -745,12 +745,17 @@ textarea {
 }
 
 .main-navigation a {
-	display: inline-block;
+	display: inline !important;
   text-decoration: none;
   color: #1f1f1f;
   text-align: right;
   font-size: 18px;
   padding: 0.2rem 0;
+}
+
+.main-navigation li.current-menu-item a {
+  font-weight: bold;
+  border-bottom: 3px solid currentColor;
 }
 
 .main-navigation .button a {
@@ -1236,7 +1241,7 @@ p:last-child {
 }
 
 .ab-block-cta p {
-  margin: 0 auto;
+  margin: 0 auto !important;
   width: 800px !important;
   max-width: 100% !important;
   text-align: center;
@@ -1899,3 +1904,8 @@ p.has-medium-font-size {
   padding-left: 1.5rem
 }
 
+.border-top-bottom {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px 0;
+}
