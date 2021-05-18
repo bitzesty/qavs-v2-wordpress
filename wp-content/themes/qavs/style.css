@@ -1859,6 +1859,15 @@ p.has-medium-font-size {
   padding-left: 2rem;
 }
 
+.featured-awardee__meta {
+  color: #333;
+  margin: -1.75rem 0 1.25rem;
+}
+
+.featured-awardee__escerpt {
+  margin-bottom: 1.5rem;
+}
+
 .page-tabs {
   margin: 0 !important;
   padding: 0 !important;
