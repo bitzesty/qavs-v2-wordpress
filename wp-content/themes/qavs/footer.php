@@ -33,6 +33,7 @@
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 <?php wp_footer(); ?>
 
 </body>

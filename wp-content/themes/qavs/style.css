@@ -735,9 +735,9 @@ textarea {
 
 .main-navigation li {
   position: relative;
-  padding-right: 1rem;
+  padding-right: 0;
   text-align: right;
-  margin-top: 0.75rem;
+  margin-top: 1rem;
 }
 
 .main-navigation li:last-child {
@@ -764,6 +764,7 @@ textarea {
   padding: 0.35rem 0.5rem;
   color: #8A0DA6;
   background: transparent;
+  display: inline-block !important;
 }
 
 .main-navigation .button:hover a,
@@ -813,6 +814,8 @@ textarea {
   .main-navigation li {
     text-align: left;
     margin: 0;
+    padding-right: 1.5rem;
+    margin-top: 0;
   }
 
   .main-navigation li a {
@@ -1174,6 +1177,7 @@ p:last-child {
 .site-footer {
   background: white;
   border-top: 6px solid #8A0DA6;
+  margin-top: 2rem;
 }
 
 .site-footer__links {
@@ -2064,4 +2068,147 @@ p.has-medium-font-size {
 .news-categories a:hover {
   color: white !important;
   background: #8A0DA6 !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.cookie-banner {
+  background: #f7f7f7;
+  padding: 2rem 0;
+}
+
+.cookie-banner h2 {
+  font-size: 1.458rem;
+  margin: 0 0 1rem;
+}
+
+.cookie-banner p {
+  width: 900px;
+  max-width: 100%;
+  font-size: 0.917rem !important;
+  margin: 0;
+}
+
+.cookie-banner__buttons {
+  margin-top: 1.5rem;
+}
+
+.cookie-banner__buttons .button{
+  font-size: 0.917rem !important;
+}
+
+.accept-additional-cookies {
+  margin-right: 0.5rem;
+}
+
+.cookie-banner__buttons a {
+  margin-left: 1rem;
+  font-size: 0.917rem;
+}
+
+@media (max-width:768px) {
+  .cookie-banner__buttons .button{
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+}
+
+.radio-button {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.radio-button input {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.radio-button input + label {
+  position: relative;
+  padding-left: 45px;
+}
+
+.radio-button input + label:before {
+  content: "";
+  border: 1px solid #136C85;
+  border-radius: 100%;
+  width: 34px;
+  height: 34px;
+  display: block;
+  position: absolute;
+}
+
+.radio-button input:checked + label:after {
+  content: "";
+  background: #136C85;
+  border: 1px solid #136C85;
+  border-radius: 100%;
+  width: 18px;
+  height: 18px;
+  display: block;
+  position: absolute;
+  top: 7px;
+  left: 8px;
+}
+
+
+.cookies-link-qavs a {
+  text-decoration: none;
+}
+
+.ab-button:focus,
+.ab-button:hover {
+  text-decoration: none !important;
+}
+
+
+.ab-button-shape-rounded {
+  border-radius: 0% !important;
+}
+
+.site-footer__links a {
+  text-decoration: none !important;
+}
+
+.save-cookie-message {
+  margin: 1rem 0;
+  border: 2px solid #8A0DA6;
+  color: #1f1f1f;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
+  font-size: 0.917rem;
+}
+
+.chair-video {
+  position: relative;
+}
+
+.chair-video button {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-image: url(/wp-content/themes/qavs/images/icon_play.svg);
+  background-color: transparent;
+  border: none;
+  width: 73px;
+  height: 73px;
+  display: block;
+  text-indent: -200px !important;
+  overflow: hidden !important;
+  top: calc(50% - 37px);
+  left: calc(50% - 37px);
+}
+
+.chair-video button:focus,
+.chair-video button:active {
+  outline: 0;
 }

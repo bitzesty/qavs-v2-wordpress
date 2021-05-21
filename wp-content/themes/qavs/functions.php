@@ -7,10 +7,16 @@
  * @package QAVS
  */
 
+use Carbon_Fields\Container;
+use Carbon_Fields\Block;
+use Carbon_Fields\Field;
+
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
 }
+
+
 
 if ( ! function_exists( 'qavs_setup' ) ) :
 	/**
@@ -154,3 +160,41 @@ function wpdocs_custom_excerpt_length( $length ) {
     return 20;
 }
 add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+add_action( 'carbon_fields_register_fields', 'qavs_attach_theme_options' );
+function qavs_attach_theme_options() {
+    Container::make( 'theme_options', __( 'Theme Options' ) )
+        ->add_fields( array(
+            Field::make( 'text', 'qavs_login', 'Login' ),
+            Field::make( 'text', 'qavs_facebook', 'Facebook' ),
+            Field::make( 'text', 'qavs_twitter', 'Twitter' ),
+            Field::make( 'text', 'qavs_linkedin', 'LinkedIn' ),
+        ) );
+}
+
+add_action( 'after_setup_theme', 'qavs_load' );
+function qavs_load() {
+    require_once( 'vendor/autoload.php' );
+    \Carbon_Fields\Carbon_Fields::boot();
+    Block::make( __( 'Past Awardees' ) )
+      ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        ?>
+    
+        <div class="block">
+          <div class="block__heading">
+            <h1><?php echo esc_html( $fields['heading'] ); ?></h1>
+          </div><!-- /.block__heading -->
+    
+          <div class="block__image">
+            <?php echo wp_get_attachment_image( $fields['image'], 'full' ); ?>
+          </div><!-- /.block__image -->
+    
+          <div class="block__content">
+            <?php echo apply_filters( 'the_content', $fields['content'] ); ?>
+          </div><!-- /.block__content -->
+        </div><!-- /.block -->
+    
+        <?php
+      } );
+}
+
