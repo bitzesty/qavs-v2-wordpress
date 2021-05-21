@@ -74,6 +74,7 @@
     </div>
   </div>
 
+  <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' ))): ?>
   <div class="pre-header">
     <div class="container">
       <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' ))): ?>
@@ -98,6 +99,7 @@
       <?php endif; ?>
     </div>
   </div>
+  <?php endif; ?>
 	<header id="masthead" class="site-header">
     <div class="container">
       <a href='/' class="site-branding">
