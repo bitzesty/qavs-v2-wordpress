@@ -1884,7 +1884,7 @@ p.has-medium-font-size {
 
 .featured-awardee__meta {
   color: #333;
-  margin: -1.75rem 0 1.25rem;
+  margin: -0.5rem 0 1.25rem;
   font-weight: 400;
 }
 
@@ -2046,7 +2046,7 @@ p.has-medium-font-size {
 }
 
 .promoted-article__title {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.2rem !important;
 }
 
 .promoted-article__meta {
