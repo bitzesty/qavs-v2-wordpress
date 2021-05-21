@@ -8,7 +8,7 @@ get_header();
         <h1 class="page-title">
           <?php echo single_cat_title('', false); ?>
         </h1>
-        <?php if (!empty(carbon_get_theme_option( 'qavs_facebook' )) && !empty(carbon_get_theme_option( 'qavs_twitter' ))): ?>
+        <?php if (!empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_twitter' ))): ?>
         <div class="news-social-links">
           <p>
             Follow us on:

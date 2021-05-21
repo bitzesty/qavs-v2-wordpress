@@ -28,7 +28,7 @@ get_header();
         <h1 class="page-title">
           News
         </h1>
-        <?php if (!empty(carbon_get_theme_option( 'qavs_facebook' )) && !empty(carbon_get_theme_option( 'qavs_twitter' ))): ?>
+        <?php if (!empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_twitter' ))): ?>
         <div class="news-social-links">
           <p>
             Follow us on:

@@ -1120,6 +1120,12 @@ p:last-child {
   position: relative;
 }
 
+@media(max-width: 600px) {
+  .container {
+    max-width: calc(100% - 2em) !important;
+  }
+}
+
 .pre-header {
   background: #8A0DA6;
   color: white;
@@ -2224,6 +2230,7 @@ p.has-medium-font-size {
 .radio-button input + label {
   position: relative;
   padding-left: 45px;
+  display: block;
 }
 
 .radio-button input + label:before {
@@ -2234,6 +2241,8 @@ p.has-medium-font-size {
   height: 34px;
   display: block;
   position: absolute;
+  left: 0;
+  top: -1px;
 }
 
 .radio-button input:checked + label:after {
@@ -2316,5 +2325,39 @@ p.has-medium-font-size {
 @media (min-width: 782px) {
   .hero p {
     margin-bottom: 0;
+  }
+}
+
+@media(max-width: 380px) {
+  .site-branding {
+    margin-right: 0;
+    width: 190px;
+  }
+}
+
+.c-accordion__title:after {
+  content: '' !important;
+  background-image: url(/wp-content/themes/qavs/images/read.svg);
+  background-repeat: no-repeat;
+  width: 31px;
+  height: 32px;
+}
+
+.c-accordion__title[aria-expanded="true"]:after {
+  transform: translateY(-50%) rotate(180deg);
+  transform-origin: 50% 50%;
+}
+
+.c-accordion__title {
+  padding-right: 2.5rem !important;
+}
+
+.news-social-links p{
+  width: auto;
+}
+
+@media(max-width:600px) {
+  .news-social-links {
+    display: none;
   }
 }
