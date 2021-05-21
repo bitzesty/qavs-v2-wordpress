@@ -276,15 +276,17 @@
   }
 
   var chairVideo = document.querySelector('.chair-video video');
-  var chairVideoButton = document.createElement('button');
+  if (chairVideo) {
+    var chairVideoButton = document.createElement('button');
 
-  chairVideoButton.innerHTML = 'Play';
-  chairVideo.insertAdjacentElement('afterend', chairVideoButton);
-  chairVideoButton.addEventListener('click', function(e) {
-    e.preventDefault()
-    e.stopImmediatePropagation()
-    chairVideoButton.classList.add('hidden')
-    chairVideo.play()
-    chairVideo.setAttribute("controls", "controls")
-  })
+    chairVideoButton.innerHTML = 'Play';
+    chairVideo.insertAdjacentElement('afterend', chairVideoButton);
+    chairVideoButton.addEventListener('click', function(e) {
+      e.preventDefault()
+      e.stopImmediatePropagation()
+      chairVideoButton.classList.add('hidden')
+      chairVideo.play()
+      chairVideo.setAttribute("controls", "controls")
+    })
+  }
 }() );
