@@ -1963,6 +1963,12 @@ p.has-medium-font-size {
   margin-right: 10px;
 }
 
+@media (max-width: 800px) {
+  .page-tabs li {
+    display: block;
+  }
+}
+
 .page-tabs a {
   text-decoration: none;
   display: inline-block;
