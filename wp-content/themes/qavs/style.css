@@ -760,11 +760,12 @@ textarea {
 }
 
 .main-navigation .button a {
-  border: 1px solid #8A0DA6;
+  border: 2px solid #8A0DA6;
   padding: 0.35rem 0.5rem;
   color: #8A0DA6;
   background: transparent;
   display: inline-block !important;
+  font-weight: 400;
 }
 
 .main-navigation .button:hover a,
@@ -1259,7 +1260,7 @@ p:last-child {
 }
 
 .button--inverse {
-  border: 1px solid #8A0DA6;
+  border: 2px solid #8A0DA6;
   padding: 0.35rem 0.5rem;
   color: #8A0DA6 !important;
   font-weight: 500;
@@ -1320,7 +1321,7 @@ p:last-child {
 
 .news-categories ul li a {
   background: white !important;
-  border: 1px solid #8A0DA6 !important;
+  border: 2px solid #8A0DA6 !important;
   color: #8A0DA6 !important;
   border-radius: 40px;
   padding: 0.25rem 1.25rem;
@@ -1463,7 +1464,7 @@ p:last-child {
 }
 
 .news-article__title {
-  margin: 0 0 10px;
+  margin: 0 0 10px !important;
   font-size: 1.25em;
   line-height: 1.3;
   flex: 1;
@@ -1764,6 +1765,7 @@ a.news-article__cta {
 h1 {
   color: #8A0DA6;
   font-size: 2.667em;
+  line-height: 1.2;
 }
 
 p.has-medium-font-size {
@@ -1818,6 +1820,7 @@ p.has-medium-font-size {
 .featured-awardees-text {
   width: 800px;
   max-width: 100%;
+  margin-bottom: 2rem;
 }
 
 
@@ -1825,6 +1828,14 @@ p.has-medium-font-size {
   position: absolute;
   top: 5px;
   right: 0;
+}
+
+.featured-awardees-wrapper h2 {
+  margin-bottom: 0.45rem;
+}
+
+.featured-news-wrapper h2 {
+  margin-bottom: 0.25rem;
 }
 
 .featured-news-wrapper .button--inverse{
@@ -1874,6 +1885,7 @@ p.has-medium-font-size {
 .featured-awardee__meta {
   color: #333;
   margin: -1.75rem 0 1.25rem;
+  font-weight: 400;
 }
 
 .featured-awardee__escerpt {
@@ -2034,12 +2046,17 @@ p.has-medium-font-size {
 }
 
 .promoted-article__title {
+  margin-bottom: 0.2rem;
+}
 
+.promoted-article__meta {
+  margin-bottom: 2rem;
 }
 
 .arrow-link {
   display: inline-block;
   text-decoration: none;
+  font-weight: 400;
 }
 
 .arrow-link:hover,
@@ -2211,4 +2228,12 @@ p.has-medium-font-size {
 .chair-video button:focus,
 .chair-video button:active {
   outline: 0;
+}
+
+.hero {
+  margin: 2rem 0 !important;
+}
+
+.hero p {
+  font-weight: 400 !important;
 }

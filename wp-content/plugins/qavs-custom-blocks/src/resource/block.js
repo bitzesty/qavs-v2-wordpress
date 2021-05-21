@@ -12,20 +12,132 @@ import './style.scss';
 const { __ } = wp.i18n; // Import __() from wp.i18n
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { TextControl, ExternalLink } from '@wordpress/components';
+import { TextControl, ExternalLink, PanelBody, Button, ResponsiveWrapper } from '@wordpress/components';
+const { withSelect } = wp.data;
+const { MediaUpload, MediaUploadCheck, InspectorControls } = wp.editor;
 
 const renderResource = (attributes, className) => {
   const blockProps = useBlockProps.save();
   
   return (
     <div className={`resource ${className}`}>
-      <h4 className="resource__name">{attributes.name}</h4>
-      <div className="resource__content">
-        <RichText.Content tagName="div" value={attributes.content} />
+      {attributes.mediaUrl != 0 && <img src={attributes.mediaUrl} alt="" aria-hidden="true" className="resource__image" />}
+      <div className="resource__details">
+        <h3 className="resource__name">{attributes.name}</h3>
+        <div className="resource__content">
+          <RichText.Content value={attributes.content} />
+          {attributes.url && <a href={attributes.url} rel='noopener nofollow' aria-label={`Visit ${attributes.name}'s website`} className="resource__cta">Visit website</a>}
+        </div>
       </div>
     </div>
   );
 };
+
+const BlockEdit = props => {
+  const { attributes, setAttributes, className, isSelected } = props;
+
+  if (!isSelected) {
+    return renderResource(attributes, className);
+  }
+
+  const blockProps = useBlockProps();
+
+  const onSelectMedia = (media) => {
+    props.setAttributes({
+      mediaId: media.id,
+      mediaUrl: media.url
+    });
+  }
+
+  const removeMedia = () => {
+    props.setAttributes({
+      mediaId: 0,
+      mediaUrl: ''
+    });
+  }
+
+  const instructions = (
+    <p>{__("Choose an image")}</p>
+  );
+
+  return (
+    <div className={className}>
+      <InspectorControls>
+        <PanelBody title={__('Volunteering resource details')} initialOpen={true}>
+          <MediaUploadCheck fallback={instructions}>
+            <MediaUpload
+              title={__('Picture')}
+              onSelect={onSelectMedia}
+              value={attributes.mediaId}
+              allowedTypes={["image"]}
+              render={({ open }) => (
+                <Button
+                  className={attributes.mediaId == 0 ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview'}
+                  onClick={open}>
+                  {attributes.mediaId == 0 && __('Choose an image')}
+                </Button>
+              )}
+            />
+          </MediaUploadCheck>
+          {props.media != undefined &&
+            <ResponsiveWrapper naturalWidth={props.media.media_details.width} naturalHeight={props.media.media_details.height}>
+              <img src={props.media.source_url} />
+            </ResponsiveWrapper>
+          }
+          {attributes.mediaId != 0 &&
+            <div>
+              <br />
+              <MediaUploadCheck>
+                <MediaUpload
+                  title={__('Replace picture')}
+                  value={attributes.mediaId}
+                  onSelect={onSelectMedia}
+                  allowedTypes={['image']}
+                  render={({ open }) => (
+                    <Button onClick={open} isDefault isLarge>{__('Replace picture')}</Button>
+                  )}
+                />
+              </MediaUploadCheck>
+            </div>
+          }
+          {attributes.mediaId != 0 &&
+            <div>
+              <br />
+              <MediaUploadCheck>
+                <Button onClick={removeMedia} isLink isDestructive>
+                  {__('Remove picture')}
+                </Button>
+              </MediaUploadCheck>
+            </div>
+          }
+        </PanelBody>
+      </InspectorControls>
+
+      <TextControl
+        label={__('Name')}
+        value={attributes.name}
+        onChange={(val) => setAttributes({ name: val })}
+      />
+
+      <TextControl
+        label={__('URL')}
+        value={attributes.url}
+        onChange={(val) => setAttributes({ url: val })}
+      />
+
+      <label>{__('Resource text')}</label>
+      <div className="rich-text-wrapper">
+        <RichText
+          {...blockProps}
+          tagName="div"
+          label={__('Resource text')}
+          value={attributes.content}
+          onChange={(val) => setAttributes({ content: val })}
+        />
+      </div>
+    </div>
+  );
+}
 
 /**
  * Register: aa Gutenberg Block.
@@ -56,6 +168,18 @@ registerBlockType( 'qavs/resource', {
       type: 'string',
       source: 'html',
       selector: '.resource__content',
+    },
+    url: {
+      type: 'string',
+      default: ''
+    },
+    mediaId: {
+      type: 'number',
+      default: 0
+    },
+    mediaUrl: {
+      type: 'string',
+      default: ''
     }
   },
 
@@ -70,34 +194,9 @@ registerBlockType( 'qavs/resource', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-  edit: ({ className, attributes, setAttributes, isSelected }) => {
-    if (!isSelected) {
-      return renderResource(attributes, className);
-    }
-
-    const blockProps = useBlockProps();
-
-    return (
-      <div>
-        <TextControl
-          label={__('Name')}
-          value={attributes.name}
-          onChange={(val) => setAttributes({ name: val })}
-        />
-        <label>{__('Resource text')}</label>
-        <div className="rich-text-wrapper">
-          <RichText
-            {...blockProps}
-            tagName="div"
-            label={__('Resource text')}
-            value={attributes.content}
-            onChange={(val) => setAttributes({ content: val })}
-          />
-        </div>
-      </div>
-    )
-  },
-
+  edit: withSelect((select, props) => {
+    return { media: props.attributes.mediaId ? select('core').getMedia(props.attributes.mediaId) : undefined };
+  })(BlockEdit),
 	/**
 	 * The save function defines the way in which the different attributes should be combined
 	 * into the final markup, which is then serialized by Gutenberg into post_content.
