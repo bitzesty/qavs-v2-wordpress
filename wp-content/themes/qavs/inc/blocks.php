@@ -17,7 +17,6 @@ function qavs_block__featured_news( $block_attributes, $content ) {
   }
 
   $html .= "<div class='featured-news-wrapper'><h2>Featured news</h2>";
-  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse">View all news</a><div class="news-articles">';
 
   foreach($featured_news as $news) {
     $html .= '<article id="post-' . $news["ID"]. '" class="news-article">';
@@ -30,7 +29,11 @@ function qavs_block__featured_news( $block_attributes, $content ) {
     $html .= '<a href="' . esc_url( get_permalink($news["ID"]) ) . '" rel="bookmark" aria-labelledby="title-' . $news["ID"] . '" title="Click to read article" class="news-article__cta arrow-link">Read article</a></div></article>';
   }
   
-  $html .= '</div></div>';
+  $html .= '</div>';
+  
+  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse">View all news</a><div class="news-articles">';
+
+  $html .= '</div>';
 
   return $html;
 }
@@ -60,7 +63,6 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
   }
 
   $html .= "<div class='featured-awardees-wrapper'><h2>Featured awardees</h2>";
-  $html .= '<a href="' . get_category_link($block_attributes["categoryID"]) . '" class="button button--inverse">View all awardees</a>';
   $html .= "<p class='featured-awardees-text'>Take a look at some of the fantastic volunteer groups who have received a Queen’s Award for Voluntary Service in our showcase below.</p><div class='featured-awardees'>";
 
   foreach($featured_awardees as $awardee) {
@@ -80,7 +82,9 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     $html .= '<a href="' . esc_url( get_permalink($awardee->ID) ) . '" rel="bookmark" aria-labelledby="title-' . $awardee->ID . '" title="Click to read article about ' . get_the_title($awardee->ID) . '" class="featured-awardee__cta">View details</a></div></article>';
   }
   
-  $html .= '</div></div>';
+  $html .= '</div>';
+  $html .= '<a href="' . get_category_link($block_attributes["categoryID"]) . '" class="button button--inverse">View all awardees</a>';
+  $html .= '</div>';
 
   return $html;
 }

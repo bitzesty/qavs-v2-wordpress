@@ -1089,7 +1089,8 @@ p:last-child {
 .wp-block-table table {
   border-collapse: collapse;
   margin: 0 !important;
-  max-width:33.333rem;
+  width:33.333rem;
+  max-width: 100%
 }
 
 *:last-child {
@@ -1823,11 +1824,12 @@ p.has-medium-font-size {
   margin-bottom: 2rem;
 }
 
-
-.featured-awardees-wrapper .button--inverse{
-  position: absolute;
-  top: 5px;
-  right: 0;
+@media (min-width: 801px) {
+  .featured-awardees-wrapper .button--inverse{
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
 }
 
 .featured-awardees-wrapper h2 {
@@ -1838,16 +1840,33 @@ p.has-medium-font-size {
   margin-bottom: 0.25rem;
 }
 
-.featured-news-wrapper .button--inverse{
-  position: absolute;
-  top: 5px;
-  right: 0;
+@media (min-width: 801px) {
+  .featured-news-wrapper .button--inverse{
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
 }
 
+@media (max-width: 800px) {
+  .featured-awardees {
+    margin-bottom: 2rem;
+  }
+
+  .featured-awardees-wrapper .button--inverse {
+    display: inline-block;
+  }
+}
 
 .featured-awardee {
   display: flex;
   margin-bottom: 4rem;
+}
+
+@media (max-width: 800px) {
+  .featured-awardee {
+    flex-direction: column;
+  }
 }
 
 .featured-awardee img {
