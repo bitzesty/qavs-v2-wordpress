@@ -1885,6 +1885,12 @@ p.has-medium-font-size {
   object-position: center;
 }
 
+@media (max-width: 800px) {
+  .featured-awardee img {
+    width: 100%;
+  }
+}
+
 .featured-awardee__details {
   flex: 1;
 }
