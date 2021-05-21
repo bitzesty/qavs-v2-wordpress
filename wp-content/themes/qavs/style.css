@@ -1849,8 +1849,9 @@ p.has-medium-font-size {
 }
 
 @media (max-width: 800px) {
-  .featured-awardees-wrapper .button--inverse {
+  .featured-news-wrapper .button--inverse {
     margin-top: 1.5rem;
+    display: inline-block;
   }
 
   .featured-awardees {
@@ -1864,7 +1865,8 @@ p.has-medium-font-size {
 }
 
 @media (max-width: 600px) {
-  .featured-awardees-wrapper .button--inverse {
+  .featured-awardees-wrapper .button--inverse,
+  .featured-news-wrapper .button--inverse {
     display: block;
     text-align: center;
   }
