@@ -1920,6 +1920,10 @@ p.has-medium-font-size {
 }
 
 @media (max-width: 800px) {
+  .featured-awardee__details {
+    margin-top: 1rem;
+  }
+
   .featured-awardee:nth-child(1) .featured-awardee__details,
   .featured-awardee:nth-child(3) .featured-awardee__details {
     padding-right: 1.25rem;
