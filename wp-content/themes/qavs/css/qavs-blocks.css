@@ -1,0 +1,28 @@
+.download-button {
+  border: 2px solid #8A0DA6;
+  padding: 0.35rem 1rem;
+  color: #8A0DA6 !important;
+  font-weight: 500;
+  text-decoration: none;
+  background: transparent;
+}
+
+.download-button:hover,
+.download-button:focus,
+.download-button:active {
+  background: #8A0DA6;
+  color: white !important;
+  text-decoration: none;
+}
+
+.download-button svg {
+  height: 1em !important;
+  width: auto;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+} 
+
+.download-button svg path {
+  fill: currentColor;
+}

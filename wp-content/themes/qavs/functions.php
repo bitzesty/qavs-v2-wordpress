@@ -172,9 +172,18 @@ function qavs_attach_theme_options() {
         ) );
 }
 
+add_action( 'admin_enqueue_scripts', 'qavs_load_editor_styles' );
+function qavs_load_editor_styles() {
+  wp_register_style(
+    'qavs-editor-css',
+    get_stylesheet_directory_uri() . '/css/qavs-blocks.css'
+  );
+}
+
 add_action( 'after_setup_theme', 'qavs_load' );
 function qavs_load() {
     require_once( 'vendor/autoload.php' );
+
     \Carbon_Fields\Carbon_Fields::boot();
     Block::make( __( 'Past Awardees' ) )
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
@@ -193,6 +202,25 @@ function qavs_load() {
             <?php echo apply_filters( 'the_content', $fields['content'] ); ?>
           </div><!-- /.block__content -->
         </div><!-- /.block -->
+    
+        <?php
+      } );
+    
+    Block::make( __( 'Download button' ) )
+      ->add_fields( array(
+        Field::make( 'text', 'button_text', __( 'Button text' ) ),
+        Field::make( 'file', 'button_file', __( 'File' ) )->set_value_type( 'url' )
+      ) )
+      ->set_icon( 'download' )
+      ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        ?>
+    
+        <div class="block-download-button">
+          <a href="<?php echo esc_html( $fields['button_file'] ); ?>" download target="_blank" rel="noopener nofollow" class="download-button button button--inverse">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21"><path fill="#8A0DA6" d="M10.292 16.912a.783.783 0 01-.56-.236l-4.75-4.83a.814.814 0 010-1.139.781.781 0 011.12 0l4.19 4.262 4.19-4.262a.781.781 0 011.12 0c.31.315.31.824 0 1.139l-4.75 4.83a.783.783 0 01-.56.236z"/><path fill="#8A0DA6" d="M10.292 16.107a.798.798 0 01-.792-.805V1.615c0-.444.354-.805.792-.805.438 0 .791.361.791.805v13.687a.798.798 0 01-.791.805zM19.792 20.133h-19A.798.798 0 010 19.328c0-.445.354-.805.792-.805h19c.438 0 .791.36.791.805a.798.798 0 01-.791.805z"/></svg>
+            <?php echo esc_html( $fields['button_text'] ); ?>
+          </a>
+        </div>
     
         <?php
       } );

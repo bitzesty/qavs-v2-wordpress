@@ -1268,7 +1268,7 @@ p:last-child {
 
 .button--inverse {
   border: 2px solid #8A0DA6;
-  padding: 0.35rem 0.5rem;
+  padding: 0.35rem 1rem;
   color: #8A0DA6 !important;
   font-weight: 500;
   text-decoration: none;
@@ -1282,6 +1282,19 @@ p:last-child {
   color: white !important;
   text-decoration: none;
 }
+
+.button--inverse svg {
+  height: 1em !important;
+  width: auto;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+} 
+
+.button--inverse svg path {
+  fill: currentColor;
+}
+
 
 .ab-cta-button a {
   background: #8A0DA6 !important;
