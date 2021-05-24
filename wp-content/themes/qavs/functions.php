@@ -114,7 +114,7 @@ add_action( 'after_setup_theme', 'qavs_content_width', 0 );
  * Enqueue scripts and styles.
  */
 function qavs_scripts() {
-	wp_enqueue_style( 'qavs-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'qavs-style', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css') );
 	wp_style_add_data( 'qavs-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'qavs-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
