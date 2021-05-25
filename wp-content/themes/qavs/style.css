@@ -888,7 +888,7 @@ textarea {
 }
 
 .entry-content h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .entry-content p {
@@ -2370,6 +2370,10 @@ p.has-medium-font-size {
 
 .cookies-link-qavs a {
   text-decoration: none;
+}
+
+.ab-button {
+  line-height: 1.5 !important;
 }
 
 .ab-button:focus,
