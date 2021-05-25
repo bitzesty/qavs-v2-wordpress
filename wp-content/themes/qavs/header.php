@@ -47,7 +47,7 @@
             <button class="button button--inverse reject-additional-cookies">
               Reject additional cookies
             </button>
-            <a href="/cookie-policy">View cookies</a>
+            <a href="/cookie-policy">View cookie policy and settings</a>
           </div>
         </div>
         <div class="rejected-message hidden">
@@ -62,7 +62,7 @@
         </div>
         <div class="accepted-message hidden">
           <p>
-            You have rejected additional cookies. You can <a href='/cookie-policy'>change your cookie settings</a> at any time.
+            You have accepted additional cookies. You can <a href='/cookie-policy'>change your cookie settings</a> at any time.
           </p>
           <div class="cookie-banner__buttons">
             <button class="button button--inverse hide-cookie-banner">

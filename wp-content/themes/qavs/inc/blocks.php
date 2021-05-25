@@ -83,7 +83,6 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
   }
   
   $html .= '</div>';
-  $html .= '<a href="' . get_category_link($block_attributes["categoryID"]) . '" class="button button--inverse">View all awardees</a>';
   $html .= '</div>';
 
   return $html;

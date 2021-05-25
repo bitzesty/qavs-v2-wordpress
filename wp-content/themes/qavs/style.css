@@ -1324,6 +1324,7 @@ p:last-child {
   text-decoration: none;
   background: transparent;
   display: inline-block;
+  border-radius: 0 !important;
 }
 
 .button--inverse:hover,
@@ -2480,4 +2481,8 @@ p.has-medium-font-size {
 
 #primary:focus {
   outline: 0 !important;
+}
+
+.ab-block-cta .ab-button {
+  line-height: 1.5 !important;
 }
