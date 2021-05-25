@@ -2486,3 +2486,7 @@ p.has-medium-font-size {
 .ab-block-cta .ab-button {
   line-height: 1.5 !important;
 }
+
+.ab-block-cta .ab-cta-text p {
+  width: 750px !important;
+}
