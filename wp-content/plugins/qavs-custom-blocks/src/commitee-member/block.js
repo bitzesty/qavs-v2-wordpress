@@ -24,11 +24,6 @@ const renderMember = (attributes, className) => {
       <div className="commitee-member__details">
         <h4 className="commitee-member__name">{attributes.name}</h4>
         <dl className="commitee-member__detail">
-          <dt>Areas of interest</dt>
-          <dd className="commitee-member__areas-of-interest">{attributes.areas_of_interest}</dd>
-        </dl>
-        <dl className="commitee-member__detail">
-          <dt>About</dt>
           <dd className="commitee-member__about">
             <RichText.Content className="" value={attributes.about} />
           </dd>
@@ -122,12 +117,6 @@ const BlockEdit = props => {
         label={__('Name')}
         value={attributes.name}
         onChange={(val) => setAttributes({ name: val })}
-      />
-
-      <TextControl
-        label={__('Areas of interest')}
-        value={attributes.areas_of_interest}
-        onChange={(val) => setAttributes({ areas_of_interest: val })}
       />
 
       <label>{__('About')}</label>

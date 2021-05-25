@@ -22,7 +22,7 @@ function qavs_block__featured_news( $block_attributes, $content ) {
     $html .= '<article id="post-' . $news["ID"]. '" class="news-article">';
     $html .= qavs_post_thumbnail($news["ID"]);
     $html .= '<div class="news-article__details">';
-    $html .= '<h2 class="news-article__title" id="title-' . $news["ID"] . '">' . get_the_title($news["ID"]) . '</h2>';
+    $html .= '<h3 class="news-article__title" id="title-' . $news["ID"] . '">' . get_the_title($news["ID"]) . '</h3>';
     $html .= '<div class="news-article__meta">';
     $html .= qavs_posted_on($news["ID"]);
     $html .= '</div>';
@@ -72,7 +72,7 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     $html .= '<article id="post-' . $awardee->ID. '" class="featured-awardee">';
     $html .= qavs_post_thumbnail($awardee->ID);
     $html .= '<div class="featured-awardee__details">';
-    $html .= '<h2 class="featured-awardee__title" id="title-' . $awardee->ID . '">' . get_the_title($awardee->ID) . '</h2>';
+    $html .= '<h3 class="featured-awardee__title" id="title-' . $awardee->ID . '">' . get_the_title($awardee->ID) . '</h3>';
     $html .= '<div class="featured-awardee__meta">';
     $html .= get_field("year_and_location", $awardee->ID);
     $html .= '</div>';
@@ -108,7 +108,7 @@ function qavs_block__promoted_article( $block_attributes, $content ) {
     $html .= '<article id="post-' . $news["ID"]. '" class="promoted-article">';
     $html .= qavs_post_thumbnail($news["ID"]);
     $html .= '<div class="promoted-article__details">';
-    $html .= '<h2 class="promoted-article__title" id="title-' . $news["ID"] . '">' . get_the_title($news["ID"]) . '</h2>';
+    $html .= '<h3 class="promoted-article__title" id="title-' . $news["ID"] . '">' . get_the_title($news["ID"]) . '</h3>';
     $html .= '<div class="promoted-article__meta">';
     $html .= qavs_posted_on($news["ID"]);
     $html .= '</div>';
@@ -124,7 +124,7 @@ function qavs_block__parental_tabs( $block_attributes, $content ) {
   $pages = get_pages();
   $children = get_page_children( $parent_id, $pages );
 
-  $html = "<ul class='page-tabs'>";
+  $html = "<ul class='page-tabs' role='navigation' aria-label='Table of contents'>";
     foreach ($children as $child ) {
       $class = get_the_ID() == $child->ID ? "active" : "";
       $html .= "<li class='" . $class . "'>";

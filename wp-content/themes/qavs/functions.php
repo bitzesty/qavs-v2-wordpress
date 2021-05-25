@@ -155,6 +155,106 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+class QavsWebsite {
+  public static function groupTypeMapping() {
+    return [
+      "armed_forces"=>"Armed Forces",
+      "arts_and_media"=>"Arts and Media",
+      "asylum_seekers_and_refugees"=>"Asylum Seekers and Refugees",
+      "children_and_young_people"=>"Children and Young People",
+      "community_hubs_and_services"=>"Community Hubs and Services",
+      "cultural"=>"Cultural",
+      "disability"=>"Disability",
+      "education_and_employment"=>"Education and Employment",
+      "emergency_response"=>"Emergency Response",
+      "environment"=>"Environment",
+      "events"=>"Events",
+      "family_support"=>"Family Support",
+      "food_support"=>"Food Support",
+      "health_and_care"=>"Health and Care",
+      "heritage"=>"Heritage",
+      "homelessness"=>"Homelessness",
+      "mental_health_and_wellbeing"=>"Mental Health and Wellbeing",
+      "loneliness_and_befriending"=>"Loneliness and Befriending",
+      "older_people"=>"Older People",
+      "social_justice"=>"Social Justice",
+      "sport_and_outdoor_activities"=>"Sport and Outdoor Activities",
+      "other"=>"Other"
+    ];
+  }
+  
+  public static function lieutenanciesMapping() {
+    return [
+      "bedfordshire"=>"Bedfordshire",
+      "berkshire"=>"Berkshire",
+      "buckinghamshire"=>"Buckinghamshire",
+      "cornwall"=>"Cornwall",
+      "county_durham"=>"County Durham",
+      "cumbria"=>"Cumbria",
+      "derbyshire"=>"Derbyshire",
+      "devon"=>"Devon",
+      "dorset"=>"Dorset",
+      "east_sussex"=>"East Sussex",
+      "essex"=>"Essex",
+      "gloucestershire"=>"Gloucestershire",
+      "greater_london"=>"Greater London",
+      "greater_manchester"=>"Greater Manchester",
+      "hampshire"=>"Hampshire",
+      "hertfordshire"=>"Hertfordshire",
+      "kent"=>"Kent",
+      "lancashire"=>"Lancashire",
+      "leicestershire"=>"Leicestershire",
+      "lincolnshire"=>"Lincolnshire",
+      "merseyside"=>"Merseyside",
+      "norfolk"=>"Norfolk",
+      "north_yorkshire"=>"North Yorkshire",
+      "northamptonshire"=>"Northamptonshire",
+      "northumberland"=>"Northumberland",
+      "nottinghamshire"=>"Nottinghamshire",
+      "oxfordshire"=>"Oxfordshire",
+      "rutland"=>"Rutland",
+      "shropshire"=>"Shropshire",
+      "somerset"=>"Somerset",
+      "south_yorkshire"=>"South Yorkshire",
+      "staffordshire"=>"Staffordshire",
+      "suffolk"=>"Suffolk",
+      "surrey"=>"Surrey",
+      "the_city_and_county_of_bristol"=>"The City and County of Bristol",
+      "the_east_riding_of_yorkshire"=>"The East Riding of Yorkshire",
+      "the_isle_of_wight"=>"The Isle of Wight",
+      "the_west_midlands"=>"The West Midlands",
+      "tyne_and_wear"=>"Tyne and Wear",
+      "warwickshire"=>"Warwickshire",
+      "west_sussex"=>"West Sussex",
+      "west_yorkshire"=>"West Yorkshire",
+      "guernsey"=>"Guernsey",
+      "county_antrim"=>"County Antrim",
+      "county_armagh"=>"County Armagh",
+      "county_down"=>"County Down",
+      "county_londonderry"=>"County Londonderry",
+      "county_tyrone"=>"County Tyrone",
+      "the_county_borough_of_belfast"=>"The County Borough of Belfast",
+      "aberdeenshire"=>"Aberdeenshire",
+      "argyll_and_bute"=>"Argyll and Bute",
+      "banffshire"=>"Banffshire",
+      "inverness"=>"Inverness",
+      "lanarkshire"=>"Lanarkshire",
+      "the_city_of_aberdeen"=>"The City of Aberdeen",
+      "the_city_of_edinburgh"=>"The City of Edinburgh",
+      "the_city_of_glasgow"=>"The City of Glasgow",
+      "perth_and_kinross"=>"Perth and Kinross",
+      "renfrewshire"=>"Renfrewshire",
+      "ross_and_cromarty"=>"Ross and Cromarty",
+      "clwyd"=>"Clwyd",
+      "dyfed"=>"Dyfed",
+      "gwynedd"=>"Gwynedd",
+      "mid_glamorgan"=>"Mid Glamorgan",
+      "powys"=>"Powys",
+      "south_glamorgan"=>"South Glamorgan",
+      "west_glamorgan"=>"West Glamorgan"
+    ];
+  }
+}
 
 function wpdocs_custom_excerpt_length( $length ) {
     return 20;
@@ -185,6 +285,28 @@ function qavs_load() {
     require_once( 'vendor/autoload.php' );
 
     \Carbon_Fields\Carbon_Fields::boot();
+
+    Block::make( __( 'Past Awardees Filters' ) )
+      ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        ?>
+    
+        <div class="block">
+          <div class="block__heading">
+            <h1><?php echo esc_html( $fields['heading'] ); ?></h1>
+          </div><!-- /.block__heading -->
+    
+          <div class="block__image">
+            <?php echo wp_get_attachment_image( $fields['image'], 'full' ); ?>
+          </div><!-- /.block__image -->
+    
+          <div class="block__content">
+            <?php echo apply_filters( 'the_content', $fields['content'] ); ?>
+          </div><!-- /.block__content -->
+        </div><!-- /.block -->
+    
+        <?php
+      } );
+    
     Block::make( __( 'Past Awardees' ) )
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         ?>
@@ -224,5 +346,17 @@ function qavs_load() {
     
         <?php
       } );
+
+    Container::make( 'post_meta', __( 'Awardee details', 'qavs' ) )
+      ->where( 'post_type', '=', 'awardee' )
+      ->add_fields( array(
+        Field::make( 'text', 'awardee_award_year', 'Award Year' ),
+        Field::make( 'text', 'awardee_group_name', 'Group Name' ),
+        Field::make( 'select', 'awardee_ceremonial_county', 'Ceremonial County (Lieutenancy)' )->set_options('QavsWebsite::lieutenanciesMapping'),
+        Field::make( 'textarea', 'awardee_short_citation', 'Short Citation' )->set_rows( 4 ),
+        Field::make( 'select', 'awardee_group_type_1', 'Type of Group 1' )->set_options('QavsWebsite::groupTypeMapping'),
+        Field::make( 'select', 'awardee_group_type_2', 'Type of Group 2' )->set_options('QavsWebsite::groupTypeMapping'),
+        Field::make( 'text', 'awardee_website', 'Website' ),
+      ) );
 }
 
