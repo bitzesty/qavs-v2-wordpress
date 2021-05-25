@@ -1361,6 +1361,8 @@ p:last-child {
   border: none !important;
   border-radius: 0 !important;
   line-height: 1.5 !important;
+  padding: 0.35rem 1rem !important;
+  font-size: 1rem !important;
 }
 
 .ab-cta-button a:hover,
