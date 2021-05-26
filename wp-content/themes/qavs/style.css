@@ -2563,6 +2563,11 @@ p.has-medium-font-size {
   align-self: flex-end;
 }
 
+.crown-logo figure {
+  float: none !important;
+  margin: 0 !important;
+}
+
 @media (max-width: 599px) {
   .crown-logo {
     display: none !important;
