@@ -2463,7 +2463,7 @@ p.has-medium-font-size {
   outline: 0;
 }
 
-.section .wp-block-columns .hero {
+.section .wp-block-columns.hero {
   margin: 1.75rem 0 0.65rem !important;
 }
 
