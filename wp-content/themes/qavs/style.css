@@ -424,7 +424,7 @@ h5,
 h6 {
   clear: both;
   font-family: 'DM Serif Text', serif;
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 h1:first-child,
@@ -1163,7 +1163,7 @@ p:last-child {
   text-decoration: none;
   display: inline-block;
   line-height: 1;
-  margin-right: 0.75rem;
+  margin-right: 1.25rem;
 }
 
 .pre-header__social-link:hover,
@@ -1880,6 +1880,7 @@ h1 {
   color: #8A0DA6;
   font-size: 2.667em;
   line-height: 1.2;
+  font-weight: 400 !important;
 }
 
 p.has-medium-font-size {
