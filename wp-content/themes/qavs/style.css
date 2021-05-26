@@ -1179,7 +1179,7 @@ p:last-child {
 
 .pre-header__social-link,
 .pre-header__social-link:visited {
-  color: white;
+  color: white !important;
   text-decoration: none;
   display: inline-block;
   line-height: 1;
@@ -1201,12 +1201,12 @@ p:last-child {
 
 .pre-header__social-link:hover path,
 .pre-header__social-link:focus path {
-  fill: yellow;
+  fill: yellow !important;
 }
 
 .pre-header__link,
 .pre-header__link:visited {
-  color: white;
+  color: white !important;
   text-decoration: none;
   line-height: 1;
   white-space: nowrap;
