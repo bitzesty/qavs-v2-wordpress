@@ -1226,6 +1226,7 @@ p:last-child {
 .site-footer__links {
   font-size: 1em;
   font-weight: 400;
+  flex: 1;
 }
 
 .site-footer__links a {
@@ -1240,8 +1241,7 @@ p:last-child {
 .site-footer__links p {
   color: #000000;
   margin-top: 1.25rem;
-  width: 750px;
-  max-width: 100%;
+  max-width: 750px;
 }
 
 .site-footer__phone,
