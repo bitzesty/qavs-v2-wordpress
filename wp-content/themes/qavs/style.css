@@ -427,6 +427,24 @@ h6 {
   font-weight: 400 !important;
 }
 
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong,
+h5 strong,
+h6 strong {
+  font-weight: 400 !important;
+}
+
+h1 b,
+h2 b,
+h3 b,
+h4 b,
+h5 b,
+h6 b {
+  font-weight: 400 !important;
+}
+
 h1:first-child,
 h2:first-child,
 h3:first-child,
@@ -1202,7 +1220,7 @@ p:last-child {
 
 .site-footer {
   background: #F7F7F7 !important;
-  border-bottom: 10px solid #8A0DA6;
+  border-bottom: 20px solid #8A0DA6;
 }
 
 .site-footer__links {
@@ -1317,7 +1335,7 @@ p:last-child {
 
 .ab-block-cta p {
   margin: 0 auto !important;
-  width: 800px !important;
+  width: 700px !important;
   max-width: 100% !important;
   text-align: center;
   font-size: 1rem;
@@ -1881,6 +1899,9 @@ h1 {
   font-size: 2.667em;
   line-height: 1.2;
   font-weight: 400 !important;
+  position: relative;
+  top: -0.7rem !important;
+  margin-bottom: 0.7rem !important;
 }
 
 p.has-medium-font-size {
@@ -1948,10 +1969,6 @@ p.has-medium-font-size {
 
 .featured-awardees-wrapper h2 {
   margin-bottom: 0.45rem;
-}
-
-.featured-news-wrapper {
-  margin-bottom: 3rem;
 }
 
 .featured-news-wrapper h2 {
@@ -2084,7 +2101,7 @@ p.has-medium-font-size {
   margin: 0 !important;
   padding: 0 !important;
   list-style-type: none;
-  margin-bottom: -3rem !important;
+  margin-bottom: -3.8rem !important;
 }
 
 .page-tabs li {
@@ -2169,7 +2186,8 @@ p.has-medium-font-size {
   border-top: 1px solid #8A0DA6;
   border-bottom: 1px solid #8A0DA6;
   margin: 1rem 0;
-  
+  width: 800px;
+  max-width: 100%;
 }
 
 .wp-block-pb-accordion-item.is-open {
@@ -2546,11 +2564,7 @@ p.has-medium-font-size {
 }
 
 @media (max-width: 599px) {
-  .push-forward-mobile {
-    order: 4;
-  }
-
   .crown-logo {
-    margin: 0 auto 2rem !important;
+    display: none !important;
   }
 }
