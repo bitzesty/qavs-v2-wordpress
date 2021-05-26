@@ -2530,3 +2530,20 @@ p.has-medium-font-size {
 .hero h1 {
   color: #1F1F1F !important;
 }
+
+.crown-logo {
+  width: 305px !important;
+  max-width: calc(100% - 3rem) !important;
+  display: block;
+  margin: 0 0 0 auto;
+}
+
+@media (max-width: 599px) {
+  .push-forward-mobile {
+    order: 4;
+  }
+
+  .crown-logo {
+    margin: 0 auto 2rem !important;
+  }
+}
