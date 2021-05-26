@@ -2240,6 +2240,7 @@ p.has-medium-font-size {
   .promoted-article {
     flex-direction: column;
     border-right: none;
+    align-items: flex-start;
   }
 
   .promoted-article img {
@@ -2533,7 +2534,7 @@ p.has-medium-font-size {
 
 .crown-logo {
   width: 305px !important;
-  max-width: calc(100% - 3rem) !important;
+  max-width: 100% !important;
   display: block;
   margin: 0 0 0 auto;
 }
