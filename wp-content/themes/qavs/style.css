@@ -1950,6 +1950,10 @@ p.has-medium-font-size {
   margin-bottom: 0.45rem;
 }
 
+.featured-news-wrapper {
+  margin-bottom: 3rem;
+}
+
 .featured-news-wrapper h2 {
   margin-bottom: 0.25rem;
 }
