@@ -2228,7 +2228,7 @@ p.has-medium-font-size {
   display: flex;
   margin: 2rem 0;
   background: #f7f7f7;
-  border-right: 10px solid #8A0DA6;
+  border-right: 10px solid #47A14E;
   padding: 2rem 0;
   align-items: center;
 }
@@ -2258,8 +2258,8 @@ p.has-medium-font-size {
 @media (max-width: 992px) {
   .promoted-article {
     flex-direction: column;
-    border-right: none;
     align-items: flex-start;
+    padding: 2rem !important;
   }
 
   .promoted-article img {
