@@ -2462,6 +2462,12 @@ p.has-medium-font-size {
   margin: 1.75rem 0 0.65rem !important;
 }
 
+@media (max-width: 599px) {
+  .section .wp-block-columns.hero {
+    margin: 1.75rem 0 -1.5rem !important;
+  }
+}
+
 .hero p {
   font-weight: 400 !important;
   margin-bottom: 2rem;
