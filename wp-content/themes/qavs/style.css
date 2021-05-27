@@ -1456,7 +1456,8 @@ p:last-child {
 }
 
 
-.ab-cta-button a {
+.ab-cta-button a,
+.ab-cta-button button {
   background: #8A0DA6 !important;
   border: 2px solid #8A0DA6 !important;
   font-weight: 500;
@@ -1468,7 +1469,8 @@ p:last-child {
   transition: none !important;
 }
 
-.ab-cta-button a:hover {
+.ab-cta-button a:hover,
+.ab-cta-button button:hover {
   background: #fff !important;
   color: #8A0DA6 !important;
   border: 2px solid #8A0DA6 !important;
@@ -1477,7 +1479,9 @@ p:last-child {
 }
 
 .ab-cta-button a:focus,
-.ab-cta-button a:active {
+.ab-cta-button a:active
+.ab-cta-button button:focus,
+.ab-cta-button button:active {
   background: #E1ABED !important;
   box-shadow: 0 3px #0b0c0c !important;
   border-color: #E1ABED !important;
