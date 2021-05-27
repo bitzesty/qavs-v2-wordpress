@@ -127,7 +127,7 @@ function qavs_block__parental_tabs( $block_attributes, $content ) {
     foreach ($children as $child ) {
       $class = get_the_ID() == $child->ID ? "active" : "";
       $html .= "<li class='" . $class . "'>";
-      $html .= "<a href='" . get_permalink($child->ID) . "'>" . get_the_title($child->ID) . "</a>";
+      $html .= "<a href='" . get_permalink($child->ID) . "' " . (get_the_ID() == $child->ID ? 'aria-current="page"' : '') . ">" . get_the_title($child->ID) . "</a>";
       $html .= "</li>";
     }
   $html .= "</ul>";

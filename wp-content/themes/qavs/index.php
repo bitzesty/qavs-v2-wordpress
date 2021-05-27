@@ -50,19 +50,21 @@ get_header();
         <?php endif; ?>
 
         <div class="news-categories">
-        <p id='news-topic-list'>View by topic</p>
-          <ul aria-labelledby='news-topic-list'>
-            <li>
-              <a href="/news" class="<?php echo !is_category() ? 'active' : ''; ?>">All topics</a>
-            </li>
-            <?php foreach(qavs_get_categories() as $category): ?>
+          <p id='news-topic-list'>View by topic</p>
+          <nav aria-labelledby='news-topic-list'>
+            <ul>
               <li>
-                <a href="<?php echo get_category_link($category['id']); ?>" class="<?php echo $category['active'] ? 'active' : ''; ?>">
-                  <?php echo $category['name']; ?>
-                </a>
+                <a href="/news" class="<?php echo !is_category() ? 'active' : ''; ?>" <?php echo !is_category() ? 'aria-current="page"' : ''; ?>>All topics</a>
               </li>
-            <?php endforeach; ?>
-          </ul>
+              <?php foreach(qavs_get_categories() as $category): ?>
+                <li>
+                  <a href="<?php echo get_category_link($category['id']); ?>" class="<?php echo $category['active'] ? 'active' : ''; ?>" <?php echo $category['active'] ? 'aria-current="page"' : ''; ?>>
+                    <?php echo $category['name']; ?>
+                  </a>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>

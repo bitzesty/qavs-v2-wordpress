@@ -2427,6 +2427,11 @@ p.has-medium-font-size {
   background-position: center;
 }
 
+.arrow-link:focus:after,
+.arrow-link:active:after {
+  background-image: url(/wp-content/themes/qavs/images/prev-black.svg);
+}
+
 .border-top-bottom h3 {
   margin-top: 0.2rem !important;
   margin-bottom: 0.2rem !important;
