@@ -2179,6 +2179,11 @@ p.has-medium-font-size {
   }
 }
 
+.featured-awardee__cta {
+  display: inline;
+  align-self: baseline;
+}
+
 .featured-awardee__details {
   flex: 1;
   display: flex;
@@ -2429,6 +2434,7 @@ p.arrow-link a {
   display: inline-block;
   text-decoration: none;
   font-weight: 400;
+  align-self: baseline;
 }
 
 a.arrow-link:hover,
