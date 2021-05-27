@@ -133,6 +133,8 @@
         return;
       }
 
+      saveButton.attr("role", "button");
+
       var analyticsConsent = Cookies.get('given_analytics_cookies_consent');
       var communicationsConsent = Cookies.get('given_communications_cookies_consent');
 

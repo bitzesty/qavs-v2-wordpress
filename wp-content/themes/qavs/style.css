@@ -593,8 +593,8 @@ a:active {
 
 a:focus {
   outline: none;
-  background: #fd0;
-  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  background: #E1ABED;
+  box-shadow: 0 4px #0b0c0c;
   color: #0b0c0c;
   text-decoration: none;
 }
@@ -765,11 +765,11 @@ textarea {
   position: relative;
   padding-left: 0;
   text-align: left;
-  margin-top: 1.5rem;
+  margin-top: 1.3rem;
 }
 
 .main-navigation li:last-child {
-  padding-right: 0;
+  margin-right: 0 !important;
 }
 
 .main-navigation a {
@@ -787,6 +787,11 @@ textarea {
   border-bottom: 3px solid currentColor;
 }
 
+.main-navigation li:not(.button) a:focus,
+.main-navigation li:not(.button) a:active {
+  border-bottom-color: transparent !important;
+}
+
 .main-navigation .button a {
   border: 2px solid #8A0DA6;
   padding: 0.35rem 0.5rem;
@@ -796,12 +801,18 @@ textarea {
   font-weight: 400;
 }
 
-.main-navigation .button:hover a,
-.main-navigation .button:focus a,
-.main-navigation .button:active a {
+.main-navigation .button a:hover {
   background: #8A0DA6;
   color: white;
   text-decoration: none;
+}
+
+.main-navigation .button a:focus,
+.main-navigation .button a:active {
+  background: #E1ABED !important;
+  box-shadow: 0 3px #0b0c0c !important;
+  border-color: #E1ABED !important;
+  color: #0b0c0c !important;
 }
 
 /* Small menu. */
@@ -823,8 +834,8 @@ textarea {
 
 .menu-toggle:active,
 .menu-toggle:focus {
-  background: #fd0;
-  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  background: #E1ABED;
+  box-shadow: 0 -2px #E1ABED, 0 4px #0b0c0c;
   color: #0b0c0c;
   text-decoration: none;
   outline: none;
@@ -1212,12 +1223,17 @@ p:last-child {
   display: inline-block;
   line-height: 1;
   margin-right: 1rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  text-align: center;
+  line-height: 1.25rem;
 }
 
 .pre-header__social-link:hover,
 .pre-header__social-link:focus {
   text-decoration: none;
-  color: #1f1f1f !important;
+  color: yellow !important;
+  box-shadow: none !important;
 }
 
 .pre-header__social-link svg {
@@ -1228,9 +1244,13 @@ p:last-child {
   fill: currentColor;
 }
 
-.pre-header__social-link:hover path,
-.pre-header__social-link:focus path {
+.pre-header__social-link:hover path {
   fill: yellow !important;
+}
+
+.pre-header__social-link:focus path,
+.pre-header__social-link:active path {
+  color: #0b0c0c !important;
 }
 
 .pre-header__link,
@@ -1242,6 +1262,10 @@ p:last-child {
   display: inline-block;
   font-size: 18px;
   font-weight: 400;
+  height: 1.25rem;
+  padding: 0 0.5rem;
+  text-align: center;
+  line-height: 1.25rem;
 }
 
 .pre-header__link:hover {
@@ -1398,13 +1422,19 @@ p:last-child {
   border-radius: 0 !important;
 }
 
-.button--inverse:hover,
-.button--inverse:focus,
-.button--inverse:active {
+.button--inverse:hover {
   background: #8A0DA6;
   color: white !important;
   text-decoration: none;
   border: 2px solid #8A0DA6 !important;
+}
+
+.button--inverse:focus,
+.button--inverse:active {
+  background: #E1ABED !important;
+  box-shadow: 0 3px #0b0c0c !important;
+  border-color: #E1ABED !important;
+  color: #0b0c0c !important;
 }
 
 @media (max-width: 1024px) {
@@ -1428,21 +1458,31 @@ p:last-child {
 
 .ab-cta-button a {
   background: #8A0DA6 !important;
+  border: 2px solid #8A0DA6 !important;
   font-weight: 500;
   font-size: 1rem !important;
-  border: none !important;
   border-radius: 0 !important;
   line-height: 1.5 !important;
   padding: 0.35rem 1rem !important;
   font-size: 1rem !important;
+  transition: none !important;
 }
 
-.ab-cta-button a:hover,
-.ab-cta-button a:focus {
-  background: #1f1f1f !important;
-  color: white;
+.ab-cta-button a:hover {
+  background: #fff !important;
+  color: #8A0DA6 !important;
+  border: 2px solid #8A0DA6 !important;
   font-weight: 500;
   font-size: 1rem !important;
+}
+
+.ab-cta-button a:focus,
+.ab-cta-button a:active {
+  background: #E1ABED !important;
+  box-shadow: 0 3px #0b0c0c !important;
+  border-color: #E1ABED !important;
+  color: #0b0c0c !important;
+  text-decoration: none !important;
 }
 
 .section {
@@ -1839,8 +1879,8 @@ a.news-article__cta {
 
 .back-link:focus,
 .back-link:active {
-  background: #fd0;
-  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  background: #E1ABED;
+  box-shadow: 0 -2px #E1ABED, 0 4px #0b0c0c;
   color: #0b0c0c;
   text-decoration: none;
 }
