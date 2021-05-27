@@ -128,6 +128,7 @@
       var radiosAnalytics = document.querySelectorAll('input[name="cookies-analytics"]');
       var radiosCommunications = document.querySelectorAll('input[name="cookies-communications"]');
       var saveButton = document.querySelector('.save-cookies');
+      var cookieForm = document.querySelector('.cookie-save-form');
 
       if (!saveButton) {
         return;
@@ -150,7 +151,7 @@
         document.getElementById('cookies-communications-no').checked = true;
       }
 
-      saveButton.addEventListener('click', function(e) {
+      cookieForm.addEventListener('submit', function(e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -166,8 +167,6 @@
         if (existingMessage) {
           existingMessage.parentNode.removeChild(existingMessage);
         }
-
-        saveButton.blur();
 
         var message = document.createElement('p');
         message.classList.add('save-cookie-message');
