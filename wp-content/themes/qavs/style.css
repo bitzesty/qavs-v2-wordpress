@@ -1597,7 +1597,7 @@ p:last-child {
 }
 
 .featured-news-article__details a {
-  color: #136C85 !important;
+  color: #136C85;
   font-weight: 400;
 }
 
@@ -1703,7 +1703,7 @@ a.news-article__cta {
   font-weight: bold;
   text-decoration: none;
   position: relative;
-  color: #136C85 !important;
+  color: #136C85;
 }
 
 .post-navigation .nav-links .nav-previous a .nav-subtitle,
@@ -2406,9 +2406,13 @@ p.has-medium-font-size {
   font-weight: 400;
 }
 
-.arrow-link:hover,
-.arrow-link:focus {
+.arrow-link:hover {
   text-decoration: underline;
+}
+
+.arrow-link:focus {
+  color: #0b0c0c !important;
+  text-decoration: none;
 }
 
 .arrow-link:after {
