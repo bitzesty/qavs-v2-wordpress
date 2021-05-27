@@ -701,10 +701,10 @@ textarea {
 .site-header .container {
   display: flex;
   align-items: center;
-  min-height: 104px;
+  min-height: 98px;
   justify-content: space-between;
   padding: 24px 0;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .site-branding {
@@ -849,6 +849,7 @@ textarea {
     justify-items: start;
     flex-wrap: wrap;
     flex-direction: row;
+    min-height: 104px !important;
   }
 
 	.menu-toggle {
@@ -2431,7 +2432,7 @@ p.has-medium-font-size {
 
 .arrow-link:focus:after,
 .arrow-link:active:after {
-  background-image: url(/wp-content/themes/qavs/images/prev-black.svg);
+  background-image: url(/wp-content/themes/qavs/images/next-black.svg);
 }
 
 .border-top-bottom h3 {
