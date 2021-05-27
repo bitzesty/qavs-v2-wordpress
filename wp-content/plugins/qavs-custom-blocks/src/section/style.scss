@@ -1,6 +1,10 @@
 .section {
-  padding: 3em 0 3em;
+  padding: 3.33333rem 0;
   color: #1f1f1f;
+}
+
+@media (max-width: 992px) {
+  padding: 1.666666rem 0;
 }
 
 .section.is-style-default {

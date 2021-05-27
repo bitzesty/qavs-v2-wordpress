@@ -51,6 +51,10 @@ registerBlockType( 'qavs/notice', {
     {
       name: 'purple',
       label: __('Purple')
+    },
+    {
+      name: 'purple-home',
+      label: __('Purple Home')
     }
   ],
   attributes: {

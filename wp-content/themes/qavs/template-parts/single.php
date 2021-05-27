@@ -14,6 +14,12 @@
       <?php endif; ?>
       <div class="article__body">
         <?php the_content(); ?>
+        <?php if(qavs_communication_cookies_accepted()): ?>
+          <div class="article__sharing">
+            <p><strong>Share this article</strong></p>
+            <?php echo do_shortcode('[addtoany buttons="linkedin,twitter,facebook,email"]'); ?>
+          </div>
+        <?php endif; ?>
       </div>
     </div>
 

@@ -26,8 +26,8 @@ const renderResource = (attributes, className) => {
         <h3 className="resource__name">{attributes.name}</h3>
         <div className="resource__content">
           <RichText.Content value={attributes.content} />
-          {attributes.url && <a href={attributes.url} rel='noopener nofollow' aria-label={`Visit ${attributes.name}'s website`} className="resource__cta">Visit website</a>}
         </div>
+        {attributes.url && <a href={attributes.url} rel='noopener nofollow' aria-label={`Visit ${attributes.name}'s website`} className="resource__cta">Visit website</a>}
       </div>
     </div>
   );

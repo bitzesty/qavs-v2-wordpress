@@ -117,7 +117,7 @@ if ( ! function_exists( 'qavs_post_thumbnail' ) ) :
 			return;
 		}
 
-    return get_the_post_thumbnail($id, 'post-thumbnail', ['alt' => the_title_attribute(['echo' => false])]);
+    return get_the_post_thumbnail($id, 'post-thumbnail', ['alt' => '']);
 	}
 endif;
 
@@ -131,3 +131,8 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 		do_action( 'wp_body_open' );
 	}
 endif;
+
+function qavs_communication_cookies_accepted() {
+  $name = 'given_communications_cookies_consent';
+  return isset($_COOKIE[$name]) && $_COOKIE[$name] == 'yes';
+}
