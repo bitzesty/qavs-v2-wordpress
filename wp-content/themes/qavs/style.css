@@ -704,6 +704,7 @@ textarea {
   min-height: 104px;
   justify-content: space-between;
   padding: 24px 0;
+  flex-direction: column;
 }
 
 .site-branding {
@@ -847,6 +848,7 @@ textarea {
   .site-header .container {
     justify-items: start;
     flex-wrap: wrap;
+    flex-direction: row;
   }
 
 	.menu-toggle {
