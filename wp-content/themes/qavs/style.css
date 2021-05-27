@@ -1480,7 +1480,7 @@ p:last-child {
 }
 
 .ab-cta-button a:focus,
-.ab-cta-button a:active
+.ab-cta-button a:active,
 .ab-cta-button button:focus,
 .ab-cta-button button:active {
   background: #E1ABED !important;
