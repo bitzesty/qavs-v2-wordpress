@@ -903,10 +903,6 @@ textarea {
   display: flex;
 }
 
-.post-navigation .nav-links {
-  align-items: center;
-}
-
 @media (max-width: 767px) {
   .comment-navigation .nav-links,
   .posts-navigation .nav-links,
@@ -1825,6 +1821,10 @@ a.news-article__cta {
 }
 
 @media (min-width: 768px) {
+  .post-navigation .nav-links {
+    align-items: flex-start;
+  }
+
   .post-navigation .nav-links:after {
     content: "";
     display: table;
