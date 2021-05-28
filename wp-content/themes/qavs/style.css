@@ -2913,3 +2913,15 @@ p.arrow-link a:active:after {
 	width: 1px;
   word-wrap: normal !important;
 }
+
+@media (max-width: 992px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media (min-width: 993px) {
+  .mobile-only {
+    display: none;
+  }
+}
