@@ -2949,3 +2949,8 @@ p.arrow-link a:active:after {
 .addtoany_shortcode {
   margin-left: -5px;
 }
+
+.crown-hero {
+  margin: 0 !important;
+  text-align: right !important;
+}
