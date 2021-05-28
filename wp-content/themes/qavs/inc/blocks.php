@@ -16,7 +16,9 @@ function qavs_block__featured_news( $block_attributes, $content ) {
     return "";
   }
 
-  $html .= "<div class='featured-news-wrapper'><h2>Featured news</h2><div class=\"news-articles\">";
+  $html .= "<div class='featured-news-wrapper'><h2>Featured news</h2>";
+  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse desktop-only">View all news</a>';
+  $html .= "<div class=\"news-articles\">";
 
   foreach($featured_news as $news) {
     $html .= '<article id="post-' . $news["ID"]. '" class="news-article">';
@@ -31,7 +33,7 @@ function qavs_block__featured_news( $block_attributes, $content ) {
   
   $html .= '</div>';
   
-  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse">View all news</a>';
+  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse mobile-only">View all news</a>';
 
   $html .= '</div>';
 

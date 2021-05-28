@@ -2,7 +2,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main" tabindex="-1">
     <div class="section">
       <div class="container">
         <h1 class="page-title">
@@ -55,7 +55,20 @@ get_header();
           <?php while (have_posts()) { the_post(); get_template_part( 'template-parts/content', get_post_type() ); } ?>
         </div>
       
-        <?php the_posts_navigation(); ?>
+        <?php
+          $pagination_links = paginate_links([
+							"prev_text" => "Previous page",
+							"next_text" => "Next page",
+							"type" => "array"
+						]);
+
+						if (!empty($pagination_links)):
+							echo "<ul class='pagination'>";
+								foreach ($pagination_links as $link) {
+									echo "<li>" . $link . "</li>";
+								}
+							echo "</ul>";
+				endif; ?>
       </div>
 		<?php else :
 			get_template_part( 'template-parts/content', 'none' );
