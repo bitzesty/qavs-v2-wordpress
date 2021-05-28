@@ -1449,6 +1449,7 @@ p:last-child {
   box-shadow: 0 3px #0b0c0c !important;
   border-color: #E1ABED !important;
   color: #0b0c0c !important;
+  outline: 0;
 }
 
 @media (max-width: 1024px) {
@@ -2534,6 +2535,11 @@ p.arrow-link a:active:after {
 
 .cookie-banner__buttons {
   margin-top: 1.5rem;
+}
+
+.cookie-banner__buttons .button:focus,
+.cookie-banner__buttons .button:active {
+  outline: 0 !important;
 }
 
 @media (min-width: 1025px) {
