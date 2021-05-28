@@ -1836,6 +1836,10 @@ a.news-article__cta {
     float: left;
   }
 
+  .post-navigation .nav-links .nav-previous a {
+    margin-top: 0 !important;
+  }
+
   .post-navigation .nav-links .nav-next {
     float: right;
     margin-top: 0;
