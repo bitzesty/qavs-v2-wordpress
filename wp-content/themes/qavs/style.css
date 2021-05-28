@@ -2359,12 +2359,33 @@ p.has-medium-font-size {
 
 .c-accordion__title {
   margin: 1rem 0 !important;
+  padding-right: 2.5rem !important;
+}
+
+.c-accordion__title:after {
+  content: '' !important;
+  background-image: url(/wp-content/themes/qavs/images/read.svg);
+  background-repeat: no-repeat;
+  width: 31px;
+  height: 32px;
+}
+
+.c-accordion__title[aria-expanded="true"]:after {
+  transform: translateY(-50%) rotate(180deg);
+  transform-origin: 50% 50%;
 }
 
 .c-accordion__title:focus {
   outline: 0;
+  background: #E1ABED !important;
+  box-shadow: 0 3px #0b0c0c !important;
+  border-color: #E1ABED !important;
+  color: #0b0c0c !important;
 }
 
+.c-accordion__title:focus:after {
+  background-image: url(/wp-content/themes/qavs/images/read-black.svg);
+}
 
 .section ol,
 .section ul {
@@ -2690,23 +2711,6 @@ p.arrow-link a:active:after {
     margin-right: 0;
     width: 190px;
   }
-}
-
-.c-accordion__title:after {
-  content: '' !important;
-  background-image: url(/wp-content/themes/qavs/images/read.svg);
-  background-repeat: no-repeat;
-  width: 31px;
-  height: 32px;
-}
-
-.c-accordion__title[aria-expanded="true"]:after {
-  transform: translateY(-50%) rotate(180deg);
-  transform-origin: 50% 50%;
-}
-
-.c-accordion__title {
-  padding-right: 2.5rem !important;
 }
 
 .news-social-links p{
