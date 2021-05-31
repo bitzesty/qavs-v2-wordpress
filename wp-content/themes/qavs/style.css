@@ -2417,6 +2417,18 @@ p.has-medium-font-size {
   padding-right: 2.5rem !important;
 }
 
+.c-accordion__title--button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+}
+
+.c-accordion__content {
+  padding-left: 1.5rem;
+}
+
 .c-accordion__title:after {
   content: '' !important;
   background-image: url(/wp-content/themes/qavs/images/read.svg);
