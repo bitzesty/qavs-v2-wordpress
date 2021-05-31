@@ -74,15 +74,6 @@
     </div>
   </div>
 
-  <div class="phase-banner">
-    <div class="container">
-      <p>
-        <span>BETA</span>
-        This is a new website – your <a href="https://www.surveymonkey.co.uk/r/P7F52BK" target="_blank" rel="noopener nofollow">feedback</a> will help us to improve it.
-      </p>
-    </div>
-  </div>
-
   <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' ))): ?>
   <div class="pre-header">
     <div class="container">
@@ -109,6 +100,14 @@
     </div>
   </div>
   <?php endif; ?>
+  <div class="phase-banner">
+    <div class="container">
+      <p>
+        <span>BETA</span>
+        This is a new website – your <a href="https://www.surveymonkey.co.uk/r/P7F52BK" target="_blank" rel="noopener nofollow">feedback</a> will help us to improve it.
+      </p>
+    </div>
+  </div>
 	<header id="masthead" class="site-header">
     <div class="container">
       <a href='/' class="site-branding">

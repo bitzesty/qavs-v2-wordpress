@@ -185,6 +185,8 @@
   var rejectAll = document.querySelector('.reject-additional-cookies');
   var hideMessage = document.querySelectorAll('.hide-cookie-banner');
 
+  console.log(generalConsent, typeof generalConsent)
+
   if (typeof generalConsent === 'undefined') {
     cookieBanner.classList.remove('hidden');
   }

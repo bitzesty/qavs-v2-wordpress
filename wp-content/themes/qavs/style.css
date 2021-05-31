@@ -1321,6 +1321,21 @@ p:last-child {
   color: #0b0c0c;
 }
 
+@media (max-width: 992px) {
+  .site-footer__links nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-footer__links a {
+    display: inline-block;
+    width: auto;
+    align-self: baseline;
+    padding: 0.25rem 0.1rem;
+    margin: 0.75rem 0;
+  }
+}
+
 .site-footer__links p {
   color: #0b0c0c;
   margin-top: 1.25rem;
@@ -1762,6 +1777,11 @@ a.news-article__cta {
   font-size: 0.917rem;
 }
 
+.post-navigation .nav-links .nav-previous a:hover,
+.post-navigation .nav-links .nav-next a:hover {
+  color: #0b0c0c !important;
+}
+
 .post-navigation .nav-links .nav-previous a:focus,
 .post-navigation .nav-links .nav-next a:focus,
 .post-navigation .nav-links .nav-previous a:active,
@@ -1806,6 +1826,7 @@ a.news-article__cta {
   padding-left: 1.5em;
 }
 
+.post-navigation .nav-links .nav-previous a:hover:before,
 .post-navigation .nav-links .nav-previous a:focus:before,
 .post-navigation .nav-links .nav-previous a:active:before {
   background-image: url(/wp-content/themes/qavs/images/prev-black.svg);
@@ -1825,6 +1846,7 @@ a.news-article__cta {
   background-position: center;
 }
 
+.post-navigation .nav-links .nav-next a:hover:before,
 .post-navigation .nav-links .nav-next a:focus:before,
 .post-navigation .nav-links .nav-next a:active:before {
   background-image: url(/wp-content/themes/qavs/images/next-black.svg);
@@ -2020,6 +2042,8 @@ a.news-article__cta {
 .article__title {
   font-size: 1.625rem;
   margin: 1em 0 0;
+  width: 33.333rem;
+  max-width: 100%;
 }
 
 .article__meta {
@@ -2300,6 +2324,10 @@ p.has-medium-font-size {
   font-weight: 400;
 }
 
+.page-tabs li:not(.active) a:hover {
+  border-bottom: 3px solid currentColor;
+}
+
 .page-tabs li.active a {
   border-bottom: 3px solid #136C85;
   color: #1f1f1f !important;
@@ -2357,7 +2385,9 @@ p.has-medium-font-size {
 }
 
 .wp-block-button__link:focus,
-.wp-block-button__link:active {
+.wp-block-button__link:active,
+.is-style-outline .wp-block-button__link:focus,
+.is-style-outline .wp-block-button__link:active {
   outline: 0;
   background: #E1ABED !important;
   box-shadow: 0 3px #0b0c0c !important;
@@ -2772,7 +2802,7 @@ p.arrow-link a:active:after {
 .phase-banner {
   padding-top: 1rem;
   color: #333333;
-
+  border-bottom: 1px solid #a5a5a5;
 }
 
 .phase-banner p {
@@ -2826,11 +2856,26 @@ p.arrow-link a:active:after {
   line-height: 42px !important;
 }
 
+.addtoany_list a:hover,
+.widget .addtoany_list a:hover {
+  color: #0b0c0c;
+}
+
+.addtoany_list a:hover path,
+.widget .addtoany_list a:hover path {
+  fill: #0b0c0c;
+}
+
+
 .addtoany_list a:not(.addtoany_special_service)>span svg {
   width: 32px !important;
   height: 32px !important;
   top: 4px !important;
   left: 0px !important;
+}
+
+.addtoany_list a:not(.addtoany_special_service):hover {
+  color: #0b0c0c !important;
 }
 
 .addtoany_list a:not(.addtoany_special_service):focus {
