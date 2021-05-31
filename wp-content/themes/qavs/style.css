@@ -1553,6 +1553,7 @@ p:last-child {
 
 .news-categories li {
   display: inline-block;
+  margin-bottom: 0.9rem !important;
 }
 
 
