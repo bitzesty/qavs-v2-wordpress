@@ -28,7 +28,7 @@
 <div id="page" class="site">
   <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'qavs' ); ?></a>
   
-  <div role="banner" aria-live="polite" aria-label="Cookie banner">
+  <section aria-live="polite" aria-label="Cookie banner">
     <div class="cookie-banner hidden">
       <div class="container">
         <div class="initial-content">
@@ -72,7 +72,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' ))): ?>
   <section class="pre-header" aria-label="Top bar links">
