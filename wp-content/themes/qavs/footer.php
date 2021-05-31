@@ -17,7 +17,7 @@
           <nav aria-label="Footer navigation">
             <a href='/privacy-policy'>Privacy Statement</a>
             <a href='/accessibility-statement'>Accessibility Statement</a>
-            <a href='/cookie-settings'>Cookie policy and settings</a>
+            <a href='/cookie-settings'>Cookie settings</a>
           </nav>
 
           <p>
