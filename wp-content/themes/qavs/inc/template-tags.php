@@ -114,7 +114,7 @@ if ( ! function_exists( 'qavs_post_thumbnail' ) ) :
 			return;
 		}
 
-    return get_the_post_thumbnail($id, 'post-thumbnail', ['alt' => the_title_attribute(['echo' => false])]);
+    return get_the_post_thumbnail($id, 'post-thumbnail', ['alt' => get_the_title($id)]);
 	}
 endif;
 
