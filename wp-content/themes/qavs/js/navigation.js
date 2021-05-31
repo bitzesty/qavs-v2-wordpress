@@ -60,15 +60,15 @@
 	var linksWithChildren = menu.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
 
 	// Toggle focus each time a menu link is focused or blurred.
-	for ( var link of links ) {
+	links.forEach(function(link) {
 		link.addEventListener( 'focus', toggleFocus, true );
 		link.addEventListener( 'blur', toggleFocus, true );
-	}
+	});
 
 	// Toggle focus each time a menu link with children receive a touch event.
-	for ( var link of linksWithChildren ) {
+	linksWithChildren.forEach(function(link) {
 		link.addEventListener( 'touchstart', toggleFocus, false );
-	}
+	});
 
 	/**
 	 * Sets or removes .focus class on an element.
@@ -89,11 +89,11 @@
 		if ( event.type === 'touchstart' ) {
 			var menuItem = this.parentNode;
 			event.preventDefault();
-			for ( var link of menuItem.parentNode.children ) {
+			menuItem.parentNode.children.forEach(function(link) {
 				if ( menuItem !== link ) {
 					link.classList.remove( 'focus' );
 				}
-			}
+			});
 			menuItem.classList.toggle( 'focus' );
 		}
   }
