@@ -836,6 +836,7 @@ textarea {
   padding: 15px 0;
   text-decoration: underline;
   border-radius: 0 !important;
+  cursor: pointer;
 }
 
 .menu-toggle:active,
@@ -2325,6 +2326,7 @@ p.has-medium-font-size {
   display: inline-block;
   padding: 10px 0 !important;
   font-weight: 400;
+  border-bottom: 3px solid transparent;
 }
 
 .page-tabs li:not(.active) a:hover {
