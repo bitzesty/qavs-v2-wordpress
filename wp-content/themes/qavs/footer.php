@@ -15,9 +15,9 @@
       <div class="site-footer__inner">
         <div class="site-footer__links">
           <nav aria-label="Footer navigation">
-            <a href='/privacy-statement' >Privacy Statement</a>
-            <a href='/accessibility-statement' >Accessibility Statement</a>
-            <a href='/cookie-policy' >Cookie policy and settings</a>
+            <a href='/privacy-policy'>Privacy Statement</a>
+            <a href='/accessibility-statement'>Accessibility Statement</a>
+            <a href='/cookie-settings'>Cookie policy and settings</a>
           </nav>
 
           <p>
