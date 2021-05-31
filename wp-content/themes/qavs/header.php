@@ -75,7 +75,7 @@
   </section>
 
   <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' ))): ?>
-  <section class="pre-header" aria-label="Top bar links">
+  <section class="pre-header" title="Top bar links">
     <div class="container">
       <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' ))): ?>
         <a href="<?php echo carbon_get_theme_option( 'qavs_linkedin' );?>" class="pre-header__social-link linkedin" aria-label="LinkedIn profile" title="Click to read" target="_blank" rel="noopener nofollow">
@@ -100,7 +100,7 @@
     </div>
   </section>
   <?php endif; ?>
-  <div role="banner" class="phase-banner" aria-label="Phase banner">
+  <div class="phase-banner">
     <div class="container">
       <p>
         <span>BETA</span>
