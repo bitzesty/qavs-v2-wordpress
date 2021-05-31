@@ -217,7 +217,7 @@
     rejectedMessage.classList.remove("hidden");
   });
 
-  Array.from(hideMessage).forEach(function(e) {
+  Array.prototype.slice.call(hideMessage).forEach(function(e) {
     e.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
