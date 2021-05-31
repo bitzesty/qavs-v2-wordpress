@@ -21,7 +21,7 @@ const renderResource = (attributes, className) => {
   
   return (
     <div className={`resource ${className}`}>
-      {attributes.mediaUrl != 0 && <img src={attributes.mediaUrl} alt="" aria-hidden="true" className="resource__image" />}
+      {attributes.mediaUrl != 0 && <img src={attributes.mediaUrl} alt={attributes.name} className="resource__image" />}
       <div className="resource__details">
         <h3 className="resource__name">{attributes.name}</h3>
         <div className="resource__content">
