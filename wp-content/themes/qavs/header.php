@@ -93,7 +93,7 @@
         </a>
       <?php endif; ?>
       <?php if (!empty(carbon_get_theme_option( 'qavs_login' ))): ?>
-        <a href="<?php echo carbon_get_theme_option( 'qavs_login' );?>" class="pre-header__link" title="Click to go to the QAVS application system" target="_blank" rel="noopener nofollow">
+        <a href="<?php echo carbon_get_theme_option( 'qavs_login' );?>" class="pre-header__link" title="Click to go to the QAVS application system login page" target="_blank" rel="noopener nofollow">
           Login
         </a>
       <?php endif; ?>

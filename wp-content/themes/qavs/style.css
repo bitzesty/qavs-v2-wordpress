@@ -1283,7 +1283,7 @@ p:last-child {
 }
 
 .pre-header__link:hover {
-  color: yellow !important;
+  color: E8C0F2 !important;
 }
 .pre-header__link:focus,
 .pre-header__link:active {
