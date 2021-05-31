@@ -2474,6 +2474,10 @@ p.has-medium-font-size {
   padding-left: 1.5rem
 }
 
+.section a {
+  word-break: break-all;
+}
+
 .border-top-bottom {
   border-bottom: 1px solid #ccc;
   padding: 20px 0;
