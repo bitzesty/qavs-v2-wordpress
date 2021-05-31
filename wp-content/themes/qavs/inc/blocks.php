@@ -16,7 +16,9 @@ function qavs_block__featured_news( $block_attributes, $content ) {
     return "";
   }
 
-  $html .= "<div class='featured-news-wrapper'><h2>Featured news</h2><div class=\"news-articles\">";
+  $html .= "<div class='featured-news-wrapper'><h2>Featured news</h2>";
+  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse desktop-only">View all news</a>';
+  $html .= "<div class=\"news-articles\">";
 
   foreach($featured_news as $news) {
     $html .= '<article id="post-' . $news["ID"]. '" class="news-article">';
@@ -31,7 +33,7 @@ function qavs_block__featured_news( $block_attributes, $content ) {
   
   $html .= '</div>';
   
-  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse">View all news</a>';
+  $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse mobile-only">View all news</a>';
 
   $html .= '</div>';
 
@@ -123,14 +125,14 @@ function qavs_block__parental_tabs( $block_attributes, $content ) {
   $pages = get_pages();
   $children = get_page_children( $parent_id, $pages );
 
-  $html = "<ul class='page-tabs' role='navigation' aria-label='Table of contents'>";
+  $html = "<nav aria-label='Table of contents'><ul class='page-tabs'>";
     foreach ($children as $child ) {
       $class = get_the_ID() == $child->ID ? "active" : "";
       $html .= "<li class='" . $class . "'>";
       $html .= "<a href='" . get_permalink($child->ID) . "' " . (get_the_ID() == $child->ID ? 'aria-current="page"' : '') . ">" . get_the_title($child->ID) . "</a>";
       $html .= "</li>";
     }
-  $html .= "</ul>";
+  $html .= "</ul></nav>";
   
   return $html;
 }
@@ -159,7 +161,7 @@ function qavs_block__parental_pagination( $block_attributes, $content ) {
   $permalink = get_permalink($next->ID);
   $title = get_the_title($next->ID);
 
-  return '<div class="parental-navigation"><a href="' . $permalink . '" rel="next"><span class="nav-subtitle">Next</span> <span class="nav-title">' . $title . '</span></a></div>';
+  return '<nav aria-label="In-page navigation" class="parental-navigation"><a href="' . $permalink . '" rel="next"><span class="nav-subtitle">Next</span> <span class="nav-title">' . $title . '</span></a></nav>';
 }
  
 function qavs_dynamic_blocks() { 

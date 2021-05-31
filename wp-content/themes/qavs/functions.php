@@ -327,6 +327,71 @@ function qavs_load() {
     
         <?php
       } );
+
+    Block::make( __( 'Hero video' ) )
+      ->add_fields( array(
+        Field::make( 'file', 'mp4_file', __( 'MP4 file' ) )->set_value_type( 'url' )->set_type( 'video' ),
+        Field::make( 'file', 'webm_file', __( 'Webm file' ) )->set_value_type( 'url' )->set_type( 'video' ),
+        Field::make( 'file', 'ogv_file', __( 'OGV file' ) )->set_value_type( 'url' )->set_type( 'video' ),
+        Field::make( 'image', 'cover_image', __( 'Cover image' ) )->set_value_type( 'url' ),
+      ) )
+      ->set_icon( 'video' )
+      ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        ?>
+
+        <video width="640" height="360" poster="<?php echo $fields["cover_image"]; ?>" controls>
+          <source src="<?php echo $field["mp4_file"]; ?>" type="video/mp4" />
+          <?php if (isset($fields["webm_file"]) && !empty($fields["webm_file"])): ?>
+            <source src="<?php echo $fields["webm_file"]; ?>" type="video/webm" />
+          <?php endif; ?>
+          <?php if (isset($fields["ogv_file"]) && !empty($fields["ogv_file"])): ?>
+            <source src="<?php echo $fields["ogv_file"]; ?>" type="video/ogg" />
+          <?php endif; ?>
+          <div>
+            <a href="<?php echo $field["mp4_file"]; ?>">
+              <img src="<?php echo $fields["cover_image"]; ?>" width="640" height="360" alt="download video" />
+            </a>
+          </div>
+        </video>
+        <?php
+      } );
+    
+    Block::make( __( 'Accessible video' ) )
+      ->add_fields( array(
+        Field::make( 'file', 'mp4_file', __( 'MP4 file' ) )->set_value_type( 'url' )->set_type( 'video' ),
+        Field::make( 'file', 'webm_file', __( 'Webm file' ) )->set_value_type( 'url' )->set_type( 'video' ),
+        Field::make( 'file', 'ogv_file', __( 'OGV file' ) )->set_value_type( 'url' )->set_type( 'video' ),
+        Field::make( 'file', 'captions_file', __( 'Captions file (VTT extension)' ) )->set_value_type( 'url' ),
+        Field::make( 'image', 'cover_image', __( 'Cover image' ) )->set_value_type( 'url' ),
+      ) )
+      ->set_icon( 'video' )
+      ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        ?>
+
+        <div class="px-video-container">
+          <div class="px-video-img-captions-container">
+            <div class="px-video-captions hide" aria-hidden="true"></div>
+            <video width="640" height="360" poster="<?php echo $fields["cover_image"]; ?>" controls>
+              <source src="<?php echo $field["mp4_file"]; ?>" type="video/mp4" />
+              <?php if (isset($fields["webm_file"]) && !empty($fields["webm_file"])): ?>
+                <source src="<?php echo $fields["webm_file"]; ?>" type="video/webm" />
+              <?php endif; ?>
+              <?php if (isset($fields["ogv_file"]) && !empty($fields["ogv_file"])): ?>
+                <source src="<?php echo $fields["ogv_file"]; ?>" type="video/ogg" />
+              <?php endif; ?>
+              <track kind="captions" label="English captions" src="<?php echo $fields["captions_file"]; ?>" srclang="en" default />
+              <div>
+                <a href="<?php echo $field["mp4_file"]; ?>">
+                  <img src="<?php echo $fields["cover_image"]; ?>" width="640" height="360" alt="download video" />
+                </a>
+              </div>
+            </video>
+          </div>
+          <div class="px-video-controls"></div>
+        </div>
+    
+        <?php
+      } );
     
     Block::make( __( 'Download button' ) )
       ->add_fields( array(

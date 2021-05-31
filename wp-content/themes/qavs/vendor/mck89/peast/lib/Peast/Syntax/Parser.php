@@ -1277,13 +1277,20 @@ class Parser extends ParserAbstract
         } else {
             
             $this->scanner->setState($state);
-            $notBeforeLet = !$this->scanner->isBefore(array("let"));
             $left = $this->parseLeftHandSideExpression();
 
-            if ($left && $left->getType() === "ChainExpression") {
-                return $this->error(
-                    "Optional chain can't appear in left-hand side"
-                );
+            $beforeLetAsyncOf = false;
+            if ($left) {
+                $leftType = $left->getType();
+                if ($leftType === "Identifier" &&
+                    in_array($left->getName(), array("let", "async", "of"))
+                ) {
+                    $beforeLetAsyncOf = true;
+                } elseif ($leftType === "ChainExpression") {
+                    return $this->error(
+                        "Optional chain can't appear in left-hand side"
+                    );
+                }
             }
 
             $left = $this->expressionToPattern($left);
@@ -1303,7 +1310,7 @@ class Parser extends ParserAbstract
                     $node->setBody($body);
                     return $this->completeNode($node);
                 }
-            } elseif ($notBeforeLet && $left && $this->scanner->consume("of")) {
+            } elseif (!$beforeLetAsyncOf && $left && $this->scanner->consume("of")) {
                 
                 if (($right = $this->isolateContext(
                         array("allowIn" => true),
@@ -1767,6 +1774,7 @@ class Parser extends ParserAbstract
             return true;
         }
         $staticToken = null;
+        $state = $this->scanner->getState();
         //This code handles the case where "static" is the method name
         if (!$this->scanner->isBefore(array(array("static", "(")), true)) {
             $staticToken = $this->scanner->consume("static");
@@ -1777,8 +1785,22 @@ class Parser extends ParserAbstract
                 $def->setStartPosition($staticToken->getLocation()->getStart());
             }
             return $def;
-        } elseif ($staticToken) {
-            return $this->error();
+        } else {
+            if ($this->features->classFields) {
+                if ($field = $this->parseFieldDefinition()) {
+                    if ($staticToken) {
+                        $field->setStatic(true);
+                        $field->setStartPosition($staticToken->getLocation()->getStart());
+                    }
+                } elseif ($staticToken) {
+                    //Handle the case when "static" is the field name
+                    $this->scanner->setState($state);
+                    $field = $this->parseFieldDefinition();
+                }
+                return $field;
+            } elseif ($staticToken) {
+                return $this->error();
+            }
         }
         
         return null;
@@ -2445,6 +2467,44 @@ class Parser extends ParserAbstract
         }
         return null;
     }
+
+    /**
+     * Parses a property name. The returned value is an array where there first
+     * element is the property name and the second element is a boolean
+     * indicating if it's a computed property
+     * 
+     * @return array|null
+     */
+    protected function parseClassElementName()
+    {
+        if (
+            $this->features->privateMethodsAndFields &&
+            ($name = $this->parsePrivateIdentifier())
+        ) {
+            return array($name, false);
+        }
+        return $this->parsePropertyName();
+    }
+
+    protected function parseFieldDefinition()
+    {
+        $state = $this->scanner->getState();
+        if ($prop = $this->parseClassElementName()) {
+            $value = $this->isolateContext(
+                array("allowIn" => true), "parseInitializer"
+            );
+            $this->assertEndOfStatement();
+            $node = $this->createNode("PropertyDefinition", $prop);
+            $node->setKey($prop[0]);
+            if ($value) {
+                $node->setValue($value);
+            }
+            $node->setComputed($prop[1]);
+            return $this->completeNode($node);
+        }
+        $this->scanner->setState($state);
+        return null;
+    }
     
     /**
      * Parses a method definition
@@ -2491,7 +2551,7 @@ class Parser extends ParserAbstract
             $error = false;
         }
 
-        if ($prop = $this->parsePropertyName()) {
+        if ($prop = $this->parseClassElementName()) {
 
             if (!$position) {
                 $position = isset($prop[2]) ? $prop[2] : $prop[0];
@@ -3212,7 +3272,10 @@ class Parser extends ParserAbstract
                 if ($isOptChain) {
                     $optionalChain = $optional = true;
                 }
-                if ($property = $this->parseIdentifier(static::$identifierName)) {
+                if (
+                    ($this->features->privateMethodsAndFields && ($property = $this->parsePrivateIdentifier())) ||
+                    ($property = $this->parseIdentifier(static::$identifierName))
+                ) {
                     $valid = true;
                     $properties[] = array(
                         "type"=> "id",
@@ -3563,6 +3626,23 @@ class Parser extends ParserAbstract
             return $this->error();
         }
         return null;
+    }
+
+    /**
+     * Parses a private identifier
+     * 
+     * @return Node\PrivateIdentifier|null
+     */
+    protected function parsePrivateIdentifier()
+    {
+        $token = $this->scanner->getToken();
+        if (!$token || $token->getType() !== Token::TYPE_PRIVATE_IDENTIFIER) {
+            return null;
+        }
+        $this->scanner->consumeToken();
+        $node = $this->createNode("PrivateIdentifier", $token);
+        $node->setName(substr($token->getValue(), 1));
+        return $this->completeNode($node);
     }
     
     /**

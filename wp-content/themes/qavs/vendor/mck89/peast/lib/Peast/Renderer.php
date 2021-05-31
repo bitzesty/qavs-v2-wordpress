@@ -48,6 +48,7 @@ class Renderer
         "TryStatement",
         "WhileStatement",
         "WithStatement",
+        "MethodDefinition"
     );
     
     /**
@@ -247,7 +248,7 @@ class Renderer
                     $code .= " extends " . $this->renderNode($superClass);
                 }
                 $code .= $this->renderStatementBlock(
-                    $node->getBody(), true, false, false
+                    $node->getBody(), true, false, true
                 );
             break;
             case "ConditionalExpression":
@@ -540,10 +541,14 @@ class Renderer
             case "LabeledStatement":
                 $body = $node->getBody();
                 $code .= $this->renderNode($node->getLabel()) .
-                         ":" .
-                         $this->renderOpts->nl .
-                         $this->getIndentation() .
-                         $this->renderNode($body);
+                         ":";
+                if ($body->getType() === "BlockStatement") {
+                    $code .= $this->renderStatementBlock($body, true);
+                } else {
+                    $code .= $this->renderOpts->nl .
+                             $this->getIndentation() .
+                             $this->renderNode($body);
+                }
                 if ($this->requiresSemicolon($body)) {
                     $code .= ";";
                 }
@@ -561,8 +566,10 @@ class Renderer
                 if ($type === "MemberExpression") {
                     $optional = $node->getOptional();
                 }
+                $propertyType = $property->getType();
                 if ($type === "MemberExpression" &&
-                    ($node->getComputed() || $property->getType() !== "Identifier")) {
+                    ($node->getComputed() ||
+                    ($propertyType !== "Identifier" && $propertyType !== "PrivateIdentifier"))) {
                     $code .= ($optional ? "?." : "") . "[" . $compiledProperty . "]";
                 } else {
                     $code .= ($optional ? "?." : ".") . $compiledProperty;
@@ -640,6 +647,9 @@ class Renderer
                          $this->renderOpts->sirb .
                          ")";
             break;
+            case "PrivateIdentifier":
+                $code .= "#" . $node->getName();
+            break;
             case "Property":
                 $value = $node->getValue();
                 $key = $node->getKey();
@@ -677,6 +687,23 @@ class Renderer
                                  $this->renderOpts->sao .
                                  $compiledValue;
                     }
+                }
+            break;
+            case "PropertyDefinition":
+                if ($node->getStatic()) {
+                    $code .= "static ";
+                }
+                $compiledKey = $this->renderNode($node->getKey());
+                if ($node->getComputed()) {
+                    $code .= "[" . $compiledKey . "]";
+                } else {
+                    $code .= $compiledKey;
+                }
+                if ($value = $node->getValue()) {
+                    $code .= $this->renderOpts->sao .
+                             "=" .
+                             $this->renderOpts->sao .
+                             $this->renderNode($value);
                 }
             break;
             case "RegExpLiteral":
@@ -999,6 +1026,11 @@ class Renderer
                 if (count($n->getBody()) !== 1) {
                     return Traverser::DONT_TRAVERSE_CHILD_NODES;
                 }
+            } elseif ($type === "LabeledStatement") {
+                if ($n->getBody()->getType() === "BlockStatement") {
+                    $forceBrackets = true;
+                }
+                return Traverser::DONT_TRAVERSE_CHILD_NODES;
             } elseif (!in_array($type, $optBracketNodes)) {
                 return Traverser::DONT_TRAVERSE_CHILD_NODES;
             }

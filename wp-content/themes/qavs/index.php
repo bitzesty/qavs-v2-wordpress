@@ -22,7 +22,7 @@ $featured_news = wp_get_recent_posts( array(
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main" tabindex="-1">
     <div class="section">
       <div class="container">
         <h1 class="page-title">
