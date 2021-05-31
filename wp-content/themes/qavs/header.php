@@ -28,7 +28,7 @@
 <div id="page" class="site">
   <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'qavs' ); ?></a>
   
-  <section aria-live="polite" aria-label="Cookie banner">
+  <div role="banner" aria-live="polite" aria-label="Cookie banner">
     <div class="cookie-banner hidden">
       <div class="container">
         <div class="initial-content">
@@ -72,7 +72,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' ))): ?>
   <section class="pre-header" aria-label="Top bar links">
@@ -100,14 +100,14 @@
     </div>
   </section>
   <?php endif; ?>
-  <section class="phase-banner" aria-label="Phase banner">
+  <div role="banner" class="phase-banner" aria-label="Phase banner">
     <div class="container">
       <p>
         <span>BETA</span>
         This is a new website – your <a href="https://www.surveymonkey.co.uk/r/P7F52BK" target="_blank" rel="noopener nofollow">feedback</a> will help us to improve it.
       </p>
     </div>
-  </section>
+  </div>
 	<header id="masthead" class="site-header">
     <div class="container">
       <a href='/' class="site-branding">
