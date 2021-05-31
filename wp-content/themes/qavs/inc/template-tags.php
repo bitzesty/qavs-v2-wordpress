@@ -13,9 +13,6 @@ if ( ! function_exists( 'qavs_posted_on' ) ) :
 	 */
 	function qavs_posted_on($id = null) {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-		if ( get_the_time( 'U', $id ) !== get_the_modified_time( 'U', $id ) ) {
-			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-		}
 
 		$time_string = sprintf(
 			$time_string,

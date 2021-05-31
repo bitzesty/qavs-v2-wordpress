@@ -584,19 +584,19 @@ a:visited {
 	color: #136C85;
 }
 
-a:hover,
-a:focus,
-a:active {
-  color: #0d4b5c;
+a:hover {
+  color: #082B35;
   text-decoration: underline;
 }
 
-a:focus {
+a:focus,
+a:active {
   outline: none;
   background: #E1ABED;
   box-shadow: 0 4px #0b0c0c;
   color: #0b0c0c;
   text-decoration: none;
+  outline: 0;
 }
 
 a:hover,
@@ -786,7 +786,7 @@ textarea {
 .main-navigation li.current_page_parent a {
   font-weight: bold;
   border-bottom: 3px solid currentColor;
-  
+
 }
 
 .main-navigation li:not(.button) a:hover {
@@ -1237,8 +1237,7 @@ p:last-child {
   line-height: 1.25rem;
 }
 
-.pre-header__social-link:hover,
-.pre-header__social-link:focus {
+.pre-header__social-link:hover {
   text-decoration: none;
   color: #E8C0F2 !important;
   box-shadow: none !important;
@@ -1258,12 +1257,13 @@ p:last-child {
 
 .pre-header__social-link:focus path,
 .pre-header__social-link:active path {
-  color: #0b0c0c !important;
+  fill: #0b0c0c !important;
 }
 
 .pre-header__social-link:active,
 .pre-header__social-link:focus {
   box-shadow: 0 3px white !important;
+  color: #0b0c0c;
 }
 
 .pre-header__link,
@@ -1311,13 +1311,18 @@ p:last-child {
   font-weight: 400;
 }
 
+.site-footer__links a:hover {
+  color: #136C85;
+}
+
 .site-footer__links a:focus,
 .site-footer__links a:active {
   text-decoration: none;
+  color: #0b0c0c;
 }
 
 .site-footer__links p {
-  color: #000000;
+  color: #0b0c0c;
   margin-top: 1.25rem;
   max-width: 750px;
 }
@@ -2735,24 +2740,6 @@ p.arrow-link a:active:after {
   }
 }
 
-/*
-.c-accordion__title:after {
-  content: '' !important;
-  background-image: url(/wp-content/themes/qavs/images/read.svg);
-  background-repeat: no-repeat;
-  width: 31px;
-  height: 32px;
-}
-
-.c-accordion__title[aria-expanded="true"]:after {
-  transform: translateY(-50%) rotate(180deg);
-  transform-origin: 50% 50%;
-}
-
-.c-accordion__title {
-  padding-right: 2.5rem !important;
-}
-*/
 .news-social-links p{
   width: auto;
 }
@@ -2795,16 +2782,15 @@ p.arrow-link a:active:after {
   padding-left: 4rem;
 }
 
-
 .phase-banner span {
   background-color: #136C85;
   color: white;
   padding: 0.1rem 0.5rem;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.2;
   margin-right: 0.5rem;
   position: absolute;
-  top: 0;
+  top: 0.05rem;
   left: 0;
 }
 
