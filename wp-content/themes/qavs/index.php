@@ -81,7 +81,7 @@ get_header();
           <a href="<?php echo get_the_permalink($news["ID"]); ?>" aria-labelledby="promoted-article-title" title='Click to read article' class="featured-news-article__cta arrow-link">Read article</a>
         </div>
 
-        <?php echo qavs_post_thumbnail(get_the_ID()); ?>
+        <?php echo qavs_post_thumbnail($news["ID"]); ?>
       </div>
       <?php endforeach; ?>
     </div>

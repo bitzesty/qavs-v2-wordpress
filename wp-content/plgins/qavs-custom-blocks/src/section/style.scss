@@ -1,0 +1,26 @@
+.section {
+  padding: 3.33333rem 0;
+  color: #1f1f1f;
+}
+
+@media (max-width: 992px) {
+  padding: 1.666666rem 0;
+}
+
+.section.is-style-default {
+  background: #f7f7f7;
+}
+
+.section.is-style-white {
+  background: white;
+}
+
+.section .wp-block-columns {
+  margin-bottom: 0 !important;
+}
+
+.section p {
+  width: 33.33333rem;
+  max-width: 100%;
+  margin-left: 0 !important;
+}
