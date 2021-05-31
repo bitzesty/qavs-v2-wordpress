@@ -28,7 +28,7 @@
 <div id="page" class="site">
   <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'qavs' ); ?></a>
   
-  <div aria-live="polite">
+  <section aria-live="polite" aria-label="Cookie banner">
     <div class="cookie-banner hidden">
       <div class="container">
         <div class="initial-content">
@@ -72,10 +72,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' ))): ?>
-  <div class="pre-header">
+  <section class="pre-header" aria-label="Top bar links">
     <div class="container">
       <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' ))): ?>
         <a href="<?php echo carbon_get_theme_option( 'qavs_linkedin' );?>" class="pre-header__social-link linkedin" aria-label="LinkedIn profile" title="Click to read" target="_blank" rel="noopener nofollow">
@@ -98,16 +98,16 @@
         </a>
       <?php endif; ?>
     </div>
-  </div>
+  </section>
   <?php endif; ?>
-  <div class="phase-banner">
+  <section class="phase-banner" aria-label="Phase banner">
     <div class="container">
       <p>
         <span>BETA</span>
         This is a new website – your <a href="https://www.surveymonkey.co.uk/r/P7F52BK" target="_blank" rel="noopener nofollow">feedback</a> will help us to improve it.
       </p>
     </div>
-  </div>
+  </section>
 	<header id="masthead" class="site-header">
     <div class="container">
       <a href='/' class="site-branding">
