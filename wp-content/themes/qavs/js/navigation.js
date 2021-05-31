@@ -245,7 +245,7 @@
     }
 
     // Ads an event listener to check for changes in the media query's value.
-    mediaQuery.addEventListener("change", () => {
+    mediaQuery.addEventListener("change", function() {
       if (mediaQuery.matches) {
         controlButton.classList.add('hidden');
         homeAnimationVideo.pause();
