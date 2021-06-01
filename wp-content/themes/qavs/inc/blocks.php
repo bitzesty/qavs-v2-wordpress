@@ -65,7 +65,7 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
   }
 
   $html .= "<div class='featured-awardees-wrapper'><h2>Featured awardees</h2>";
-  $html .= "<p class='featured-awardees-text'>Here are just a few of the groups that have received the award this year.</p><p>You can <a href='https://qavs.dcms.gov.uk/awardees/'>view a list of all awardees</a>. Also, we will be adding more inspiring stories over the next few months - you can <a href='https://qavs.dcms.gov.uk/category/featured-awardees/'>read other stories</a> in the website’s news section.</p><div class='featured-awardees'>";
+  $html .= "<p class='featured-awardees-text'>Here are just a few of the groups that have received the award this year.</p><p>You can <a href='https://qavs.dcms.gov.uk/awardees/'>view a list of all awardees</a>. Also, we will be adding more inspiring stories over the next few months - you can <a href='https://qavs.dcms.gov.uk/category/featured-awardees/'>read other stories</a> in the website’s news section.</p><br /><div class='featured-awardees'>";
 
   foreach($featured_awardees as $awardee) {
     if (isset($_GET['debug'])) {
