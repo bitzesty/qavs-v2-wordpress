@@ -38,9 +38,8 @@
         </div>
 
         <div class="site-footer__copyright">
-          <a href=" https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
-          ">
-            <img src="/wp-content/themes/qavs/images/crown-footer.png" alt="">
+          <a href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/" target="_blank" rel="noopener nofollow">
+            <img src="/wp-content/themes/qavs/images/crown-footer.png" alt="GOV.UK crown symbol">
             <span>&copy; Crown copyright</span>
           </a>
         </div>

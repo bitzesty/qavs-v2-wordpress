@@ -130,6 +130,7 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 endif;
 
 function qavs_communication_cookies_accepted() {
+	return false;
   $name = 'given_communications_cookies_consent';
   return isset($_COOKIE[$name]) && $_COOKIE[$name] == 'yes';
 }
