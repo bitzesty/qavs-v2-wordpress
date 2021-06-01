@@ -2763,8 +2763,8 @@ p.arrow-link a:active:after {
   outline: 0;
 }
 
-.section .wp-block-columns.hero {
-  margin: 1.75rem 0 0.65rem !important;
+.section.hero-section {
+  padding: 1rem 0 0 !important;
 }
 
 @media (max-width: 599px) {
