@@ -181,7 +181,7 @@ class QavsWebsite {
       "other"=>"Other"
     ];
   }
-  
+
   public static function lieutenanciesMapping() {
     return [
       "bedfordshire"=>"Bedfordshire",
@@ -288,42 +288,42 @@ function qavs_load() {
     Block::make( __( 'Past Awardees Filters' ) )
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         ?>
-    
+
         <div class="block">
           <div class="block__heading">
             <h1><?php echo esc_html( $fields['heading'] ); ?></h1>
           </div><!-- /.block__heading -->
-    
+
           <div class="block__image">
             <?php echo wp_get_attachment_image( $fields['image'], 'full' ); ?>
           </div><!-- /.block__image -->
-    
+
           <div class="block__content">
             <?php echo apply_filters( 'the_content', $fields['content'] ); ?>
           </div><!-- /.block__content -->
         </div><!-- /.block -->
-    
+
         <?php
       } );
-    
+
     Block::make( __( 'Past Awardees' ) )
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         ?>
-    
+
         <div class="block">
           <div class="block__heading">
             <h1><?php echo esc_html( $fields['heading'] ); ?></h1>
           </div><!-- /.block__heading -->
-    
+
           <div class="block__image">
             <?php echo wp_get_attachment_image( $fields['image'], 'full' ); ?>
           </div><!-- /.block__image -->
-    
+
           <div class="block__content">
             <?php echo apply_filters( 'the_content', $fields['content'] ); ?>
           </div><!-- /.block__content -->
         </div><!-- /.block -->
-    
+
         <?php
       } );
 
@@ -338,7 +338,7 @@ function qavs_load() {
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         ?>
 
-        <video poster="<?php echo $fields["cover_image"]; ?>" muted id="hero-animation" class="home-animation-video">
+        <video poster="<?php echo $fields["cover_image"]; ?>" muted playsinline id="hero-animation" class="home-animation-video">
           <source src="<?php echo $fields["mp4_file"]; ?>" type="video/mp4" />
           <?php if (isset($fields["webm_file"]) && !empty($fields["webm_file"])): ?>
             <source src="<?php echo $fields["webm_file"]; ?>" type="video/webm" />
@@ -385,7 +385,7 @@ function qavs_load() {
         ) )
         ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
           ?>
-  
+
           <details class="transcript">
             <summary class="transcript__summary">
               <span class="transcript__summary-text" aria-label="<?php echo $fields['aria_label']; ?>">
@@ -397,10 +397,10 @@ function qavs_load() {
               <?php echo $fields['text']; ?>
             </div>
           </details>
-  
+
           <?php
         });
-    
+
     Block::make( __( 'Accessible video' ) )
       ->add_fields( array(
         Field::make( 'text', 'video_title', __( 'Video title' ) ),
@@ -440,10 +440,10 @@ function qavs_load() {
           </div>
           <div class="px-video-controls"></div>
         </div>
-    
+
         <?php
       } );
-    
+
     Block::make( __( 'Download button' ) )
       ->add_fields( array(
         Field::make( 'text', 'button_text', __( 'Button text' ) ),
@@ -452,14 +452,14 @@ function qavs_load() {
       ->set_icon( 'download' )
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         ?>
-    
+
         <div class="block-download-button">
           <a href="<?php echo esc_html( $fields['button_file'] ); ?>" download target="_blank" rel="noopener nofollow" class="download-button button button--inverse">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21"><path fill="#8A0DA6" d="M10.292 16.912a.783.783 0 01-.56-.236l-4.75-4.83a.814.814 0 010-1.139.781.781 0 011.12 0l4.19 4.262 4.19-4.262a.781.781 0 011.12 0c.31.315.31.824 0 1.139l-4.75 4.83a.783.783 0 01-.56.236z"/><path fill="#8A0DA6" d="M10.292 16.107a.798.798 0 01-.792-.805V1.615c0-.444.354-.805.792-.805.438 0 .791.361.791.805v13.687a.798.798 0 01-.791.805zM19.792 20.133h-19A.798.798 0 010 19.328c0-.445.354-.805.792-.805h19c.438 0 .791.36.791.805a.798.798 0 01-.791.805z"/></svg>
             <?php echo esc_html( $fields['button_text'] ); ?>
           </a>
         </div>
-    
+
         <?php
       } );
 
