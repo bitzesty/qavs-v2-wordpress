@@ -115,13 +115,12 @@ add_action( 'after_setup_theme', 'qavs_content_width', 0 );
  */
 function qavs_scripts() {
 	wp_enqueue_style( 'qavs-style', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css') );
+	wp_enqueue_style( 'qavs-paypal-video-styles', get_template_directory_uri() . '/css/px-video.css', array(), filemtime(get_template_directory_uri() . '/css/px-video.css') );
 	wp_style_add_data( 'qavs-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'qavs-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+	wp_enqueue_script( 'qavs-paypal-strings', get_template_directory_uri() . '/js/strings.js', array(), filemtime(get_stylesheet_directory() . '/js/strings.js'), true );
+	wp_enqueue_script( 'qavs-paypal-video', get_template_directory_uri() . '/js/px-video.js', array(), filemtime(get_stylesheet_directory() . '/js/px-video.js'), true );
+	wp_enqueue_script( 'qavs-navigation', get_template_directory_uri() . '/js/navigation.js', array(), filemtime(get_stylesheet_directory() . '/js/navigation.js'), true );
 }
 add_action( 'wp_enqueue_scripts', 'qavs_scripts' );
 
@@ -339,8 +338,8 @@ function qavs_load() {
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         ?>
 
-        <video width="640" height="360" poster="<?php echo $fields["cover_image"]; ?>" controls>
-          <source src="<?php echo $field["mp4_file"]; ?>" type="video/mp4" />
+        <video poster="<?php echo $fields["cover_image"]; ?>" muted id="hero-animation" class="home-animation-video">
+          <source src="<?php echo $fields["mp4_file"]; ?>" type="video/mp4" />
           <?php if (isset($fields["webm_file"]) && !empty($fields["webm_file"])): ?>
             <source src="<?php echo $fields["webm_file"]; ?>" type="video/webm" />
           <?php endif; ?>
@@ -348,16 +347,63 @@ function qavs_load() {
             <source src="<?php echo $fields["ogv_file"]; ?>" type="video/ogg" />
           <?php endif; ?>
           <div>
-            <a href="<?php echo $field["mp4_file"]; ?>">
-              <img src="<?php echo $fields["cover_image"]; ?>" width="640" height="360" alt="download video" />
+            <a href="<?php echo $fields["mp4_file"]; ?>">
+              <img src="<?php echo $fields["cover_image"]; ?>" alt="download video" />
             </a>
           </div>
         </video>
         <?php
       } );
+
+    Block::make( __( 'Hero video controls' ) )
+      ->add_fields( array(
+        Field::make( 'text', 'play_text', __( 'Play text' ) ),
+        Field::make( 'text', 'pause_text', __( 'Pause text' ) )
+      ) )
+      ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        ?>
+
+        <button class="control-home-animation paused hidden" aria-controls="hero-animation">
+          <span class="playing">
+            <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 36" aria-hidden="true" focusable="false" class="pause-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.5.255C7.848.255 0 8.179 0 17.925c0 9.747 7.848 17.672 17.5 17.672 9.652 0 17.5-7.925 17.5-17.671C35 8.179 27.152.255 17.5.255zm0 2.162c8.495 0 15.359 6.93 15.359 15.509 0 8.578-6.864 15.509-15.359 15.509-8.495 0-15.359-6.931-15.359-15.51 0-8.577 6.864-15.508 15.359-15.508z" fill="#136C85"/><path fill="#136C85" d="M11 10h4.688v15H11zM19.438 10h4.688v15h-4.688z"/></svg>
+            <?php echo $fields['pause_text']; ?>
+          </span>
+          <span class="paused">
+            <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 27" aria-hidden="true" focusable="false" class="play-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.117 0C5.882 0 0 5.882 0 13.117c0 7.235 5.882 13.118 13.117 13.118 7.235 0 13.118-5.883 13.118-13.118S20.352 0 13.117 0zm0 1.605A11.5 11.5 0 0124.63 13.117 11.5 11.5 0 0113.117 24.63 11.5 11.5 0 011.605 13.117 11.5 11.5 0 0113.117 1.605zm-2.924 4.062v14.901l9.347-7.45-9.347-7.451z" fill="#136C85"/></svg>
+            Play logo animation video
+          </span>
+        </button>
+
+        <?php
+      });
+
+      Block::make( __( 'Transcript' ) )
+        ->add_fields( array(
+          Field::make( 'text', 'title', __( 'Title' ) ),
+          Field::make( 'text', 'aria_label', __( 'ARIA label' ) ),
+          Field::make( 'rich_text', 'text', __( 'Text' ) )
+        ) )
+        ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+          ?>
+  
+          <details class="transcript">
+            <summary class="transcript__summary">
+              <span class="transcript__summary-text" aria-label="<?php echo $fields['aria_label']; ?>">
+                <?php echo $fields['title']; ?>
+              </span>
+              <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="transparent" stroke="#136C85"/><path d="M16 18.864l5.71-5.71M15.727 18.864l-5.71-5.71" stroke="#136C85" stroke-width="2" stroke-linecap="square"/></svg>
+            </summary>
+            <div class="transcript__text">
+              <?php echo $fields['text']; ?>
+            </div>
+          </details>
+  
+          <?php
+        });
     
     Block::make( __( 'Accessible video' ) )
       ->add_fields( array(
+        Field::make( 'text', 'video_title', __( 'Video title' ) ),
         Field::make( 'file', 'mp4_file', __( 'MP4 file' ) )->set_value_type( 'url' )->set_type( 'video' ),
         Field::make( 'file', 'webm_file', __( 'Webm file' ) )->set_value_type( 'url' )->set_type( 'video' ),
         Field::make( 'file', 'ogv_file', __( 'OGV file' ) )->set_value_type( 'url' )->set_type( 'video' ),
@@ -366,13 +412,18 @@ function qavs_load() {
       ) )
       ->set_icon( 'video' )
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        $classes = "";
+        if (isset($attributes['className'])) {
+          $classes = $attributes['className'];
+        }
         ?>
 
-        <div class="px-video-container">
+
+        <div class="px-video-container <?php echo $classes; ?>" id="video-<?php echo generateRandomString(); ?>" data-title="<?php echo $fields['video_title']; ?>">
           <div class="px-video-img-captions-container">
             <div class="px-video-captions hide" aria-hidden="true"></div>
-            <video width="640" height="360" poster="<?php echo $fields["cover_image"]; ?>" controls>
-              <source src="<?php echo $field["mp4_file"]; ?>" type="video/mp4" />
+            <video poster="<?php echo $fields["cover_image"]; ?>" controls>
+              <source src="<?php echo $fields["mp4_file"]; ?>" type="video/mp4" />
               <?php if (isset($fields["webm_file"]) && !empty($fields["webm_file"])): ?>
                 <source src="<?php echo $fields["webm_file"]; ?>" type="video/webm" />
               <?php endif; ?>
@@ -381,8 +432,8 @@ function qavs_load() {
               <?php endif; ?>
               <track kind="captions" label="English captions" src="<?php echo $fields["captions_file"]; ?>" srclang="en" default />
               <div>
-                <a href="<?php echo $field["mp4_file"]; ?>">
-                  <img src="<?php echo $fields["cover_image"]; ?>" width="640" height="360" alt="download video" />
+                <a href="<?php echo $fields["mp4_file"]; ?>">
+                  <img src="<?php echo $fields["cover_image"]; ?>" alt="download video" />
                 </a>
               </div>
             </video>
@@ -425,3 +476,6 @@ function qavs_load() {
       ) );
 }
 
+function generateRandomString($length = 10) {
+  return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}

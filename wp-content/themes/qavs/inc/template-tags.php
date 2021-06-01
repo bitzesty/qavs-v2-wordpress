@@ -130,7 +130,34 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 endif;
 
 function qavs_communication_cookies_accepted() {
-	return false;
   $name = 'given_communications_cookies_consent';
   return isset($_COOKIE[$name]) && $_COOKIE[$name] == 'yes';
+}
+
+function qavs_sharing_text() {
+	$description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true);
+
+	if (empty($description)) {
+		$description = get_the_excerpt();
+	}
+
+	return urlencode($description);
+}
+
+function qavs_sharing_title() {
+	$title = get_post_meta(get_the_ID(), '_yoast_wpseo_title', true);
+
+	if (empty($title)) {
+		$title = get_the_title();
+	}
+
+	return urlencode($title);
+}
+
+function qavs_sharing_url() {
+	return urlencode(get_permalink());
+}
+
+function qavs_website_name() {
+	return get_bloginfo('name');
 }

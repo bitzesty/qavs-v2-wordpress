@@ -3045,3 +3045,137 @@ p.arrow-link a:active:after {
 .section.border-bottom {
   border-bottom: 1px solid #a5a5a5;
 }
+
+.sharing-buttons a {
+  display: inline-block;
+  margin-right: 1.25rem;
+}
+
+.sharing-buttons a svg {
+  display: inline-block;
+  height: 1.6rem;
+  width: 1.6rem;
+  margin-right: 0.3rem;
+  vertical-align: text-bottom;
+  margin-bottom: -0.1rem;
+}
+
+.sharing-buttons a svg path {
+  fill: currentColor !important;
+}
+
+.sharing-buttons a svg circle,
+.sharing-buttons a svg ellipse {
+  stroke: currentColor !important;
+}
+
+.px-video-img-captions-container video {
+  width: 100%;
+}
+
+.px-video-container.square-ratio .px-video-img-captions-container {
+  padding-bottom: 100% !important;
+}
+
+.px-video-controls input[type='range'] {
+  position: relative;
+  top: -6px;
+  margin: 0 !important;
+}
+
+.home-animation-video {
+  max-width: 100%;
+  width: 640px;
+}
+
+.control-home-animation {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #136C85;
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.25rem 0;
+  margin-top: 1rem;
+}
+
+.control-home-animation svg {
+  display: inline-block;
+  height: 1.25rem;
+  width: auto;
+  margin-right: 0.2rem;
+  vertical-align: text-bottom;
+}
+
+.control-home-animation svg path {
+  fill: currentColor;
+}
+
+.control-home-animation:hover {
+  color: #082B35;
+  text-decoration: underline;
+}
+
+.control-home-animation:focus,
+.control-home-animation:active {
+  outline: none;
+  background: #E1ABED;
+  box-shadow: 0 4px #0b0c0c;
+  color: #0b0c0c;
+  text-decoration: none;
+  outline: 0;
+}
+
+.control-home-animation.paused .playing {
+  display: none;
+}
+
+.control-home-animation.playing  .paused{
+  display: none;
+}
+
+.transcript__summary {
+  color: #136C85;
+  display: inline-block;
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+.transcript__summary::-webkit-details-marker {
+  display:none;
+}
+
+.transcript__summary:hover {
+  color: #082B35;
+}
+
+.transcript__summary:focus,
+.transcript__summary:active {
+  outline: none;
+  background: #E1ABED;
+  box-shadow: 0 4px #0b0c0c;
+  color: #0b0c0c;
+  text-decoration: none;
+  outline: 0;
+}
+
+.transcript__summary svg {
+  position: absolute;
+  top: 0.25rem;
+  right: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.transcript__summary svg circle {
+  stroke: currentColor;
+}
+
+.transcript__summary svg path {
+  stroke: currentColor;
+}
+
+.transcript[open] .transcript__summary svg {
+  transform-origin: 50% 50%;
+  transform: rotate(180deg);
+}
