@@ -114,7 +114,10 @@ if ( ! function_exists( 'qavs_post_thumbnail' ) ) :
 			return;
 		}
 
-    return get_the_post_thumbnail($id, 'post-thumbnail', ['alt' => get_the_title($id)]);
+		$thumbnail_id = get_post_thumbnail_id( $id );
+		$alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+
+    return get_the_post_thumbnail($id, 'post-thumbnail', ['alt' => $alt]);
 	}
 endif;
 
