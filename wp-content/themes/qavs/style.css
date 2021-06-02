@@ -1666,6 +1666,7 @@ p:last-child {
 .featured-news-article {
   display: flex;
   padding-left: 2rem;
+  margin-bottom: 45px;
 }
 
 .featured-news-article img {
@@ -1697,8 +1698,12 @@ p:last-child {
   margin: 0 -15px 3rem;
 }
 
+.news-articles--home {
+  margin-top: 45px;
+}
+
 .news-article {
-  margin: 45px 15px 20px;
+  margin: 0 15px 45px;
   width: 380px;
   display: flex;
   flex-direction: column;
