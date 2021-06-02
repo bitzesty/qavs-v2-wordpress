@@ -338,7 +338,7 @@ function qavs_load() {
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         ?>
 
-        <video poster="<?php echo $fields["cover_image"]; ?>" muted playsinline id="hero-animation" class="home-animation-video">
+        <video poster="<?php echo $fields["cover_image"]; ?>" muted playsinline id="hero-animation" class="home-animation-video" aria-hidden="true">
           <source src="<?php echo $fields["mp4_file"]; ?>" type="video/mp4" />
           <?php if (isset($fields["webm_file"]) && !empty($fields["webm_file"])): ?>
             <source src="<?php echo $fields["webm_file"]; ?>" type="video/webm" />
@@ -363,7 +363,7 @@ function qavs_load() {
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         ?>
 
-        <button class="control-home-animation paused hidden" aria-controls="hero-animation">
+        <button class="control-home-animation paused hidden" aria-controls="hero-animation" aria-hidden="true">
           <span class="playing">
             <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 36" aria-hidden="true" focusable="false" class="pause-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.5.255C7.848.255 0 8.179 0 17.925c0 9.747 7.848 17.672 17.5 17.672 9.652 0 17.5-7.925 17.5-17.671C35 8.179 27.152.255 17.5.255zm0 2.162c8.495 0 15.359 6.93 15.359 15.509 0 8.578-6.864 15.509-15.359 15.509-8.495 0-15.359-6.931-15.359-15.51 0-8.577 6.864-15.508 15.359-15.508z" fill="#136C85"/><path fill="#136C85" d="M11 10h4.688v15H11zM19.438 10h4.688v15h-4.688z"/></svg>
             <?php echo $fields['pause_text']; ?>
@@ -467,7 +467,6 @@ function qavs_load() {
       ->where( 'post_type', '=', 'awardee' )
       ->add_fields( array(
         Field::make( 'text', 'awardee_award_year', 'Award Year' ),
-        Field::make( 'text', 'awardee_group_name', 'Group Name' ),
         Field::make( 'select', 'awardee_ceremonial_county', 'Ceremonial County (Lieutenancy)' )->set_options('QavsWebsite::lieutenanciesMapping'),
         Field::make( 'textarea', 'awardee_short_citation', 'Short Citation' )->set_rows( 4 ),
         Field::make( 'select', 'awardee_group_type_1', 'Type of Group 1' )->set_options('QavsWebsite::groupTypeMapping'),
