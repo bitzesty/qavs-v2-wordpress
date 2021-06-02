@@ -23,11 +23,11 @@ const renderMember = (attributes, className) => {
       {attributes.mediaUrl != 0 && <img src={attributes.mediaUrl} alt={attributes.mediaAlt || attributes.name} className="commitee-member__image" />}
       <div className="commitee-member__details">
         <h4 className="commitee-member__name">{attributes.name}</h4>
-        <dl className="commitee-member__detail">
-          <dd className="commitee-member__about">
+        <div className="commitee-member__detail">
+          <div className="commitee-member__about">
             <RichText.Content className="" value={attributes.about} />
-          </dd>
-        </dl>
+          </div>
+        </div>
       </div>
     </div>
   );
