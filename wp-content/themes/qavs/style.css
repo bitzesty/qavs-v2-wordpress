@@ -1173,11 +1173,15 @@ p:last-child {
 	margin-bottom: 1.5em;
 }
 
+.wp-block-table {
+  width:33.333rem;
+  max-width: 100%;
+  overflow: visible !important;
+}
+
 .wp-block-table table {
   border-collapse: collapse;
   margin: 0 !important;
-  width:33.333rem;
-  max-width: 100%
 }
 
 *:last-child {
