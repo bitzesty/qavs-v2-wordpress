@@ -20,7 +20,7 @@ const renderMember = (attributes, className) => {
   const blockProps = useBlockProps.save();
   return (
     <div className={'commitee-member ' + className}>
-      {attributes.mediaUrl != 0 && <img src={attributes.mediaUrl} alt={attributes.name} className="commitee-member__image" />}
+      {attributes.mediaUrl != 0 && <img src={attributes.mediaUrl} alt={attributes.mediaAlt || attributes.name} className="commitee-member__image" />}
       <div className="commitee-member__details">
         <h4 className="commitee-member__name">{attributes.name}</h4>
         <dl className="commitee-member__detail">
@@ -43,16 +43,19 @@ const BlockEdit = props => {
   const blockProps = useBlockProps();
 
   const onSelectMedia = (media) => {
+    console.log(media);
     props.setAttributes({
       mediaId: media.id,
-      mediaUrl: media.url
+      mediaUrl: media.url,
+      mediaAlt: media.alt
     });
   }
 
   const removeMedia = () => {
     props.setAttributes({
       mediaId: 0,
-      mediaUrl: ''
+      mediaUrl: '',
+      mediaAlt: ''
     });
   }
 
@@ -173,6 +176,10 @@ registerBlockType( 'qavs/commitee-member', {
       default: 0
     },
     mediaUrl: {
+      type: 'string',
+      default: ''
+    },
+    mediaAlt: {
       type: 'string',
       default: ''
     }
