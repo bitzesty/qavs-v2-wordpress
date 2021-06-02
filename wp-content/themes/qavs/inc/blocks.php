@@ -28,7 +28,7 @@ function qavs_block__featured_news( $block_attributes, $content ) {
     $html .= '<div class="news-article__meta">';
     $html .= qavs_posted_on($news["ID"]);
     $html .= '</div>';
-    $html .= '<a href="' . esc_url( get_permalink($news["ID"]) ) . '" rel="bookmark" aria-labelledby="title-' . $news["ID"] . '" title="Click to read article" class="news-article__cta arrow-link">Read article</a></div></article>';
+    $html .= '<a href="' . esc_url( get_permalink($news["ID"]) ) . '" rel="bookmark" aria-label="Read article: ' .  get_the_title($news["ID"]) . '" title="Click to read article" class="news-article__cta arrow-link">Read article</a></div></article>';
   }
   
   $html .= '</div>';
@@ -81,7 +81,7 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     $html .= '<div class="featured-awardee__escerpt">';
     $html .= get_the_excerpt($awardee->ID);
     $html .= '</div>';
-    $html .= '<a href="' . esc_url( get_permalink($awardee->ID) ) . '" rel="bookmark" aria-labelledby="title-' . $awardee->ID . '" title="Click to read article" class="featured-awardee__cta">View details</a></div></article>';
+    $html .= '<a href="' . esc_url( get_permalink($awardee->ID) ) . '" rel="bookmark" aria-label="Read article: ' .  get_the_title($awardee->ID) . '" title="Click to read article" class="featured-awardee__cta">View details</a></div></article>';
   }
   
   $html .= '</div>';
@@ -113,7 +113,7 @@ function qavs_block__promoted_article( $block_attributes, $content ) {
     $html .= '<div class="promoted-article__meta">';
     $html .= qavs_posted_on($news["ID"]);
     $html .= '</div>';
-    $html .= '<a href="' . esc_url( get_permalink($news["ID"]) ) . '" rel="bookmark" aria-labelledby="title-' . $news["ID"] . '" title="Click to read article" class="promoted-article__cta arrow-link">Read article</a></div></article>';
+    $html .= '<a href="' . esc_url( get_permalink($news["ID"]) ) . '" rel="bookmark" aria-label="Read article: ' .  get_the_title($news["ID"]) . '" title="Click to read article" class="promoted-article__cta arrow-link">Read article</a></div></article>';
   }
 
   return $html;

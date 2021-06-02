@@ -43,7 +43,6 @@ const BlockEdit = props => {
   const blockProps = useBlockProps();
 
   const onSelectMedia = (media) => {
-    console.log(media);
     props.setAttributes({
       mediaId: media.id,
       mediaUrl: media.url,

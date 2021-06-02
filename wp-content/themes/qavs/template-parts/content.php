@@ -16,7 +16,7 @@
     <div class="news-article__meta">
       <?php echo qavs_posted_on(get_the_ID()); ?>
     </div>
-    <a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark" aria-labelledby="title-<?php the_ID(); ?>" title="Click to read article" class="news-article__cta arrow-link">
+    <a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark" aria-label="Read article: <?php echo get_the_title(); ?>" title="Click to read article" class="news-article__cta arrow-link">
       Read article
     </a>
   </div>
