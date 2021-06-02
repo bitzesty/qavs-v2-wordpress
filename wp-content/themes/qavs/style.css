@@ -2190,7 +2190,7 @@ p.has-medium-font-size {
 @media (min-width: 801px) {
   .featured-news-wrapper .button--inverse{
     position: absolute;
-    top: 5px;
+    top: -0.625rem;
     right: 0;
   }
 }
