@@ -1701,7 +1701,7 @@ p:last-child {
 .news-articles {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -15px 3rem;
+  margin: 0 -15px 2rem;
 }
 
 .news-articles--home {
@@ -2921,6 +2921,7 @@ p.arrow-link a:active:after {
 .pagination {
   list-style-type: none;
   margin-left: 0;
+  margin: -2rem 0 2rem !important;
 }
 
 .pagination li {
