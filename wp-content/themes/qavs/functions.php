@@ -463,7 +463,7 @@ function qavs_load() {
         <?php
       } );
 
-    Block::make( __( 'Privacy-aware youtube' ) )
+    Block::make( __( 'Privacy aware youtube' ) )
       ->add_fields( array(
         Field::make( 'text', 'video_url', __( 'Video URL' ) )
       ) )
@@ -471,12 +471,20 @@ function qavs_load() {
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
         $url = $fields["video_url"];
         $parsed_url = parse_url($url);
-        $videoID = "d9sdus";
+        $videoID = null;
 
-        var_dump($parsed_url);
+        if (strpos($parsed_url['path'], "/embed") !== false) {
+          $path = explode('/', $parsed_url['path']);
+          $videoID = array_pop($path);
+        } else {
+          $params = explode('&', $parsed_url['query']);
+          foreach ($params as $param) {
+            $parts = explode('=', $param);
 
-        if (strpos($url, "/embed") !== false) {
-          
+            if ($parts[0] == 'v') {
+              $videoID = $parts[1];
+            }
+          }
         }
         ?>
 
@@ -536,6 +544,11 @@ function qavs_allowed_block_types( $allowed_blocks, $post ) {
 		$allowed_blocks[] = 'qavs/resource';
 		$allowed_blocks[] = 'atomic-blocks/ab-cta';
 		$allowed_blocks[] = 'pb/accordion-item';
+		$allowed_blocks[] = 'carbon-fields/privacy-aware-youtube';
+		$allowed_blocks[] = 'carbon-fields/hero-video-controls';
+		$allowed_blocks[] = 'carbon-fields/hero-video';
+		$allowed_blocks[] = 'carbon-fields/transcript';
+		$allowed_blocks[] = 'carbon-fields/accessible-video';
 	}
  
 	return $allowed_blocks;
