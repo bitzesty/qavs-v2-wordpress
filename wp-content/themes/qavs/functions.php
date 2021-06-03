@@ -530,6 +530,9 @@ function qavs_allowed_block_types( $allowed_blocks, $post ) {
     'core/button',
     'core/buttons',
     'core/separator',
+    'carbon-fields/transcript',
+    'carbon-fields/accessible-video',
+    'carbon-fields/privacy-aware-youtube'
 	);
  
 	if( $post->post_type === 'page' ) {
@@ -544,11 +547,8 @@ function qavs_allowed_block_types( $allowed_blocks, $post ) {
 		$allowed_blocks[] = 'qavs/resource';
 		$allowed_blocks[] = 'atomic-blocks/ab-cta';
 		$allowed_blocks[] = 'pb/accordion-item';
-		$allowed_blocks[] = 'carbon-fields/privacy-aware-youtube';
 		$allowed_blocks[] = 'carbon-fields/hero-video-controls';
 		$allowed_blocks[] = 'carbon-fields/hero-video';
-		$allowed_blocks[] = 'carbon-fields/transcript';
-		$allowed_blocks[] = 'carbon-fields/accessible-video';
 	}
  
 	return $allowed_blocks;
