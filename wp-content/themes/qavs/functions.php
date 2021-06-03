@@ -463,6 +463,30 @@ function qavs_load() {
         <?php
       } );
 
+    Block::make( __( 'Privacy-aware youtube' ) )
+      ->add_fields( array(
+        Field::make( 'text', 'video_url', __( 'Video URL' ) )
+      ) )
+      ->set_icon( 'video' )
+      ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        $url = $fields["video_url"];
+        $parsed_url = parse_url($url);
+        $videoID = "d9sdus";
+
+        var_dump($parsed_url);
+
+        if (strpos($url, "/embed") !== false) {
+          
+        }
+        ?>
+
+        <div class="embed-container">
+          <iframe src="https://www.youtube-nocookie.com/embed/<?php echo $videoID; ?>?wmode=transparent&rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="560" height="315" frameborder="0"></iframe>
+        </div>
+
+        <?php
+      } );
+
     Container::make( 'post_meta', __( 'Awardee details', 'qavs' ) )
       ->where( 'post_type', '=', 'awardee' )
       ->add_fields( array(
@@ -477,4 +501,43 @@ function qavs_load() {
 
 function generateRandomString($length = 10) {
   return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
+
+add_filter( 'allowed_block_types', 'qavs_allowed_block_types', 10, 2 );
+ 
+function qavs_allowed_block_types( $allowed_blocks, $post ) {
+ 
+	$allowed_blocks = array(
+		'core/image',
+		'core/paragraph',
+		'core/heading',
+		'core/list',
+    'core/html',
+    'core/quote',
+    'core/table',
+    'core/spacer',
+    'core/text-columns',
+    'core/columns',
+    'core/column',
+    'core/button',
+    'core/buttons',
+    'core/separator',
+	);
+ 
+	if( $post->post_type === 'page' ) {
+		$allowed_blocks[] = 'qavs/section';
+		$allowed_blocks[] = 'qavs/promoted-article';
+		$allowed_blocks[] = 'qavs/featured-news';
+		$allowed_blocks[] = 'qavs/featured-awardees';
+		$allowed_blocks[] = 'qavs/notice';
+		$allowed_blocks[] = 'qavs/parental-tabs';
+		$allowed_blocks[] = 'qavs/parental-navigation';
+		$allowed_blocks[] = 'qavs/commitee-member';
+		$allowed_blocks[] = 'qavs/resource';
+		$allowed_blocks[] = 'atomic-blocks/ab-cta';
+		$allowed_blocks[] = 'pb/accordion-item';
+	}
+ 
+	return $allowed_blocks;
+ 
 }
