@@ -1498,7 +1498,7 @@ p:last-child {
   fill: currentColor;
 }
 
-button.button,
+.filter-button,
 .ab-cta-button a,
 .ab-cta-button button {
   background: #8A0DA6 !important;
@@ -1513,7 +1513,7 @@ button.button,
   transition: none !important;
 }
 
-button.button:hover,
+.filter-button:hover,
 .ab-cta-button a:hover,
 .ab-cta-button button:hover {
   background: #fff !important;
@@ -1524,8 +1524,8 @@ button.button:hover,
   outline: 0 !important;
 }
 
-button.button:focus,
-button.button:active,
+.filter-button:focus,
+.filter-button:active,
 .ab-cta-button a:focus,
 .ab-cta-button a:active,
 .ab-cta-button button:focus,

@@ -413,7 +413,7 @@ function qavs_load() {
                 <?php endforeach; ?>
               </select>
             </div>
-            <button type="submit" class="button">Filter</button>
+            <button type="submit" class="filter-button">Filter</button>
             <a href="/awardees">Clear filter</a>
           </form>
         </section>
