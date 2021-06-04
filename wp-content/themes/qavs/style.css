@@ -3172,7 +3172,7 @@ p.arrow-link a:active:after {
     align-items: flex-start;
   }
 
-  .past-awardees-filter .button {
+  .past-awardees-filter .filter-button {
     margin-top: 0.35rem !important;
   }
 }
@@ -3225,7 +3225,7 @@ p.arrow-link a:active:after {
   margin-bottom: 0.5rem;
 }
 
-.past-awardees-filter .button {
+.past-awardees-filter .filter-button {
   margin-right: 1rem;
   padding: 0.15rem 1rem !important;
   margin-bottom: 0.75rem;
