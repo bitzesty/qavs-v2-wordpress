@@ -3244,12 +3244,13 @@ p.arrow-link a:active:after {
 .past-awardees {
   margin: 2rem 0;
   list-style-type: none;
-  padding: 0;
+  padding: 0 !important;
+  width: 100% !important;
 }
 
 .past-awardee {
   padding-right: 2rem;
-  margin: 1rem 0 3.5rem;
+  margin: 1rem 0 3.5rem !important;
   border-right: 10px solid #8A0DA6;
   display: block;
 }
