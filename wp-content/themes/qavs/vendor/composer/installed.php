@@ -70,6 +70,15 @@
         0 => '*',
       ),
     ),
+    'league/csv' => 
+    array (
+      'pretty_version' => '9.7.1',
+      'version' => '9.7.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0ec57e8264ec92565974ead0d1724cf1026e10c1',
+    ),
     'mck89/peast' => 
     array (
       'pretty_version' => 'v1.13.0',

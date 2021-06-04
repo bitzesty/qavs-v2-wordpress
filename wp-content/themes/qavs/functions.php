@@ -253,6 +253,75 @@ class QavsWebsite {
       "west_glamorgan"=>"West Glamorgan"
     ];
   }
+
+  public static function getAwardeeFilters() {
+    $filters = [
+      'year_awarded' => null,
+      'type_of_group' => null,
+      'ceremonial_county' => null
+    ];
+
+    if (isset($_GET['awardee_filters'])) {
+      foreach(array_keys($filters) as $key) {
+        if (isset($_GET['awardee_filters'][$key]) && !empty($_GET['awardee_filters'][$key])) {
+          $filters[$key] = $_GET['awardee_filters'][$key];
+        }
+      }
+    }
+
+    return $filters;
+  }
+
+  public static function getMetaQuery() {
+    $meta_query = [];
+    $filters = QavsWebsite::getAwardeeFilters();
+
+    if ($filters['year_awarded']) {
+      $meta_query[] = [
+        'key' => 'awardee_award_year',
+        'value' => $filters['year_awarded']
+      ];
+    } else {
+      $years = QavsWebsite::getAwardeeYears();
+      $meta_query[] = [
+        'key' => 'awardee_award_year',
+        'value' => $years[0]
+      ];
+    }
+
+    if ($filters['type_of_group']) {
+      $meta_query[] = [
+        'relation' => 'OR',
+        [
+          'key' => 'awardee_group_type_1',
+          'value' => $filters['type_of_group']
+        ],
+        [
+          'key' => 'awardee_group_type_2',
+          'value' => $filters['type_of_group']
+        ]
+      ];
+    }
+
+    if ($filters['ceremonial_county']) {
+      $meta_query[] = [
+        'key' => 'awardee_ceremonial_county',
+        'value' => $filters['ceremonial_county']
+      ];
+    }
+
+    return $meta_query;
+  }
+
+  public static function getAwardeeYears() {
+    $_years = qavs_get_all_meta_values('_awardee_award_year');
+    $years = array_map(function($year) {
+      return intval($year);
+    }, $_years);
+    rsort($years);
+
+    return $years;
+  }
 }
 
 function wpdocs_custom_excerpt_length( $length ) {
@@ -279,6 +348,31 @@ function qavs_load_editor_styles() {
   );
 }
 
+
+function qavs_get_all_meta_values($key) {
+  global $wpdb;
+  $result = $wpdb->get_col( 
+    $wpdb->prepare( "
+      SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+      LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+      WHERE pm.meta_key = '%s' 
+      AND p.post_status = 'publish'
+      ORDER BY pm.meta_value", 
+      $key
+    ) 
+  );
+
+  return $result;
+}
+
+function qavs_pagination_information($query) {
+  $page = $query->query_vars["paged"];
+  $start = ($page - 1) * $query->query_vars["posts_per_page"];
+  $end = $start + min($start + $query->query_vars["posts_per_page"], $query->post_count);
+
+  return sprintf("Showing %s - %s out of %s awardees", $start + 1, $end, $query->found_posts);
+}
+
 add_action( 'after_setup_theme', 'qavs_load' );
 function qavs_load() {
     require_once( 'vendor/autoload.php' );
@@ -287,42 +381,131 @@ function qavs_load() {
 
     Block::make( __( 'Past Awardees Filters' ) )
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        $years = QavsWebsite::getAwardeeYears();
+        $filters = QavsWebsite::getAwardeeFilters();
         ?>
-
-        <div class="block">
-          <div class="block__heading">
-            <h1><?php echo esc_html( $fields['heading'] ); ?></h1>
-          </div><!-- /.block__heading -->
-
-          <div class="block__image">
-            <?php echo wp_get_attachment_image( $fields['image'], 'full' ); ?>
-          </div><!-- /.block__image -->
-
-          <div class="block__content">
-            <?php echo apply_filters( 'the_content', $fields['content'] ); ?>
-          </div><!-- /.block__content -->
-        </div><!-- /.block -->
-
+        <section class="past-awardees-filter" aria-label="Past awardees filter">
+          <h3 id="past-awardees-filter-title">Filter awardees by</h3>
+          <form action="" method='get' aria-labelledby="past-awardees-filter-title">
+            <div class="form-group">
+              <label for="year_awarded">Year awarded</label>
+              <select name="awardee_filters[year_awarded]" id="year_awarded">
+                <?php foreach($years as $year): ?>
+                  <option value="<?php echo $year; ?>" <?php echo $filters["year_awarded"] == $year ? 'selected="selected"' : ''; ?>><?php echo $year; ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="type_of_group">Type of group</label>
+              <select name="awardee_filters[type_of_group]" id="type_of_group">
+                <option value="">Show all</option>
+                <?php foreach(QavsWebsite::groupTypeMapping() as $key => $value): ?>
+                  <option value="<?php echo $key; ?>" <?php echo $filters["type_of_group"] == $key ? 'selected="selected"' : ''; ?>><?php echo $value; ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ceremonial_county">Ceremonial country</label>
+              <select name="awardee_filters[ceremonial_county]" id="ceremonial_county">
+                <option value="">Show all</option>
+                <?php foreach(QavsWebsite::lieutenanciesMapping() as $key => $value): ?>
+                  <option value="<?php echo $key; ?>" <?php echo $filters["ceremonial_county"] == $key ? 'selected="selected"' : ''; ?>><?php echo $value; ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+            <button type="submit" class="button">Filter</button>
+            <a href="/awardees">Clear filter</a>
+          </form>
+        </section>
         <?php
       } );
 
     Block::make( __( 'Past Awardees' ) )
       ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+        $options = [
+          'post_type' => 'awardee',
+          'posts_per_page' => 10,
+          'paged' => $paged,
+          'order' => 'ASC',
+          'orderby' => 'title'
+        ];
+
+        $meta_query = QavsWebsite::getMetaQuery();
+
+        if (!empty($meta_query)) {
+          $options['meta_query'] = $meta_query;
+        }
+        
+        $query = new WP_Query($options);
         ?>
+        
+        <?php if($query->have_posts()): ?>
+          <div class="past-awardees-pagination-info" role="status">
+            <?php echo qavs_pagination_information($query); ?>
+          </div>
 
-        <div class="block">
-          <div class="block__heading">
-            <h1><?php echo esc_html( $fields['heading'] ); ?></h1>
-          </div><!-- /.block__heading -->
+          <ul class="past-awardees" aria-label="Past awardees list">
+            <?php while($query->have_posts()): $query->the_post(); ?>
+              <li class="past-awardee" tabindex="0">
+                <h3 class="past-awardee__title"><?php the_title(); ?></h3>
+                <div class="past-awardee__details">
+                  <div class="past-awardee__detail">
+                    <strong>Year awarded: </strong> <?php echo carbon_get_post_meta( get_the_ID(), 'awardee_award_year' ); ?>
+                  </div>
+                  <div class="past-awardee__detail">
+                    <strong>Type of group: </strong> <?php echo QavsWebsite::groupTypeMapping()[carbon_get_post_meta( get_the_ID(), 'awardee_group_type_1' )]; ?>
+                  </div>
+                  <div class="past-awardee__detail">
+                    <strong>Ceremonial county: </strong> <?php echo QavsWebsite::lieutenanciesMapping()[carbon_get_post_meta( get_the_ID(), 'awardee_ceremonial_county' )]; ?>
+                  </div>
+                  <div class="past-awardee__detail">
+                    <a href='<?php echo carbon_get_post_meta( get_the_ID(), 'awardee_website' ); ?>' rel='noopener nofollow' target='_blank'>
+                      <?php echo carbon_get_post_meta( get_the_ID(), 'awardee_website' ); ?>
+                    </a>
+                  </div>
+                </div>
+                <div class="past-awardee__citation">
+                  <?php echo carbon_get_post_meta( get_the_ID(), 'awardee_short_citation' ); ?>
+                </div>
+                <?php $article = carbon_get_post_meta( get_the_ID(), 'awardee_news_article' ); ?>
+                
+                <?php if ($article): ?>
+                  <a href="<?php echo get_permalink($article); ?>" aria-label="Read article about awardee: <?php echo get_the_title($article); ?>" title="Click to read article" class="arrow-link">
+                    Read article about awardee
+                  </a>
+                <?php endif; ?>
+              </li>
+            <?php endwhile; wp_reset_postdata(); ?>
+          </ul>
+          <?php
 
-          <div class="block__image">
-            <?php echo wp_get_attachment_image( $fields['image'], 'full' ); ?>
-          </div><!-- /.block__image -->
+            $pagination_links = paginate_links( array(
+              'base' => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+              'format' => '?paged=%#%',
+              'current' => max( 1, get_query_var('paged') ),
+              'total' => $query->max_num_pages,
+              'mid_size' => 4,
+              'prev_text'    => __('Previous'),
+              'next_text'    => __('Next'),
+              'type'         => 'array'
+            ) );
+              
+            if (!empty($pagination_links)):
+              echo '<nav class="past-awardees-pagination" aria-label="Past awardee">';
+              echo "<ul class='pagination'>";
+                foreach ($pagination_links as $link) {
+                  echo "<li>" . $link . "</li>";
+                }
+              echo "</ul>";
+              echo '</nav>';
+            endif;
+          ?>
+        <?php else: ?>
+          <h2>0 awardees found</h2>
 
-          <div class="block__content">
-            <?php echo apply_filters( 'the_content', $fields['content'] ); ?>
-          </div><!-- /.block__content -->
-        </div><!-- /.block -->
+          <p>Please try changing filter criteria</p>
+        <?php endif; ?>
 
         <?php
       } );
@@ -504,7 +687,31 @@ function qavs_load() {
         Field::make( 'select', 'awardee_group_type_1', 'Type of Group 1' )->set_options('QavsWebsite::groupTypeMapping'),
         Field::make( 'select', 'awardee_group_type_2', 'Type of Group 2' )->set_options('QavsWebsite::groupTypeMapping'),
         Field::make( 'text', 'awardee_website', 'Website' ),
+        Field::make( 'select', 'awardee_news_article', __( 'News article' ) )->add_options('qavs_list_featured_awardees_articles')
       ) );
+}
+
+function qavs_list_featured_awardees_articles() {
+  $featured_awardees = get_posts( array(
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'tax_query' => [
+      [
+        'taxonomy' => 'category',
+        'field' => 'term_id',
+        'terms' => get_cat_ID('Featured awardees'),
+        'operator' => 'IN'
+      ]
+    ]
+  ) );
+
+  $dictionary = ["Select a news article"];
+  
+  foreach ($featured_awardees as $awardee) {
+    $dictionary[$awardee->ID] = $awardee->post_title;
+  }
+
+  return $dictionary;
 }
 
 function generateRandomString($length = 10) {
@@ -549,6 +756,8 @@ function qavs_allowed_block_types( $allowed_blocks, $post ) {
 		$allowed_blocks[] = 'pb/accordion-item';
 		$allowed_blocks[] = 'carbon-fields/hero-video-controls';
 		$allowed_blocks[] = 'carbon-fields/hero-video';
+		$allowed_blocks[] = 'carbon-fields/past-awardees';
+		$allowed_blocks[] = 'carbon-fields/past-awardees-filters';
 	}
  
 	return $allowed_blocks;

@@ -1498,10 +1498,11 @@ p:last-child {
   fill: currentColor;
 }
 
-
+button.button,
 .ab-cta-button a,
 .ab-cta-button button {
   background: #8A0DA6 !important;
+  color: #fff !important;
   border: 2px solid #8A0DA6 !important;
   font-weight: 500;
   font-size: 1rem !important;
@@ -1512,6 +1513,7 @@ p:last-child {
   transition: none !important;
 }
 
+button.button:hover,
 .ab-cta-button a:hover,
 .ab-cta-button button:hover {
   background: #fff !important;
@@ -1522,6 +1524,8 @@ p:last-child {
   outline: 0 !important;
 }
 
+button.button:focus,
+button.button:active,
 .ab-cta-button a:focus,
 .ab-cta-button a:active,
 .ab-cta-button button:focus,
@@ -1989,66 +1993,6 @@ a.news-article__cta {
   border-top: 2px solid currentColor;
   transform: rotate(-45deg);
 }
-
-.pagination {
-  padding: 0;
-  margin: $sp3 0;
-
-  li,
-  span {
-    display: inline-block;
-    margin-right: $sp2;
-    vertical-align: bottom;
-    height: $sp3;
-  }
-
-  a,
-  span.gap {
-    font-size: 0.842em;
-    display: inline-block;
-    line-height: $sp3;
-    height: $sp3;
-    width: $sp3;
-    text-align: center;
-    border-radius: 100%;
-    text-decoration: none;
-    position: relative;
-    vertical-align: bottom;
-    background: $white;
-    color: $primary-500;
-    border: 2px solid transparent;
-
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  li a,
-  span a {
-    color: $primary-500;
-    text-decoration: none;
-
-    &:hover {
-      border-color: $primary-500;
-    }
-
-    &:focus {
-      box-shadow: 0 0 5px transparentize($primary-500, 0.3);
-    }
-  }
-
-  .active,
-  .current {
-    a {
-      background: $primary-500;
-      color: $white;
-    }
-  }
-}
-
 
 .news-single-page {
   padding: 2rem 0;
@@ -2922,6 +2866,11 @@ p.arrow-link a:active:after {
   list-style-type: none;
   margin-left: 0;
   margin: -2rem 0 2rem !important;
+  padding: 0 !important;
+}
+
+.past-awardees-pagination .pagination {
+  margin: 0 !important;
 }
 
 .pagination li {
@@ -3208,4 +3157,129 @@ p.arrow-link a:active:after {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.past-awardees-filter form {
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .past-awardees-filter form {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .past-awardees-filter .button {
+    margin-top: 0.35rem !important;
+  }
+}
+
+.past-awardees-filter .form-group {
+  margin-right: 1rem !important;
+  margin-bottom: 0.75rem !important;
+  color: #333333;
+}
+
+.past-awardees-filter .form-group:nth-child(1) {
+  width: 10%;
+  min-width: 200px; 
+}
+
+.past-awardees-filter .form-group:nth-child(2) {
+  width: 20%;
+  min-width: 250px; 
+}
+
+.past-awardees-filter .form-group:nth-child(3) {
+  width: 20%;
+  min-width: 250px; 
+  flex: 1;
+}
+
+.past-awardees-filter .form-group select {
+  background-color: white;
+  border-color: #919191;
+  padding: 0.2rem 0.5rem;
+  text-align: center;
+  width: 100%;
+  color: #1F1F1F !important;
+}
+
+.past-awardees-filter .form-group select:focus {
+  border: 1px solid #8A0DA6;
+  outline: 2px solid #8A0DA6;
+}
+
+.past-awardees-filter .form-group label {
+  margin-bottom: 0.1rem;
+}
+
+.past-awardees-filter .form-group label {
+  display: block; 
+}
+
+#past-awardees-filter-title {
+  margin-bottom: 0.5rem;
+}
+
+.past-awardees-filter .button {
+  margin-right: 1rem;
+  padding: 0.15rem 1rem !important;
+  margin-bottom: 0.75rem;
+}
+
+.past-awardees-filter a {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+}
+
+.past-awardees-pagination-info {
+  margin: 0 0 1rem;
+  font-size: 0.917rem;
+}
+
+.past-awardees {
+  margin: 2rem 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.past-awardee {
+  padding-right: 2rem;
+  margin: 1rem 0 3.5rem;
+  border-right: 10px solid #8A0DA6;
+  display: block;
+}
+
+.past-awardee .arrow-link {
+  margin-top: 1.25rem;
+}
+
+.past-awardee:nth-child(odd) {
+  border-right-color: #47A14E;
+}
+
+.past-awardee * {
+  max-width: 750px;
+}
+
+.past-awardee__title {
+  margin-bottom: 1rem;
+}
+
+.past-awardee__details {
+  margin-bottom: 1.5rem;
+}
+
+.past-awardee__detail {
+  margin-bottom: 0.5rem;
+  font-size: 0.917rem;
+}
+
+.past-awardee__citation {
+  margin-bottom: 0;
+  font-size: 0.917rem;
 }

@@ -10,6 +10,7 @@ class ComposerStaticInit251cc393c354705115aefcfc25fbe0f4
         '3937806105cc8e221b8fa8db5b70d2f2' => __DIR__ . '/..' . '/wp-cli/mustangostang-spyc/includes/functions.php',
         'be01b9b16925dcb22165c40b46681ac6' => __DIR__ . '/..' . '/wp-cli/php-cli-tools/lib/cli/cli.php',
         'ffb465a494c3101218c4417180c2c9a2' => __DIR__ . '/..' . '/wp-cli/i18n-command/i18n-command.php',
+        '9e4824c5afbdc1482b6025ce3d4dfde8' => __DIR__ . '/..' . '/league/csv/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -29,6 +30,10 @@ class ComposerStaticInit251cc393c354705115aefcfc25fbe0f4
         'M' => 
         array (
             'Mustangostang\\' => 14,
+        ),
+        'L' => 
+        array (
+            'League\\Csv\\' => 11,
         ),
         'G' => 
         array (
@@ -65,6 +70,10 @@ class ComposerStaticInit251cc393c354705115aefcfc25fbe0f4
         'Mustangostang\\' => 
         array (
             0 => __DIR__ . '/..' . '/wp-cli/mustangostang-spyc/src',
+        ),
+        'League\\Csv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/csv/src',
         ),
         'Gettext\\Languages\\' => 
         array (
