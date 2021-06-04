@@ -3161,7 +3161,7 @@ p.arrow-link a:active:after {
 
 .past-awardees-filter form {
   display: flex;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   align-items: flex-end;
   flex-wrap: wrap;
 }
