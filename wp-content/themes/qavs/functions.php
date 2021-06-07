@@ -687,8 +687,8 @@ function qavs_load() {
         Field::make( 'select', 'awardee_group_type_2', 'Type of Group 2' )->set_options('QavsWebsite::groupTypeMapping'),
         Field::make( 'text', 'awardee_website', 'Website' ),
         Field::make( 'radio', 'awardee_has_news_article', 'Has news article?')->set_options([
-          ['0' => 'No'],
-          ['1' => 'Yes']
+          '0' => 'No',
+          '1' => 'Yes'
         ]),
         Field::make( 'select', 'awardee_news_article', __( 'News article' ) )->add_options('qavs_list_featured_awardees_articles')
       ) );
