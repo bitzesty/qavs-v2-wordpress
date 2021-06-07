@@ -97,6 +97,7 @@ function qavs_import_csv_awardees_page() {
         carbon_set_post_meta( $id, 'awardee_group_type_2', $groupTypesMapping[$record[$secondTypeHeader]] );
       }
       carbon_set_post_meta( $id, 'awardee_website', $record[$websiteHeader] );
+      carbon_set_post_meta( $id, 'awardee_has_news_article', '0' );
       
       $successful[] = [$id, $record[$nameHeader]];
     }

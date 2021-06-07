@@ -425,14 +425,13 @@ function qavs_load() {
         $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
         $options = [
           'post_type' => 'awardee',
-          'posts_per_page' => 10,
+          'posts_per_page' => 25,
           'paged' => $paged,
-          'order' => 'ASC',
-          'orderby' => 'title'
+          'meta_key' => '_awardee_has_news_article',
+          'orderby' => [ 'meta_value_num' => 'DESC', 'title' => 'ASC' ]
         ];
 
         $meta_query = QavsWebsite::getMetaQuery();
-
         if (!empty($meta_query)) {
           $options['meta_query'] = $meta_query;
         }
@@ -687,6 +686,10 @@ function qavs_load() {
         Field::make( 'select', 'awardee_group_type_1', 'Type of Group 1' )->set_options('QavsWebsite::groupTypeMapping'),
         Field::make( 'select', 'awardee_group_type_2', 'Type of Group 2' )->set_options('QavsWebsite::groupTypeMapping'),
         Field::make( 'text', 'awardee_website', 'Website' ),
+        Field::make( 'radio', 'awardee_has_news_article', 'Has news article?')->set_options([
+          ['0' => 'No'],
+          ['1' => 'Yes']
+        ]),
         Field::make( 'select', 'awardee_news_article', __( 'News article' ) )->add_options('qavs_list_featured_awardees_articles')
       ) );
 }
