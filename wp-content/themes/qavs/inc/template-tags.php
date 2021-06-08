@@ -137,6 +137,11 @@ function qavs_communication_cookies_accepted() {
   return isset($_COOKIE[$name]) && $_COOKIE[$name] == 'yes';
 }
 
+function qavs_analytics_cookies_consent() {
+  $name = 'given_analytics_cookies_consent';
+  return isset($_COOKIE[$name]) && $_COOKIE[$name] == 'yes';
+}
+
 function qavs_sharing_text() {
 	$description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true);
 
