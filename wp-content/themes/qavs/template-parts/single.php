@@ -10,7 +10,10 @@
         <?php qavs_posted_on(); ?>
       </div>
       <?php if(has_post_thumbnail()): ?>
-        <?php the_post_thumbnail('full', ['class' => 'article__image']); ?>
+        <figure class="article-featured-image">
+          <?php the_post_thumbnail('full', ['class' => 'article__image']); ?>
+          <figcaption><?php the_post_thumbnail_caption(); ?></figcaption>
+        </figure>
       <?php endif; ?>
       <div class="article__body">
         <?php the_content(); ?>

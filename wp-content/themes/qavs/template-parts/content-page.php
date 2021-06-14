@@ -7,9 +7,10 @@
  * @package QAVS
  */
 
+$pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> lang="<?php echo $pageLanguage == 'cy' ? 'cy' : 'en'; ?>">
 	<div class="entry-content">
 		<?php
 		the_content();

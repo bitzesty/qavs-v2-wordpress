@@ -3284,3 +3284,23 @@ p.arrow-link a:active:after {
   margin-bottom: 0;
   font-size: 0.917rem;
 }
+
+figcaption {
+  font-size: 0.792rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.article-featured-image figcaption {
+  margin: 0 0 20px;
+}
+
+.article__body figure.wp-block-image {
+  display: table;
+}
+
+.article__body figure.wp-block-image figcaption {
+  display: table-caption;
+  caption-side: top;
+  margin: 10px 0 -20px;
+}

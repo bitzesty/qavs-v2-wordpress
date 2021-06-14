@@ -9,24 +9,16 @@
  * @package QAVS
  */
 
+$pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-  <?php if(qavs_analytics_cookies_consent()): ?>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M130LYYCBV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-M130LYYCBV', { 'anonymize_ip': true });
-    </script>
-  <?php endif; ?>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-
+  
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
@@ -84,7 +76,7 @@
       </div>
     </section>
 
-    <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' ))): ?>
+    <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' )) || $pageLanguage == 'cy'): ?>
     <section class="pre-header" title="Top bar links">
       <div class="container">
         <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' ))): ?>
@@ -102,10 +94,16 @@
             <svg width="10" height="17" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.571.754v2.597H8.012c-.569 0-.953.118-1.151.354-.199.236-.298.59-.298 1.062v1.858h2.909l-.387 2.911H6.563V17H3.524V9.536H.993v-2.91h2.531V4.481c0-1.22.345-2.166 1.033-2.838C5.245.972 6.162.636 7.307.636c.973 0 1.728.04 2.264.118z" fill="#fff"/></svg>
           </a>
         <?php endif; ?>
-        <?php if (!empty(carbon_get_theme_option( 'qavs_login' ))): ?>
-          <a href="<?php echo carbon_get_theme_option( 'qavs_login' );?>" class="pre-header__link" title="Click to go to the QAVS application system login page" target="_blank" rel="noopener nofollow">
-            Login
+        <?php if($pageLanguage == 'cy'): ?>
+          <a href="<?php echo get_site_url(); ?>" class="pre-header__link">
+            Switch to English version
           </a>
+        <?php else: ?>
+          <?php if (!empty(carbon_get_theme_option( 'qavs_login' ))): ?>
+            <a href="<?php echo carbon_get_theme_option( 'qavs_login' );?>" class="pre-header__link" title="Click to go to the QAVS application system login page" target="_blank" rel="noopener nofollow">
+              Login
+            </a>
+          <?php endif; ?>
         <?php endif; ?>
       </div>
     </section>
@@ -121,20 +119,30 @@
     <div id="masthead" class="site-header">
       <div class="container">
         <a href='/' class="site-branding">
-          <img src="/wp-content/themes/qavs/images/QAVS_logo_web_3x.png" alt="The Queen's Award for Voluntary Service" />
+          <img src="/wp-content/themes/qavs/images/QAVS_logo_web_3x.png" alt="The Queen's Award for Voluntary Service" />  
         </a><!-- .site-branding -->
 
         <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'qavs' ); ?></button>
         <nav id="site-navigation" class="main-navigation" aria-label="Main">
           <?php
-          wp_nav_menu(
-            array(
-              'theme_location' => 'menu-1',
-              'menu_id'        => 'primary-menu',
-            )
-          );
+          if ($pageLanguage == "cy") {
+            wp_nav_menu(
+              array(
+                'theme_location' => 'menu-welsh',
+                'menu_id'        => 'welsh-menu',
+              )
+            );
+          } else {
+            wp_nav_menu(
+              array(
+                'theme_location' => 'menu-1',
+                'menu_id'        => 'primary-menu',
+              )
+            );
+          }
           ?>
         </nav><!-- #site-navigation -->
       </div>
     </div><!-- #masthead -->
   </header>
+  

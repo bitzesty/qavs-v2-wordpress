@@ -60,6 +60,12 @@ if ( ! function_exists( 'qavs_setup' ) ) :
 			)
 		);
 
+    register_nav_menus(
+			array(
+				'menu-welsh' => esc_html__( 'Welsh menu', 'qavs' ),
+			)
+		);
+
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
@@ -115,7 +121,7 @@ add_action( 'after_setup_theme', 'qavs_content_width', 0 );
  */
 function qavs_scripts() {
 	wp_enqueue_style( 'qavs-style', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css') );
-	wp_enqueue_style( 'qavs-paypal-video-styles', get_template_directory_uri() . '/css/px-video.css', array(), filemtime(get_template_directory_uri() . '/css/px-video.css') );
+	wp_enqueue_style( 'qavs-paypal-video-styles', get_template_directory_uri() . '/css/px-video.css', array(), filemtime(get_stylesheet_directory() . '/css/px-video.css') );
 	wp_style_add_data( 'qavs-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'qavs-paypal-strings', get_template_directory_uri() . '/js/strings.js', array(), filemtime(get_stylesheet_directory() . '/js/strings.js'), true );
@@ -691,6 +697,17 @@ function qavs_load() {
           '1' => 'Yes'
         ]),
         Field::make( 'select', 'awardee_news_article', __( 'News article' ) )->add_options('qavs_list_featured_awardees_articles')
+      ) );
+    
+    Container::make( 'post_meta', __( 'Page language', 'qavs' ) )
+      ->where( 'post_type', '=', 'page' )
+      ->set_context('side')
+      ->set_priority('high')
+      ->add_fields( array(
+        Field::make( 'radio', 'page_language', 'Page language' )->set_options([
+          'en' => 'English',
+          'cy' => 'Welsh'
+        ])
       ) );
 }
 
