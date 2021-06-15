@@ -236,7 +236,7 @@ class QavsWebsite {
       "county_antrim"=>"County Antrim",
       "county_armagh"=>"County Armagh",
       "county_down"=>"County Down",
-      "county_londonderry"=>"County Londonderry",
+      "county_londonderry"=>"County Derry/Londonderry",
       "county_tyrone"=>"County Tyrone",
       "the_county_borough_of_belfast"=>"The County Borough of Belfast",
       "aberdeenshire"=>"Aberdeenshire",
@@ -411,7 +411,7 @@ function qavs_load() {
               </select>
             </div>
             <div class="form-group">
-              <label for="ceremonial_county">Ceremonial country</label>
+              <label for="ceremonial_county">Ceremonial county</label>
               <select name="awardee_filters[ceremonial_county]" id="ceremonial_county">
                 <option value="">Show all</option>
                 <?php foreach(QavsWebsite::lieutenanciesMapping() as $key => $value): ?>
