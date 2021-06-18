@@ -100,29 +100,7 @@
 
   var Website = {
     init: function() {
-      this.__analyticsInitialized = false;
-      this.__communicationsInitialized = false;
-
-      this.checkCookies();
       this.handleCookiesSettings();
-    },
-    checkCookies: function() {
-      var analyticsConsent = Cookies.get('given_analytics_cookies_consent');
-      var communicationsConsent = Cookies.get('given_communications_cookies_consent');
-
-      if (analyticsConsent === 'yes') {
-        this.initializeAnalytics();
-      }
-
-      if (communicationsConsent === 'yes') {
-        this.initializeCommunications();
-      }
-    },
-    initializeAnalytics: function() {
-
-    },
-    initializeCommunications: function() {
-
     },
     handleCookiesSettings: function() {
       var saveButton = document.querySelector('.save-cookies');
@@ -133,24 +111,24 @@
       }
 
       var analyticsConsent = Cookies.get('given_analytics_cookies_consent');
-      var communicationsConsent = Cookies.get('given_communications_cookies_consent');
+      // var communicationsConsent = Cookies.get('given_communications_cookies_consent');
       var preferenceConsent = Cookies.get('given_communications_cookies_consent');
 
       if (analyticsConsent === 'yes') {
         document.getElementById('cookies-analytics-yes').checked = true;
-      } else {
+      } else if (analyticsConsent == 'no') {
         document.getElementById('cookies-analytics-no').checked = true;
       }
 
-      if (communicationsConsent === 'yes') {
-        document.getElementById('cookies-communications-yes').checked = true;
-      } else {
-        document.getElementById('cookies-communications-no').checked = true;
-      }
+      // if (communicationsConsent === 'yes') {
+      //   document.getElementById('cookies-communications-yes').checked = true;
+      // } else if (communicationsConsent == 'no') {
+      //   document.getElementById('cookies-communications-no').checked = true;
+      // }
 
       if (preferenceConsent === 'yes') {
         document.getElementById('cookies-preference-yes').checked = true;
-      } else {
+      } else if (preferenceConsent == 'no') {
         document.getElementById('cookies-preference-no').checked = true;
       }
 
@@ -158,13 +136,24 @@
         e.preventDefault();
         e.stopPropagation();
 
-        var analyticsValue = document.querySelector('input[name="cookies-analytics"]:checked').value;
-        var communicationsValue = document.querySelector('input[name="cookies-communications"]:checked').value;
-        var preferenceValue = document.querySelector('input[name="cookies-preference"]:checked').value;
+        var analyticsRadio = document.querySelector('input[name="cookies-analytics"]:checked');
+        var analyticsValue = analyticsRadio ? analyticsRadio.value : null;
+        
+        // var communicationsRadio = document.querySelector('input[name="cookies-communications"]:checked');
+        // var communicationsValue = communicationsRadio ? communicationsRadio.value : null;
+        
+        var preferenceRadio = document.querySelector('input[name="cookies-preference"]:checked');
+        var preferenceValue = preferenceRadio ? preferenceRadio.value : null;
 
-        Cookies.set('given_analytics_cookies_consent', analyticsValue, { expires: 365 });
-        Cookies.set('given_communications_cookies_consent', communicationsValue, { expires: 365 });
-        Cookies.set('given_preference_cookies_consent', preferenceValue, { expires: 365 });
+        if (analyticsValue !== null) {
+          Cookies.set('given_analytics_cookies_consent', analyticsValue, { expires: 365 });
+        }
+        // if (communicationsValue !== null) {
+        //   Cookies.set('given_communications_cookies_consent', communicationsValue, { expires: 365 });
+        // }
+        if (preferenceValue !== null) {
+          Cookies.set('given_preference_cookies_consent', preferenceValue, { expires: 365 });
+        }
         Cookies.set('given_general_cookie_consent', 'yes', { expires: 365 });
 
         var existingMessage = document.querySelector('.save-cookie-message');
@@ -213,7 +202,7 @@
 
     Cookies.set('given_general_cookie_consent', 'yes', { expires: 365 });
     Cookies.set('given_analytics_cookies_consent', 'yes', { expires: 365 });
-    Cookies.set('given_communications_cookies_consent', 'yes', { expires: 365 });
+    // Cookies.set('given_communications_cookies_consent', 'yes', { expires: 365 });
     Cookies.set('given_preference_cookies_consent', 'yes', { expires: 365 });
 
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
@@ -228,7 +217,7 @@
 
     Cookies.set('given_general_cookie_consent', 'yes', { expires: 365 });
     Cookies.set('given_analytics_cookies_consent', 'no', { expires: 365 });
-    Cookies.set('given_communications_cookies_consent', 'no', { expires: 365 });
+    // Cookies.set('given_communications_cookies_consent', 'no', { expires: 365 });
     Cookies.set('given_preference_cookies_consent', 'no', { expires: 365 });
 
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
