@@ -164,3 +164,8 @@ function qavs_sharing_url() {
 function qavs_website_name() {
 	return get_bloginfo('name');
 }
+
+function qavs_analytics_cookies_consent() {
+  $name = 'given_analytics_cookies_consent';
+  return isset($_COOKIE[$name]) && $_COOKIE[$name] == 'yes';
+}
