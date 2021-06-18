@@ -128,7 +128,7 @@
 
       if (preferenceConsent === 'yes') {
         document.getElementById('cookies-preference-yes').checked = true;
-      } else if (preferenceConsent == 'no') {
+      } else if (preferenceConsent === 'no') {
         document.getElementById('cookies-preference-no').checked = true;
       }
 
