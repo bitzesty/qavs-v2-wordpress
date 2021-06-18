@@ -37,12 +37,6 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<?php
-if (isset($_GET['deebug'])) {
-  var_dump($_COOKIE);
-  var_dump(qavs_analytics_cookies_consent());
-}
-?>
 <div id="page" class="site">
   <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'qavs' ); ?></a>
   <header title="Page header">
