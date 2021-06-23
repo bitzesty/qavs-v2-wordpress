@@ -34,7 +34,6 @@
 	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
 	button.addEventListener( 'click', function() {
     siteNavigation.classList.toggle( 'toggled' );
-    console.log("why")
 
 		if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
 			button.setAttribute( 'aria-expanded', 'false' );
@@ -207,8 +206,6 @@
 
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
     acceptedMessage.classList.remove("hidden");
-
-    Website.checkCookies();
   });
 
   rejectAll.addEventListener('click', function (e) {
