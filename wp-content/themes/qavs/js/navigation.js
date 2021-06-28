@@ -213,9 +213,9 @@
     e.stopPropagation();
 
     Cookies.set('given_general_cookie_consent', 'yes', { expires: 365 });
-    Cookies.set('given_analytics_cookies_consent', 'no', { expires: 365 });
+    // Cookies.set('given_analytics_cookies_consent', 'no', { expires: 365 });
     // Cookies.set('given_communications_cookies_consent', 'no', { expires: 365 });
-    Cookies.set('given_preference_cookies_consent', 'no', { expires: 365 });
+    // Cookies.set('given_preference_cookies_consent', 'no', { expires: 365 });
 
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
     rejectedMessage.classList.remove("hidden");
