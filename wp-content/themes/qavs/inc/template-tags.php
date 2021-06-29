@@ -166,6 +166,6 @@ function qavs_website_name() {
 }
 
 function qavs_analytics_cookies_consent() {
-  $name = 'given_analytics_cookies_consent';
+  $name = 'analytics_cookies_consent_status';
   return isset($_COOKIE[$name]) && $_COOKIE[$name] == 'yes';
 }

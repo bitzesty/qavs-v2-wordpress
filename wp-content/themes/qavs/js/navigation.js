@@ -109,9 +109,9 @@
         return;
       }
 
-      var analyticsConsent = Cookies.get('given_analytics_cookies_consent');
-      // var communicationsConsent = Cookies.get('given_communications_cookies_consent');
-      var preferenceConsent = Cookies.get('given_communications_cookies_consent');
+      var analyticsConsent = Cookies.get('analytics_cookies_consent_status');
+      // var communicationsConsent = Cookies.get('communications_cookies_consent_status');
+      var preferenceConsent = Cookies.get('communications_cookies_consent_status');
 
       if (analyticsConsent === 'yes') {
         document.getElementById('cookies-analytics-yes').checked = true;
@@ -145,15 +145,15 @@
         var preferenceValue = preferenceRadio ? preferenceRadio.value : null;
 
         if (analyticsValue !== null) {
-          Cookies.set('given_analytics_cookies_consent', analyticsValue, { expires: 365 });
+          Cookies.set('analytics_cookies_consent_status', analyticsValue, { expires: 365 });
         }
         // if (communicationsValue !== null) {
-        //   Cookies.set('given_communications_cookies_consent', communicationsValue, { expires: 365 });
+        //   Cookies.set('communications_cookies_consent_status', communicationsValue, { expires: 365 });
         // }
         if (preferenceValue !== null) {
-          Cookies.set('given_preference_cookies_consent', preferenceValue, { expires: 365 });
+          Cookies.set('preference_cookies_consent_status', preferenceValue, { expires: 365 });
         }
-        Cookies.set('given_general_cookie_consent', 'yes', { expires: 365 });
+        Cookies.set('general_cookie_consent_status', 'yes', { expires: 365 });
 
         var existingMessage = document.querySelector('.save-cookie-message');
 
@@ -183,7 +183,7 @@
     );
   }
   
-  var generalConsent = Cookies.get('given_general_cookie_consent');
+  var generalConsent = Cookies.get('general_cookie_consent_status');
   var cookieBanner = document.querySelector('.cookie-banner');
   var acceptedMessage = cookieBanner.querySelector('.accepted-message');
   var rejectedMessage = cookieBanner.querySelector('.rejected-message');
@@ -199,10 +199,10 @@
     e.preventDefault();
     e.stopPropagation();
 
-    Cookies.set('given_general_cookie_consent', 'yes', { expires: 365 });
-    Cookies.set('given_analytics_cookies_consent', 'yes', { expires: 365 });
-    // Cookies.set('given_communications_cookies_consent', 'yes', { expires: 365 });
-    Cookies.set('given_preference_cookies_consent', 'yes', { expires: 365 });
+    Cookies.set('general_cookie_consent_status', 'yes', { expires: 365 });
+    Cookies.set('analytics_cookies_consent_status', 'yes', { expires: 365 });
+    // Cookies.set('communications_cookies_consent_status', 'yes', { expires: 365 });
+    Cookies.set('preference_cookies_consent_status', 'yes', { expires: 365 });
 
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
     acceptedMessage.classList.remove("hidden");
@@ -212,10 +212,10 @@
     e.preventDefault();
     e.stopPropagation();
 
-    Cookies.set('given_general_cookie_consent', 'yes', { expires: 365 });
-    // Cookies.set('given_analytics_cookies_consent', 'no', { expires: 365 });
-    // Cookies.set('given_communications_cookies_consent', 'no', { expires: 365 });
-    // Cookies.set('given_preference_cookies_consent', 'no', { expires: 365 });
+    Cookies.set('general_cookie_consent_status', 'yes', { expires: 365 });
+    // Cookies.set('analytics_cookies_consent_status', 'no', { expires: 365 });
+    // Cookies.set('communications_cookies_consent_status', 'no', { expires: 365 });
+    // Cookies.set('preference_cookies_consent_status', 'no', { expires: 365 });
 
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
     rejectedMessage.classList.remove("hidden");
@@ -297,12 +297,12 @@
 
       if (homeAnimationVideo.paused) {
         homeAnimationVideo.play();
-        if (Cookies.get('given_preference_cookies_consent') === 'yes') {
+        if (Cookies.get('preference_cookies_consent_status') === 'yes') {
           Cookies.set('home_animation_state', 'play', { expires: 365 })
         }
       } else {
         homeAnimationVideo.pause();
-        if (Cookies.get('given_preference_cookies_consent') === 'yes') {
+        if (Cookies.get('preference_cookies_consent_status') === 'yes') {
           Cookies.set('home_animation_state', 'pause', { expires: 365 })
         }
       }
