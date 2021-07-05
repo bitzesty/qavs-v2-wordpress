@@ -22,7 +22,7 @@
             <a href='/sitemap'>Sitemap</a>
           </nav>
 
-          <p>
+          <p lang="cy">
             Bydd testun ar gael yn Gymraeg yn fuan iawn. Yn y cyfamser, os hoffech lenwi ffurflen enwebu yn Gymraeg, cysylltwch â ni.
           </p>
           <nav aria-label="Contact information">
