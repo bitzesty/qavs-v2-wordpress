@@ -30,9 +30,9 @@ function qavs_block__featured_news( $block_attributes, $content ) {
     $html .= '</div>';
     $html .= '<a href="' . esc_url( get_permalink($news["ID"]) ) . '" rel="bookmark" aria-label="Read article: ' .  get_the_title($news["ID"]) . '" title="Click to read article" class="news-article__cta arrow-link">Read article</a></div></article>';
   }
-  
+
   $html .= '</div>';
-  
+
   $html .= '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" class="button button--inverse mobile-only">View all news</a>';
 
   $html .= '</div>';
@@ -83,7 +83,7 @@ function qavs_block__featured_awardees( $block_attributes, $content ) {
     $html .= '</div>';
     $html .= '<a href="' . esc_url( get_permalink($awardee->ID) ) . '" rel="bookmark" aria-label="View details of the awardee: ' .  get_the_title($awardee->ID) . '" title="Click to read article" class="featured-awardee__cta">View details</a></div></article>';
   }
-  
+
   $html .= '</div>';
   $html .= '</div>';
 
@@ -122,8 +122,14 @@ function qavs_block__promoted_article( $block_attributes, $content ) {
 function qavs_block__parental_tabs( $block_attributes, $content ) {
 
   $parent_id = wp_get_post_parent_id(get_the_ID());
-  $pages = get_pages();
-  $children = get_page_children( $parent_id, $pages );
+  $children = query_posts(
+    array(
+      'post_type'=>'page',
+      'post_parent'=>$parent_id,
+      'orderby' => 'menu_order',
+      'order' => 'ASC'
+    )
+  );
 
   $html = "<nav aria-label='Table of contents'><ul class='page-tabs'>";
     foreach ($children as $child ) {
@@ -133,7 +139,7 @@ function qavs_block__parental_tabs( $block_attributes, $content ) {
       $html .= "</li>";
     }
   $html .= "</ul></nav>";
-  
+
   return $html;
 }
 
@@ -163,8 +169,8 @@ function qavs_block__parental_pagination( $block_attributes, $content ) {
 
   return '<nav aria-label="In-page navigation" class="parental-navigation"><a href="' . $permalink . '" rel="next"><span class="nav-subtitle">Next</span> <span class="nav-title">' . $title . '</span></a></nav>';
 }
- 
-function qavs_dynamic_blocks() { 
+
+function qavs_dynamic_blocks() {
   register_block_type( 'qavs/featured-news', array(
     'api_version' => 2,
     'render_callback' => 'qavs_block__featured_news'
