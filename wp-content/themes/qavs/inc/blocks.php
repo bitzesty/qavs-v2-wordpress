@@ -122,14 +122,8 @@ function qavs_block__promoted_article( $block_attributes, $content ) {
 function qavs_block__parental_tabs( $block_attributes, $content ) {
 
   $parent_id = wp_get_post_parent_id(get_the_ID());
-  $children = query_posts(
-    array(
-      'post_type'=>'page',
-      'post_parent'=>$parent_id,
-      'orderby' => 'menu_order',
-      'order' => 'ASC'
-    )
-  );
+  $pages = get_pages([ 'sort_column' => 'menu_order' ]);
+  $children = get_page_children( $parent_id, $pages );
 
   $html = "<nav aria-label='Table of contents'><ul class='page-tabs'>";
     foreach ($children as $child ) {
