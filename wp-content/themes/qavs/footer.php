@@ -28,6 +28,8 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
             <p>
               This page is also <a href="/gwneud-enwebiad/ynglyn-ag-enwebu/">available in Welsh (Cymraeg)</a>.
             </p>
+          <?php else: ?>
+            <p aria-hidden="true">&nbsp;</p>
           <?php endif; ?>
           <nav aria-label="Contact information">
             <a href="mailto:queensaward@dcms.gov.uk" class="site-footer__email">
