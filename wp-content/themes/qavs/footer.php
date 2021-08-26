@@ -22,9 +22,11 @@
             <a href='/sitemap'>Sitemap</a>
           </nav>
 
-          <p lang="cy">
-            Bydd testun ar gael yn Gymraeg yn fuan iawn. Yn y cyfamser, os hoffech lenwi ffurflen enwebu yn Gymraeg, cysylltwch â ni.
-          </p>
+          <?php if($pageLanguage != 'cy'): ?>
+            <p>
+              This page is also <a href="/gwneud-enwebiad/ynglyn-ag-enwebu/">available in Welsh (Cymraeg)</a>.
+            </p>
+          <?php endif; ?>
           <nav aria-label="Contact information">
             <a href="mailto:queensaward@dcms.gov.uk" class="site-footer__email">
               <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Email: " focusable="false">
