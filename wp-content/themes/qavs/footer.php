@@ -26,7 +26,7 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
 
           <?php if($pageLanguage != 'cy'): ?>
             <p>
-              This page is also <a href="/gwneud-enwebiad/ynglyn-ag-enwebu/">available in Welsh (Cymraeg)</a>.
+              Information on how to make a nomination is also <a href="/gwneud-enwebiad/ynglyn-ag-enwebu/">available in Welsh (Cymraeg)</a>.
             </p>
           <?php else: ?>
             <p aria-hidden="true">&nbsp;</p>
