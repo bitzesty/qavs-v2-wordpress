@@ -9,6 +9,8 @@
  * @package QAVS
  */
 
+$pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
+
 ?>
 	<footer id="colophon" class="site-footer">
 		<div class="container">
