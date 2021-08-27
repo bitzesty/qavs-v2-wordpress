@@ -861,7 +861,7 @@ textarea {
 	.menu-toggle {
 		display: none;
   }
-  
+
   .main-navigation {
     display: block;
     flex: 1;
@@ -872,7 +872,7 @@ textarea {
     justify-content: flex-end;
     align-items: center;
   }
-  
+
   .main-navigation li {
     text-align: left;
     margin: 0;
@@ -1492,7 +1492,7 @@ p:last-child {
   display: inline-block;
   position: relative;
   top: 3px;
-} 
+}
 
 .button--inverse svg path {
   fill: currentColor;
@@ -1655,7 +1655,7 @@ p:last-child {
   color: #1F1F1F;
 }
 
-.news-article__details { 
+.news-article__details {
 
 }
 
@@ -2107,6 +2107,7 @@ p.has-medium-font-size {
   background: #f7f7f7 !important;
   height: 15px !important;
   margin: 0 !important;
+  border: none !important;
 }
 
 .featured-awardees-text {
@@ -2940,7 +2941,7 @@ p.arrow-link a:active:after {
 .prev.page-numbers:focus:before,
 .prev.page-numbers:active:before {
   background-image: url(/wp-content/themes/qavs/images/prev-black.svg);
-} 
+}
 
 .site-footer__copyright a {
   text-decoration: none;
@@ -3185,17 +3186,17 @@ p.arrow-link a:active:after {
 
 .past-awardees-filter .form-group:nth-child(1) {
   width: 10%;
-  min-width: 200px; 
+  min-width: 200px;
 }
 
 .past-awardees-filter .form-group:nth-child(2) {
   width: 20%;
-  min-width: 250px; 
+  min-width: 250px;
 }
 
 .past-awardees-filter .form-group:nth-child(3) {
   width: 20%;
-  min-width: 250px; 
+  min-width: 250px;
   flex: 1;
 }
 
@@ -3218,7 +3219,7 @@ p.arrow-link a:active:after {
 }
 
 .past-awardees-filter .form-group label {
-  display: block; 
+  display: block;
 }
 
 #past-awardees-filter-title {
