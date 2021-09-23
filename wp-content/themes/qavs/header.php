@@ -22,7 +22,7 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-M130LYYCBV', { 'anonymize_ip': true, cookieDomain: '.dcms.gov.uk' });
+      gtag('config', 'G-M130LYYCBV', { 'anonymize_ip': true, cookie_domain: '.dcms.gov.uk' });
     </script>
   <?php endif; ?>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
