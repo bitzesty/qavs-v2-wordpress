@@ -137,15 +137,19 @@
 
         var analyticsRadio = document.querySelector('input[name="cookies-analytics"]:checked');
         var analyticsValue = analyticsRadio ? analyticsRadio.value : null;
-        
+
         // var communicationsRadio = document.querySelector('input[name="cookies-communications"]:checked');
         // var communicationsValue = communicationsRadio ? communicationsRadio.value : null;
-        
+
         var preferenceRadio = document.querySelector('input[name="cookies-preference"]:checked');
         var preferenceValue = preferenceRadio ? preferenceRadio.value : null;
 
         if (analyticsValue !== null) {
           Cookies.set('analytics_cookies_consent_status', analyticsValue, { expires: 365 });
+
+          gtag('consent', 'update', {
+            'analytics_storage': analyticsValue === 'yes' ? 'granted' : 'denied'
+          });
         }
         // if (communicationsValue !== null) {
         //   Cookies.set('communications_cookies_consent_status', communicationsValue, { expires: 365 });
@@ -182,7 +186,7 @@
 
     );
   }
-  
+
   var generalConsent = Cookies.get('general_cookie_consent_status');
   var cookieBanner = document.querySelector('.cookie-banner');
   var acceptedMessage = cookieBanner.querySelector('.accepted-message');
@@ -204,6 +208,10 @@
     // Cookies.set('communications_cookies_consent_status', 'yes', { expires: 365 });
     Cookies.set('preference_cookies_consent_status', 'yes', { expires: 365 });
 
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted'
+    });
+
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
     acceptedMessage.classList.remove("hidden");
   });
@@ -216,6 +224,10 @@
     // Cookies.set('analytics_cookies_consent_status', 'no', { expires: 365 });
     // Cookies.set('communications_cookies_consent_status', 'no', { expires: 365 });
     // Cookies.set('preference_cookies_consent_status', 'no', { expires: 365 });
+
+    gtag('consent', 'update', {
+      'analytics_storage': 'denied'
+    });
 
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
     rejectedMessage.classList.remove("hidden");
@@ -258,7 +270,7 @@
   if (homeAnimationVideo) {
     // Check if the media query matches or is not available.
     if (!mediaQuery || mediaQuery.matches) {
-      
+
     } else {
       checkAndPlayAnimation();
     }
@@ -288,7 +300,7 @@
         }
       });
     } catch (e) {
-      
+
     }
 
     controlButton.addEventListener('click', function(e) {

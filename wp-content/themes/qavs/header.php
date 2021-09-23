@@ -20,8 +20,13 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied'
+      });
+
+      gtag('js', new Date());
       gtag('config', 'G-M130LYYCBV', { 'anonymize_ip': true, cookie_domain: 'dcms.gov.uk' });
     </script>
   <?php endif; ?>
