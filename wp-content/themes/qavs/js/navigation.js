@@ -5,6 +5,9 @@
  * navigation support for dropdown menus.
  */
 ( function() {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
 	var siteNavigation = document.getElementById( 'site-navigation' );
 
 	// Return early if the navigation don't exist.
