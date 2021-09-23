@@ -5,9 +5,6 @@
  * navigation support for dropdown menus.
  */
 ( function() {
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-
 	var siteNavigation = document.getElementById( 'site-navigation' );
 
 	// Return early if the navigation don't exist.
@@ -149,10 +146,6 @@
 
         if (analyticsValue !== null) {
           Cookies.set('analytics_cookies_consent_status', analyticsValue, { expires: 365 });
-
-          gtag('consent', 'update', {
-            'analytics_storage': analyticsValue === 'yes' ? 'granted' : 'denied'
-          });
         }
         // if (communicationsValue !== null) {
         //   Cookies.set('communications_cookies_consent_status', communicationsValue, { expires: 365 });
@@ -211,10 +204,6 @@
     // Cookies.set('communications_cookies_consent_status', 'yes', { expires: 365 });
     Cookies.set('preference_cookies_consent_status', 'yes', { expires: 365 });
 
-    gtag('consent', 'update', {
-      'analytics_storage': 'granted'
-    });
-
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
     acceptedMessage.classList.remove("hidden");
   });
@@ -227,10 +216,6 @@
     // Cookies.set('analytics_cookies_consent_status', 'no', { expires: 365 });
     // Cookies.set('communications_cookies_consent_status', 'no', { expires: 365 });
     // Cookies.set('preference_cookies_consent_status', 'no', { expires: 365 });
-
-    gtag('consent', 'update', {
-      'analytics_storage': 'denied'
-    });
 
     cookieBanner.querySelector(".initial-content").classList.add("hidden");
     rejectedMessage.classList.remove("hidden");

@@ -21,13 +21,8 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
 
-      gtag('consent', 'default', {
-        'ad_storage': 'denied',
-        'analytics_storage': 'denied'
-      });
-
       gtag('js', new Date());
-      gtag('config', 'G-M130LYYCBV', { 'anonymize_ip': true, cookie_domain: 'dcms.gov.uk' });
+      gtag('config', 'G-M130LYYCBV', { 'anonymize_ip': true });
     </script>
   <?php endif; ?>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
