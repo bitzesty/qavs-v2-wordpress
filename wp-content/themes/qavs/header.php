@@ -22,13 +22,13 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-M130LYYCBV', { 'anonymize_ip': true });
+      gtag('config', 'G-M130LYYCBV', { 'anonymize_ip': true, cookieDomain: '.qavs.dcms.gov.uk' });
     </script>
   <?php endif; ?>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-  
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
@@ -129,7 +129,7 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
     <div id="masthead" class="site-header">
       <div class="container">
         <a href='/' class="site-branding">
-          <img src="/wp-content/themes/qavs/images/QAVS_logo_web_3x.png" alt="The Queen's Award for Voluntary Service" />  
+          <img src="/wp-content/themes/qavs/images/QAVS_logo_web_3x.png" alt="The Queen's Award for Voluntary Service" />
         </a><!-- .site-branding -->
 
         <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'qavs' ); ?></button>
@@ -155,4 +155,4 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
       </div>
     </div><!-- #masthead -->
   </header>
-  
+
