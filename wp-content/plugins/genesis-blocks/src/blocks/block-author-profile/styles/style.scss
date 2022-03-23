@@ -137,7 +137,6 @@
 		list-style: none;
 		margin: 0 0 0 0;
 		padding: 5% 0 0 0;
-		font-size: 0;
 
 		&:empty {
 			display: none;
@@ -149,22 +148,18 @@
 			padding: 0;
 
 			a {
+				display: grid;
 				border: none;
+				width: 38px;
+				height: 38px;
+				padding: 10px;
+				border-radius: 100px;
+
 
 				&:hover {
 					opacity: 0.9;
 				}
-			}
 
-			i {
-				font-size: 18px;
-				background: #0393e3;
-				color: #fff;
-				padding: 10px;
-				border-radius: 100px;
-				height: 38px;
-				width: 38px;
-				text-align: center;
 			}
 		}
 	}

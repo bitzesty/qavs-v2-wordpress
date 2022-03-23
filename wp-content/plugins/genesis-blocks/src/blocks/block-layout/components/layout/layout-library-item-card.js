@@ -14,6 +14,9 @@ const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 const { Button, Dashicon, Tooltip } = wp.components;
 
+const { GAClient } = window.GenesisAnalytics;
+const event_category = 'Layout Modal';
+
 export default class LayoutLibraryItemCard extends Component {
 	constructor() {
 		super( ...arguments );
@@ -37,6 +40,7 @@ export default class LayoutLibraryItemCard extends Component {
 								className="gb-layout-insert-button"
 								isSmall
 								onClick={ () => {
+									GAClient.send( `Select ${this.props.type}`, { event_category, event_label: this.props.name } );
 									this.props.import( this.props.content, this.props.clientId );
 								} }
 							>

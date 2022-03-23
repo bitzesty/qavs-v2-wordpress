@@ -53,11 +53,20 @@ export default compose(
 	 */
 	withSelect( ( select, { clientId } ) => {
 		const { getBlock } = select( 'core/block-editor' );
-		const { canUserUseUnfilteredHTML } = select( 'core/editor' );
+		let canUserUseUnfilteredHTML;
+
+		// The core/editor package doesn't work on the widgets page, and thus doesn't exist there. Therefore this conditional exists.
+		if ( select( 'core/editor' ) ) {
+			canUserUseUnfilteredHTML = select( 'core/editor' ).canUserUseUnfilteredHTML;
+			canUserUseUnfilteredHTML = canUserUseUnfilteredHTML();
+		} else {
+			canUserUseUnfilteredHTML = true;
+		}
+
 		const block = getBlock( clientId );
 		return {
 			block,
-			canUserUseUnfilteredHTML: canUserUseUnfilteredHTML(),
+			canUserUseUnfilteredHTML,
 		};
 	} ),
 	withDispatch( ( dispatch, { block, canUserUseUnfilteredHTML } ) => ( {

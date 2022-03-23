@@ -8,6 +8,8 @@
 import React, { createContext, Component } from 'react';
 
 const { apiFetch } = wp;
+const { GAClient } = window.GenesisAnalytics;
+const event_category = 'Layout Modal';
 
 export const LayoutsContext = createContext( {
 	favorites: '',
@@ -80,6 +82,7 @@ export default class LayoutsProvider extends Component {
 			_wpnonce: wpApiSettings.nonce,
 		} )
 			.then( ( favorites ) => {
+				GAClient.send( 'Add Favorite', { event_category } );
 				return favorites;
 			} )
 			.catch( ( error ) => console.error( error ) );
@@ -99,6 +102,7 @@ export default class LayoutsProvider extends Component {
 			_wpnonce: wpApiSettings.nonce,
 		} )
 			.then( ( favorites ) => {
+				GAClient.send( 'Remove Favorite', { event_category } );
 				return favorites;
 			} )
 			.catch( ( error ) => console.error( error ) );

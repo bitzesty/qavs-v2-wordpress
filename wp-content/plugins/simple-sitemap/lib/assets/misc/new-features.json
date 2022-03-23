@@ -1,0 +1,52 @@
+[
+	{
+		"type": "update",
+    "license": "pro",
+    "banner_url": "visibility-attribute.png",
+    "version": "latest",
+    "date": "22nd November 2021",
+    "title": "Visibility Attribute",
+    "description": "<p style='margin:15px 0;'>For convenience, the <strong><code>visibility</code></strong> shortcode attribute is now set to <code>false</code> by default so private posts/pages won't appear in the sitemap list unless set to <code>true</code>.</p>",
+    "learn_more_url": ""
+  },
+  {
+		"type": "update",
+    "license": "pro",
+    "banner_url": "new-default-attribute-settings.png",
+    "version": "latest",
+    "date": "22nd November 2021",
+    "title": "New Default Settings",
+    "description": "<p style='margin:15px 0;'>The <code>post_type_label_font_size</code> and <code>sitemap_container_margin</code> attributes in the sitemap blocks/shortcodes are now set to empty strings by default to blend in better with the current active WordPress theme.</p>",
+    "learn_more_url": ""
+  },
+  {
+    "type": "new",
+		"license": "free",
+    "banner_url": "new-sort-options.png",
+    "version": "latest",
+    "date": "22nd November 2021",
+    "title": "New Sort Options",
+    "description": "<p style='margin:15px 0;'>New sort options (<em>Random Order, Menu Order, Comment Count</em>) have been added to the <strong>Orderby</strong> attribute for the main sitemap block and shortcode.</p>",
+    "learn_more_url": ""
+  },
+  {
+    "type": "new",
+		"license": "free",
+    "banner_url": "num-terms-attribute.png",
+    "version": "latest",
+    "date": "22nd November 2021",
+    "title": "New Shortcode Attribute",
+    "description": "<p style='margin:15px 0;'>Added a new <strong><code>num_terms</code></strong> attribute to the <code>&#91;simple-sitemap-group&#93;</code> shortcode to limit the number of taxonomy terms displayed.</p>",
+    "learn_more_url": ""
+  },
+  {
+		"type": "new",
+    "license": "free",
+    "banner_url": "block-preview.png",
+    "version": "latest",
+    "date": "22nd November 2021",
+    "title": "Preview Sitemap Blocks",
+    "description": "<p style='margin:15px 0;'>Added support for block previews in the editor for sitemap and sitemap group blocks, when browsing blocks.</p>",
+    "learn_more_url": ""
+  }
+]

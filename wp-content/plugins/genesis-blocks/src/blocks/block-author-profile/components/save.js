@@ -31,7 +31,7 @@ export default class Save extends Component {
 		return (
 			/* Save the block markup for the front end */
 			<ProfileBox { ...this.props }>
-				{ profileImgURL && (
+				{ profileImgURL && profileImgID && (
 					<AvatarColumn { ...this.props }>
 						<figure className="gb-profile-image-square">
 							<img

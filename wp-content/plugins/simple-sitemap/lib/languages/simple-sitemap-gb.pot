@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"X-Generator: babel-plugin-makepot\n"
+
+#: lib/src/blocks/_components/server-side-render-x.js:148
+msgid "Block rendered as empty."
+msgstr ""
+
+#: lib/src/blocks/_components/server-side-render-x.js:154
+#. %s: error message describing the problem
+msgid "Error loading block: %s"
+msgstr ""
+
+#: lib/src/blocks/extend-blocks.js:339
+msgid "Sitemap Styles"
+msgstr ""
+
+#: lib/src/blocks/extend-blocks.js:429
+msgid "Featured Image Settings"
+msgstr ""
+
+#: lib/src/blocks/simple-sitemap-group/index.js:30
+#: lib/src/blocks/simple-sitemap/index.js:30
+msgid "Sitemap"
+msgstr ""
+
+#: lib/src/blocks/simple-sitemap-group/index.js:31
+msgid "Group"
+msgstr ""
+
+#: lib/src/blocks/simple-sitemap-group/index.js:32
+#: lib/src/blocks/simple-sitemap/index.js:32
+msgid "HTML Sitemap"
+msgstr ""
+
+#: lib/src/blocks/simple-sitemap-group/index.js:76
+#: lib/src/blocks/simple-sitemap/index.js:156
+msgid "General Settings"
+msgstr ""
+
+#: lib/src/blocks/simple-sitemap/index.js:226
+msgid "Tab Settings"
+msgstr ""
+
+#: lib/src/blocks/simple-sitemap/index.js:239
+msgid "Page Settings"
+msgstr ""
+
+#: lib/src/blocks/simple-sitemap/index.js:31
+msgid "Single"
+msgstr ""

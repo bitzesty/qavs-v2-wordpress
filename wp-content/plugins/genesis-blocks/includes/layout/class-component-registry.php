@@ -200,8 +200,8 @@ final class Component_Registry {
 	 */
 	public static function layouts() {
 		$layouts = [];
-		foreach ( self::$layouts as $layout ) {
-			$layouts[] = self::render_sections_in_layout( $layout );
+		foreach ( self::$layouts as $key => $layout ) {
+			$layouts[ $key ] = self::render_sections_in_layout( $layout );
 		}
 		return $layouts;
 	}

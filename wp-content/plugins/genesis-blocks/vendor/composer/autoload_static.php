@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit96b0a959eafa8461fdeb3fd280112e79
+class ComposerStaticInit6ca4a750f9b9385834a682fc0c71c6a1
 {
     public static $prefixLengthsPsr4 = array (
         'G' => 
@@ -21,6 +21,9 @@ class ComposerStaticInit96b0a959eafa8461fdeb3fd280112e79
     );
 
     public static $classMap = array (
+        'Genesis\\Blocks\\Analytics\\AdminPage' => __DIR__ . '/../..' . '/lib/Analytics/AdminPage.php',
+        'Genesis\\Blocks\\Analytics\\AssetManager' => __DIR__ . '/../..' . '/lib/Analytics/AssetManager.php',
+        'Genesis\\Blocks\\Analytics\\Module' => __DIR__ . '/../..' . '/lib/Analytics/Module.php',
         'Genesis\\Blocks\\BlockLoader\\ManualRequire' => __DIR__ . '/../..' . '/lib/BlockLoader/ManualRequire.php',
         'Genesis\\Blocks\\BlockLoader\\Module' => __DIR__ . '/../..' . '/lib/BlockLoader/Module.php',
         'Genesis\\Blocks\\BlockLoader\\Tests\\ManualRequireTest' => __DIR__ . '/../..' . '/lib/BlockLoader/Tests/ManualRequireTest.php',
@@ -47,9 +50,9 @@ class ComposerStaticInit96b0a959eafa8461fdeb3fd280112e79
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit96b0a959eafa8461fdeb3fd280112e79::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit96b0a959eafa8461fdeb3fd280112e79::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit96b0a959eafa8461fdeb3fd280112e79::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6ca4a750f9b9385834a682fc0c71c6a1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6ca4a750f9b9385834a682fc0c71c6a1::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit6ca4a750f9b9385834a682fc0c71c6a1::$classMap;
 
         }, null, ClassLoader::class);
     }

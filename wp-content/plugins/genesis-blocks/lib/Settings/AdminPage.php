@@ -43,13 +43,27 @@ final class AdminPage {
 	private $context;
 
 	/**
+	 * The slug of the parent menu.
+	 *
+	 * @var string
+	 */
+	const PARENT_MENU_SLUG = 'genesis-blocks-getting-started';
+
+	/**
+	 * The slug of the settings submenu.
+	 *
+	 * @var string
+	 */
+	const SETTINGS_SUBMENU_SLUG = 'genesis-blocks-settings';
+
+	/**
 	 * Constructs the AdminPage class.
 	 *
 	 * @since 1.0.0
 	 * @param array $context Plugin context.
 	 */
 	public function __construct( array $context ) {
-		$this->page_title = __( 'Genesis Blocks Settings', 'genesis-blocks' );
+		$this->page_title = __( 'Genesis', 'genesis-blocks' );
 		$this->menu_title = __( 'Genesis Blocks', 'genesis-blocks' );
 		$this->context    = $context;
 	}
@@ -61,9 +75,10 @@ final class AdminPage {
 	 */
 	public function init(): void {
 		add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
-		add_action( 'load-toplevel_page_genesis-blocks-settings', [ $this, 'load_admin_scripts' ] );
-		add_action( 'load-genesis-blocks_page_genesis-blocks-pro', [ $this, 'enqueue_genesis_pro_page_scripts' ] );
-		add_action( 'load-genesis-blocks_page_genesis-blocks-getting-started', [ $this, 'enqueue_shared_admin_styles' ] );
+		add_action( 'load-genesis-blocks_page_' . self::SETTINGS_SUBMENU_SLUG, [ $this, 'load_admin_scripts' ] );
+		add_action( 'load-toplevel_page_' . self::PARENT_MENU_SLUG, [ $this, 'enqueue_shared_admin_styles' ] );
+		add_action( 'load-toplevel_page_' . self::PARENT_MENU_SLUG, [ $this, 'hide_admin_notices' ] );
+		add_filter( 'admin_body_class', [ $this, 'add_body_class' ] );
 	}
 
 	/**
@@ -85,58 +100,43 @@ final class AdminPage {
 
 		$genesis_icon_encoded = require "{$this->context['path']}lib/Settings/assets/images/genesis-icon-encoded.php";
 
-		/**
+		/*
 		 * Adds the top-level Genesis Blocks menu item.
 		 */
 		add_menu_page(
 			$this->page_title,
 			$this->menu_title,
 			'manage_options',
-			'genesis-blocks-settings',
-			[ $this, 'render' ],
+			self::PARENT_MENU_SLUG,
+			[ $this, 'render_getting_started_page' ],
 			$genesis_icon_encoded,
 			$menu_position_above_appearance
 		);
 
-		/**
-		 * Adds the Settings submenu page.
-		 */
-		add_submenu_page(
-			'genesis-blocks-settings',
-			'',
-			esc_html__( 'Settings', 'genesis-blocks' ),
-			'manage_options',
-			'genesis-blocks-settings',
-			[ $this, 'render' ]
-		);
-
-		/**
+		/*
 		 * Adds the Getting Started submenu page.
 		 */
 		add_submenu_page(
-			'genesis-blocks-settings',
+			self::PARENT_MENU_SLUG,
 			esc_html__( 'Getting Started with Genesis Blocks', 'genesis-blocks' ),
 			esc_html__( 'Getting Started', 'genesis-blocks' ),
 			'manage_options',
-			'genesis-blocks-getting-started',
+			self::PARENT_MENU_SLUG,
 			[ $this, 'render_getting_started_page' ]
 		);
 
-		/**
-		 * Adds the Genesis Pro submenu page.
-		 *
-		 * Not added if Genesis Pro is installed.
+		/*
+		 * Adds the Settings submenu page.
 		 */
-		if ( ! function_exists( '\Genesis\PageBuilder\plugin_loader' ) ) {
-			add_submenu_page(
-				'genesis-blocks-settings',
-				esc_html__( 'Genesis Blocks Pro', 'genesis-blocks' ),
-				esc_html__( 'Genesis Pro', 'genesis-blocks' ),
-				'manage_options',
-				'genesis-blocks-pro',
-				[ $this, 'render_pro_upgrade_page' ]
-			);
-		}
+		add_submenu_page(
+			self::PARENT_MENU_SLUG,
+			esc_html__( 'Genesis Blocks Settings', 'genesis-blocks' ),
+			esc_html__( 'Settings', 'genesis-blocks' ),
+			'manage_options',
+			self::SETTINGS_SUBMENU_SLUG,
+			[ $this, 'render' ]
+		);
+
 	}
 
 	/**
@@ -173,7 +173,7 @@ final class AdminPage {
 	 */
 	public function enqueue_shared_admin_styles(): void {
 		wp_enqueue_style(
-			'genesis-blocks-settings-style',
+			'genesis-blocks-getting-started-style',
 			$this->context['url'] . 'lib/Settings/assets/css/admin.css',
 			[ 'wp-components' ],
 			$this->context['version'],
@@ -182,20 +182,34 @@ final class AdminPage {
 	}
 
 	/**
-	 * Enqueues the Genesis Pro admin page scripts.
+	 * Hide admin notices on the Getting started page.
 	 *
 	 * @since 1.0.0
 	 */
-	public function enqueue_genesis_pro_page_scripts(): void {
-		wp_enqueue_style(
-			'genesis-blocks-get-genesis-pro-admin',
-			$this->context['url'] . 'lib/Settings/assets/css/genesis-pro.css',
-			[ 'wp-components' ],
-			$this->context['version'],
-			'all'
-		);
+	public function hide_admin_notices(): void {
+		// Remove all admin notices on the getting started page.
+		if ( filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ) === 'genesis-blocks-getting-started' ) {
+			remove_all_actions( 'admin_notices' );
+		}
+	}
 
-		$this->enqueue_shared_admin_styles();
+	/**
+	 * Adds a body class to all Genesis Blocks menu pages.
+	 *
+	 * @since 1.4.0
+	 * @param string $classes The body classes.
+	 * @return string The filtered body classes.
+	 */
+	public function add_body_class( $classes ): string {
+		$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING );
+		if ( is_string( $page ) && 0 === strpos( $page, 'genesis-blocks-' ) ) {
+			$additional_class = 'genesis-blocks-admin-page';
+			return esc_attr(
+				empty( $classes ) ? $additional_class : "{$classes} {$additional_class}"
+			);
+		}
+
+		return $classes;
 	}
 
 	/**
@@ -205,15 +219,6 @@ final class AdminPage {
 	 */
 	public function render(): void {
 		require "{$this->context['path']}lib/Settings/views/admin/app.php";
-	}
-
-	/**
-	 * Renders the Genesis Pro admin page.
-	 *
-	 * @since 1.0.0
-	 */
-	public function render_pro_upgrade_page(): void {
-		require "{$this->context['path']}lib/Settings/views/admin/genesis-pro.php";
 	}
 
 	/**

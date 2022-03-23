@@ -24,7 +24,9 @@ function SelectComponent({ settings, field, onUpdate }) {
 
 	return (
 		<SelectControl
+			className={field.class}
 			label={field.label}
+			help={field.help ? field.help : ''}
 			value={settings[field.id] ? settings[field.id] : false}
 			options={parseOptions(field.options)}
 			onChange={(newValue) =>

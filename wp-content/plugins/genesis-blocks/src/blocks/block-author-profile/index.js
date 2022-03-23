@@ -9,7 +9,7 @@ import Edit from './components/edit';
 import Save from './components/save';
 import './styles/style.scss';
 import './styles/editor.scss';
-import Deprecated from './deprecated/deprecated';
+import deprecated_array from './deprecated/deprecated-array';
 
 /**
  * WordPress dependencies
@@ -18,6 +18,10 @@ const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
 const blockAttributes = {
+	clientId:{
+		type: 'string',
+		default: '',
+	},
 	profileName: {
 		type: 'array',
 		source: 'children',
@@ -151,13 +155,13 @@ registerBlockType( 'genesis-blocks/gb-profile-box', {
 
 	/* Render the block in the editor. */
 	edit: ( props ) => {
-		return <Edit { ...props } />;
+		return <Edit { ...props } clientId={ props.clientId } />;
 	},
 
 	/* Save the block markup. */
 	save: ( props ) => {
-		return <Save { ...props } />;
+		return <Save { ...props } clientId={ props.attributes.clientId } />;
 	},
 
-	deprecated: Deprecated,
+	deprecated: deprecated_array,
 } );

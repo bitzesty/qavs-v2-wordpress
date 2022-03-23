@@ -29,11 +29,16 @@ function SaveButtonComponent({
 }) {
 	// Reference to the message timer that persists across re-renders.
 	const messageTimerRef = useRef();
+	const { GAClient } = window.GenesisAnalytics;
 
 	/**
 	 * Saves the current settings state to the database.
+	 * 
+	 * @note Calls GAClient.enableAnalytics to makes sure that any opt in settings
+	 *   are applied immediately, instead of waiting on a page refresh.
 	 */
 	function saveSettings() {
+		GAClient.enableAnalytics(settings.genesis_blocks_analytics_opt_in);
 		doAction('genesisBlocks.savingSettings', settings, custom);
 		clearTimeout(messageTimerRef.current); // Existing timers must not remove new messages prematurely.
 		dispatch('genesis-blocks/global-settings').saveSettings(settings);

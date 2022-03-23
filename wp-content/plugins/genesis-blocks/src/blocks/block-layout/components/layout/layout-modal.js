@@ -12,13 +12,25 @@ const { Fragment, useState } = wp.element;
 const { Button, Dashicon, Modal, TabPanel } = wp.components;
 const { useDispatch } = wp.data;
 
+const { debounce, GAClient } = window.GenesisAnalytics;
+const gaSelectTab = debounce( GAClient.send.bind( GAClient ), 500 ); 
+const event_category = 'Layout Modal';
+
 function LayoutModal(props) {
-	const [currentTab, setCurrentTab] = useState( 'gb-layout-tab-sections' );
+	const [currentTab, setCurrentTab] = useState( 'gb-layout-tab-collections' );
 	const [modalOpen, setModalOpen] = useState( true );
 	const { removeBlock } = useDispatch( 'core/block-editor' );
 
 	const tabs = [];
-	
+
+	if ( Object.keys( props.context.collections ).length > 0 ) {
+		tabs.push( {
+			name: 'gb-layout-tab-collections',
+			title: __( 'Collections', 'genesis-blocks' ),
+			className: 'gb-layout-tab-collections',
+		} );
+	}
+
 	if ( props.context.sections.length > 0 ) {
 		tabs.push( {
 			name: 'gb-layout-tab-sections',
@@ -35,14 +47,6 @@ function LayoutModal(props) {
 		} );
 	}
 
-	if ( Object.keys( props.context.collections ).length > 0 ) {
-		tabs.push( {
-			name: 'gb-layout-tab-collections',
-			title: __( 'Collections', 'genesis-blocks' ),
-			className: 'gb-layout-tab-collections',
-		} );
-	}
-	
 	tabs.push( {
 		name: 'gb-layout-tab-favorites',
 		title: __( 'Favorites', 'genesis-blocks' ),
@@ -128,9 +132,10 @@ function LayoutModal(props) {
 						}
 						className="gb-layout-modal-panel"
 						activeClass="gb-layout-modal-active-tab"
-						onSelect={ ( tabName ) =>
+						onSelect={ ( tabName ) => {
+							gaSelectTab( 'Select Tab', { event_category, event_label: tabName } );
 							setCurrentTab( tabName )
-						}
+						} }
 						tabs={ tabs }
 					>
 						{ ( tab ) => {

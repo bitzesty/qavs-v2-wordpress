@@ -9,6 +9,9 @@
 const { __ } = wp.i18n;
 const { Button } = wp.components;
 
+const { GAClient } = window.GenesisAnalytics;
+const event_category = 'Layout Modal';
+
 export function CollectionCard( props ) {
 
 	return (
@@ -21,7 +24,8 @@ export function CollectionCard( props ) {
 							isSmall
 							onClick={ () => {
 								props.collectionsView.setCurrentView( 'collection' );
-								props.collectionsView.setCurrentCollection( props.collectionSlug );
+								props.setCurrentCollection( props.collectionSlug );
+								GAClient.send( 'Select Collection', { event_category, event_label: props.collectionSlug } );
 							} }
 						>
 							<div className="gb-layout-collection-cover">

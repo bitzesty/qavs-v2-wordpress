@@ -1,0 +1,18 @@
+/* Block editor styles. */
+
+/* taxonomy label/select width */
+.ss-taxonomy-select {
+	width: 75%;
+}
+
+/* Settings sidebar styles. */
+
+.panel-row-label {
+	display: block;
+	margin: 0 0 -17px 0;
+}
+
+.panel-row-help-label {
+	display: block;
+	margin: 20px 0 0 0;
+}

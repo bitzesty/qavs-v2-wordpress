@@ -277,6 +277,19 @@ function genesis_blocks_register_newsletter_block_sections_and_fields() {
 		'genesis_blocks_global_settings'
 	);
 
+	add_settings_field(
+		'genesis_blocks_block_newsletter_intro',
+		__( 'Newsletter Block Settings', 'genesis-blocks' ),
+		null, // Rendering is handled by React, not WordPress.
+		'genesis_blocks_global_settings',
+		'genesis_blocks_settings_newsletter_block_section',
+		[
+			// phpcs:ignore WordPress.WP.I18n.NoHtmlWrappedStrings -- passing to React to render.
+			'content' => '<h2>' . __( 'Newsletter Block Settings', 'genesis-blocks' ) . '</h2><p>' . __( 'Setup the email newsletter block with Mailchimp.', 'genesis-blocks' ) . ' <a target="_blank" rel="noopener noreferrer" href="https://developer.wpengine.com/genesis-blocks/email-newsletter-block/">' . __( 'View Documentation', 'genesis-blocks' ) . '</a></p>',
+			'type'    => 'html',
+		]
+	);
+
 	// Add the Mailchimp API key field.
 	add_settings_field(
 		'genesis_blocks_mailchimp_api_key',

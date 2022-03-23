@@ -25,6 +25,11 @@ const {
 	SelectControl,
 } = wp.components;
 
+const { debounce, GAClient } = window.GenesisAnalytics;
+const gaSelectCategory = debounce( GAClient.send.bind( GAClient ), 500 );
+const gaSearch = debounce( GAClient.send.bind( GAClient ), 500 );
+const event_category = 'Layout Modal';
+
 export default class LayoutLibrary extends Component {
 	constructor() {
 		super( ...arguments );
@@ -111,9 +116,10 @@ export default class LayoutLibrary extends Component {
 								) }
 								value={ this.state.category }
 								options={ catOptions }
-								onChange={ ( value ) =>
+								onChange={ ( value ) => {
+									gaSelectCategory( 'Select Category', { event_category, event_label: value } )
 									this.setState( { category: value } )
-								}
+								} }
 							/>
 							<TextControl
 								key={
@@ -126,9 +132,12 @@ export default class LayoutLibrary extends Component {
 									'Search Layouts',
 									'genesis-blocks'
 								) }
-								onChange={ ( value ) =>
+								onChange={ ( value ) => {
+									if ( value.length ) {
+										gaSearch( 'Search', { event_category, event_label: value } )
+									}
 									this.setState( { search: value } )
-								}
+								} }
 							/>
 						</div>
 					</Fragment>
@@ -183,6 +192,7 @@ export default class LayoutLibrary extends Component {
 									content,
 									category,
 									keywords,
+									type,
 								} ) => {
 
 									if (
@@ -207,6 +217,7 @@ export default class LayoutLibrary extends Component {
 													'layout-library-item-' + key
 												}
 												name={ name }
+												type={ type }
 												itemKey={
 													key
 												} /* 'key' is reserved, so we use itemKey. */

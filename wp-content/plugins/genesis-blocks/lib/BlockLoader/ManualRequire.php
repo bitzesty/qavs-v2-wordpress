@@ -94,5 +94,15 @@ final class ManualRequire {
 		 */
 		require_once $includes_path . 'icons/class-genesisblocks-svg-icons.php';
 		require_once $includes_path . 'icons/svg-icons.php';
+
+		/**
+		 * Block Deprecation Handlers.
+		 */
+		require_once $blocks_path . 'block-author-profile/deprecated/1.8.2/filter.php';
+
+		/**
+		 * Genesis Responsive Controls Handlers.
+		 */
+		require_once $blocks_path . 'responsive-controls/fonts.php';
 	}
 }

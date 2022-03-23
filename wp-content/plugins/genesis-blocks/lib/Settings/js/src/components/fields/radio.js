@@ -29,6 +29,7 @@ function RadioComponent({ settings, field, onUpdate }) {
 
 	return (
 		<RadioControl
+			className={field.class}
 			label={field.label}
 			help={field.help}
 			selected={settings[field.id] ? settings[field.id] : false}

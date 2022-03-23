@@ -70,32 +70,54 @@ function SettingsComponent({ settings, sections }) {
 			}
 		}
 
-		return <p>{__('No fields found for this section.')}</p>;
+		return <p>{__('No fields found for this section.', 'genesis-blocks')}</p>;
+	}
+	
+	/**
+	 * Adds the className value that the TabPanel component desires.
+	 * 
+	 * @param {Object} sections The tabs added for sections.
+	 */
+	function addTabClassNames( sections ) {
+		// Loop through each tab, and add the className to it.
+		for ( const section in sections ) {
+			sections[section].className = 'gb-nav-tab gb-admin-button';
+		}
+		
+		return sections;
 	}
 
 	return (
 		<>
 			<TabPanel
 				className="genesis-blocks-settings-sections"
-				activeClass="is-active"
+				activeClass="gb-nav-tab-active"
 				onSelect={resetFormSaveState}
-				tabs={Object.values(sections)}
+				tabs={
+					Object.values( addTabClassNames( sections ) )
+				}
 			>
 				{(tab) => (
-					<>
-						{renderFields(tab)}
-						<SlotFillProvider>
-							<Slot name={"GenesisBlocksSettings_" + tab.name.replace('genesis_blocks_settings_', '')} />
-							<PluginArea />
-						</SlotFillProvider>
-						<SaveButton
-							successMessage={__('Settings saved')}
-							failMessage={__('Saving failed')}
-							messageDuration="2"
+					<div 
+					className="gb-admin-plugin-admin-body"
+					>
+						<div 
+							className="gb-admin-plugin-container"
 						>
-							{__('Save All')}
-						</SaveButton>
-					</>
+							{renderFields(tab)}
+							<SlotFillProvider>
+								<Slot name={"GenesisBlocksSettings_" + tab.name.replace('genesis_blocks_settings_', '')} />
+								<PluginArea />
+							</SlotFillProvider>
+							<SaveButton
+								successMessage={__('Settings saved', 'genesis-blocks')}
+								failMessage={__('Saving failed', 'genesis-blocks')}
+								messageDuration="2"
+							>
+								{__('Save All', 'genesis-blocks')}
+							</SaveButton>
+						</div>
+					</div>
 				)}
 			</TabPanel>
 		</>

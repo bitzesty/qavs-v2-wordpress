@@ -27,36 +27,46 @@ if ( ! function_exists( 'genesis_blocks_get_svg' ) ) {
 	 * @param string $svg_name The name of the icon.
 	 * @param string $group The group the icon belongs to.
 	 * @param string $color Color code.
+	 * @param string $uuid The unique id to use for accessibility labelleing with aria-labelledby.
+	 * @param string $title The title content to use for accessibility labelleing with aria-labelledby.
 	 */
-	function genesis_blocks_get_svg( $svg_name, $group = 'ui', $color = '' ) {
+	function genesis_blocks_get_svg( $svg_name, $group = 'ui', $color = '', $uuid = '', $title = '' ) {
 
 		// Make sure that only our allowed tags and attributes are included.
-		$svg = wp_kses(
-			GenesisBlocks_SVG_Icons::get_svg( $svg_name, $group, $color ),
-			array(
-				'svg'     => array(
-					'class'       => true,
-					'xmlns'       => true,
-					'width'       => true,
-					'height'      => true,
-					'viewbox'     => true,
-					'aria-hidden' => true,
-					'role'        => true,
-					'focusable'   => true,
-				),
-				'path'    => array(
-					'fill'      => true,
-					'fill-rule' => true,
-					'd'         => true,
-					'transform' => true,
-				),
-				'polygon' => array(
-					'fill'      => true,
-					'fill-rule' => true,
-					'points'    => true,
-					'transform' => true,
-					'focusable' => true,
-				),
+		$svg = str_replace(
+			'%23',
+			'#', // Fix for hex codes being escaped in the path fill attribute.
+			wp_kses(
+				GenesisBlocks_SVG_Icons::get_svg( $svg_name, $group, $color, $uuid, $title ),
+				array(
+					'svg'     => array(
+						'class'           => true,
+						'xmlns'           => true,
+						'width'           => true,
+						'height'          => true,
+						'viewbox'         => true,
+						'aria-hidden'     => true,
+						'role'            => true,
+						'focusable'       => true,
+						'aria-labelledby' => true,
+					),
+					'title'   => array(
+						'id' => true,
+					),
+					'path'    => array(
+						'fill'      => true,
+						'fill-rule' => true,
+						'd'         => true,
+						'transform' => true,
+					),
+					'polygon' => array(
+						'fill'      => true,
+						'fill-rule' => true,
+						'points'    => true,
+						'transform' => true,
+						'focusable' => true,
+					),
+				)
 			)
 		);
 

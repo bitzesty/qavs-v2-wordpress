@@ -1,0 +1,40 @@
+.tippy-box[data-theme~='duplicator'],
+.tippy-box[data-theme~='duplicator-filled'] {
+    background-color: white;
+    color: black;
+    font-size: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0;
+    padding: 0;
+    max-width: 250px;
+}
+
+.tippy-box[data-theme~='duplicator'] .tippy-content,
+.tippy-box[data-theme~='duplicator-filled'] .tippy-content {
+    padding: 0;
+}
+
+.tippy-box[data-theme~='duplicator'] h3,
+.tippy-box[data-theme~='duplicator-filled'] h3 {
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.tippy-box[data-theme~='duplicator'] .dup-tippy-content,
+.tippy-box[data-theme~='duplicator-filled'] .dup-tippy-content {
+    padding: 5px;
+}
+
+.tippy-box[data-placement^='top'] > .tippy-arrow::before {
+    bottom: -9px;
+}
+
+.tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
+    top: -9px;
+}

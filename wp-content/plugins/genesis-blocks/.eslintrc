@@ -16,6 +16,7 @@
     "jsx-a11y/interactive-supports-focus": "off",
     "no-unused-expressions": "off",
     "no-var": "off",
-    "no-duplicate-imports": "off"
+    "no-duplicate-imports": "off",
+    "jsdoc/check-tag-names": "off"
   }
 }

@@ -16,6 +16,7 @@ import { dispatch, withDispatch } from '@wordpress/data';
 function CheckboxComponent({ settings, field, onUpdate }) {
 	return (
 		<CheckboxControl
+			className={field.class}
 			heading={field.heading}
 			label={field.label}
 			help={field.help}

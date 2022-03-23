@@ -26,13 +26,6 @@ function genesis_blocks_block_assets() {
 		filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/blocks.style.build.css' )
 	);
 
-	// Load the FontAwesome icon library.
-	wp_enqueue_style(
-		'genesis-blocks-fontawesome',
-		plugins_url( 'dist/assets/fontawesome/css/all' . $postfix . '.css', dirname( __FILE__ ) ),
-		array(),
-		filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/assets/fontawesome/css/all.css' )
-	);
 }
 add_action( 'init', 'genesis_blocks_block_assets' );
 
@@ -50,7 +43,7 @@ function genesis_blocks_editor_assets() {
 	wp_enqueue_script(
 		'genesis-blocks-block-js',
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor' ),
+		array( 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-i18n' ),
 		filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/blocks.build.js' ),
 		true
 	);
@@ -61,14 +54,6 @@ function genesis_blocks_editor_assets() {
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ),
 		array( 'wp-edit-blocks' ),
 		filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/blocks.editor.build.css' )
-	);
-
-	// Load the FontAwesome icon library.
-	wp_enqueue_style(
-		'genesis-blocks-fontawesome',
-		plugins_url( 'dist/assets/fontawesome/css/all' . $postfix . '.css', dirname( __FILE__ ) ),
-		array(),
-		filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/assets/fontawesome/css/all.css' )
 	);
 
 	$user_data = wp_get_current_user();
@@ -112,22 +97,45 @@ function genesis_blocks_frontend_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'genesis_blocks_frontend_assets' );
 
-add_filter( 'block_categories', 'genesis_blocks_add_custom_block_category' );
 /**
  * Adds the Genesis Blocks block category.
  *
- * @param array $categories Existing block categories.
- *
+ * @param array $categories Array of categories for block types.
  * @return array Updated block categories.
  */
 function genesis_blocks_add_custom_block_category( $categories ) {
 	return array_merge(
-		$categories,
 		array(
 			array(
 				'slug'  => 'genesis-blocks',
 				'title' => __( 'Genesis Blocks', 'genesis-blocks' ),
 			),
-		)
+		),
+		$categories
 	);
 }
+
+if ( class_exists( 'WP_Block_Editor_Context' ) ) {
+	add_filter( 'block_categories_all', 'genesis_blocks_add_custom_block_category', PHP_INT_MAX );
+} else {
+	add_filter( 'block_categories', 'genesis_blocks_add_custom_block_category', PHP_INT_MAX );
+}
+
+/**
+ * Genesis Async Tagger appends the async prop to scripts when required.
+ *
+ * @param string $tag Tag name.
+ * @param string $handle Script handle provided by wp_enqueue.
+ *
+ * @return string Maybe modified script.
+ */
+function genesis_async_tagger( $tag, $handle ) {
+	if ( ! strpos( $handle, '#async' ) ) {
+		return $tag;
+	}
+
+	$tag = str_replace( '<script ', '<script async ', $tag );
+
+	return $tag;
+}
+add_filter( 'script_loader_tag', 'genesis_async_tagger', 10, 2 );

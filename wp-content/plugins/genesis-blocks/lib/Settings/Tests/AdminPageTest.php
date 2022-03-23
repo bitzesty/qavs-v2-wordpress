@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Genesis\Blocks\Settings\Tests;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionObject;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
@@ -73,17 +74,39 @@ final class AdminPageTest extends TestCase {
 				get_class( $this->admin_page ) . '->add_admin_menu()'
 			)
 		);
+		$this->assertTrue(
+			has_filter(
+				'admin_body_class',
+				get_class( $this->admin_page ) . '->add_body_class()'
+			)
+		);
 	}
 
 	/**
 	 * Tests an Admin Menu is added.
 	 *
+	 * @throws Monkey\Expectation\Exception\ExpectationArgsRequired For a non-accessible property.
 	 * @since 1.0.0
 	 */
 	public function testSettingsMenusAndPagesAreProperlySetUp(): void {
-		Functions\expect( 'add_menu_page' )->once();
-		Functions\expect( 'add_submenu_page' )->times( 3 );
-		Functions\expect( 'esc_html__' )->times( 5 );
+		$reflection = new ReflectionObject( $this->admin_page );
+		$property   = $reflection->getProperty( 'context' );
+		$property->setAccessible( true );
+		$context = $property->getValue( $this->admin_page );
+
+		Functions\expect( 'add_menu_page' )
+			->once()
+			->with(
+				'Genesis',
+				'Genesis Blocks',
+				'manage_options',
+				'genesis-blocks-getting-started',
+				[ $this->admin_page, 'render_getting_started_page' ],
+				require "{$context['path']}lib/Settings/assets/images/genesis-icon-encoded.php",
+				59
+			);
+		Functions\expect( 'add_submenu_page' )->times( 2 );
+		Functions\expect( 'esc_html__' )->times( 4 );
 		$this->admin_page->add_admin_menu();
 	}
 
@@ -110,11 +133,50 @@ final class AdminPageTest extends TestCase {
 	public function testAdminScriptsAreEnqueued(): void {
 		Functions\expect( 'wp_enqueue_media' )->once();
 		Functions\expect( 'wp_enqueue_script' )->once();
-		Functions\expect( 'wp_enqueue_style' )->times( 3 );
+		Functions\expect( 'wp_enqueue_style' )->once();
 		Functions\expect( 'wp_localize_script' )->once();
 
 		$this->admin_page->enqueue_admin_scripts();
-		$this->admin_page->enqueue_genesis_pro_page_scripts();
+	}
+
+	/**
+	 * Gets the data for testAddBodyClass().
+	 *
+	 * @return mixed[][] The test data.
+	 */
+	public function getAddBodyClassData() {
+		return [
+			[ null, 'wp-admin wp-core-ui', 'wp-admin wp-core-ui' ],
+			[ 'other-plugin', 'wp-admin wp-core-ui', 'wp-admin wp-core-ui' ],
+			[ 'genesis-blocks-getting-started', 'wp-admin wp-core-ui', 'wp-admin wp-core-ui genesis-blocks-admin-page' ],
+			[ 'genesis-blocks-settings', 'wp-admin wp-core-ui', 'wp-admin wp-core-ui genesis-blocks-admin-page' ],
+			[ 'genesis-blocks-settings', '', 'genesis-blocks-admin-page' ],
+		];
+	}
+
+	/**
+	 * Tests that add_body_class() adds the class when it should.
+	 *
+	 * @since 1.4.0
+	 * @dataProvider getAddBodyClassData
+	 * @throws Monkey\Expectation\Exception\ExpectationArgsRequired For Functions\expect()->with().
+	 *
+	 * @param mixed  $page The page query arg.
+	 * @param string $initial_classes The classes passed to the filter.
+	 * @param string $expected The expected return value of the filter.
+	 */
+	public function testAddBodyClass( $page, $initial_classes, $expected ): void {
+		Functions\stubs( [ 'esc_attr' ] );
+		Functions\expect( 'filter_input' )
+			->once()
+			->with(
+				INPUT_GET,
+				'page',
+				FILTER_SANITIZE_STRING
+			)
+			->andReturn( $page );
+
+		$this->assertEquals( $expected, $this->admin_page->add_body_class( $initial_classes ) );
 	}
 
 	/**

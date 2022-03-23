@@ -28,7 +28,7 @@ const SubstepList = ( { steps, currentStep, complete } ) => {
 		return (
 			<li key={ index } className={ listClass }>
 				{ label }
-				{ currentStep === index && !complete && <progress></progress> }
+				{ currentStep === index && !complete && <div className="gb-migration-progress" role="progressbar"><div className="gb-migration-progress-inside"></div><div className="gb-migration-progress-inside gb-migration-progress-animate2"></div></div> }
 			</li>
 		);
 	});

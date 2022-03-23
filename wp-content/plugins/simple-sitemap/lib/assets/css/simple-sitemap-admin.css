@@ -1,0 +1,139 @@
+/* Plugin settings page styles. */
+
+h1.heading {
+	font-weight: bold;
+	line-height: 1.2;
+	font-size: 2.8em;
+}
+
+.wrap {
+	margin: 25px 30px 0 20px;
+}
+
+.wrap h2 {
+	font-size: 24px;
+}
+
+.plugin-text-link a {
+	text-decoration: none;
+}
+
+.wrap a,
+.wrap a:visited {
+	color: #388d8c;
+}
+
+.wrap a:hover {
+	color: #59afad;
+}
+
+.wrap .plugin-btn {
+	display: inline-block;
+	padding: 7px 7px;
+	margin: 15px 0 0 0;
+	font-size: 16px;
+	background: #279a97bf;
+	border: 2px #237976a1 solid;
+	border-radius: 2px;
+	color: #fff;
+	text-decoration: none;
+}
+
+.wrap .plugin-btn:hover,
+.wrap .plugin-btn:visited {
+	color: #fff;
+}
+
+.pro {
+	background: #f5d53e;
+	margin: 0 0 0 0;
+	padding: 1px 3px;
+	font-weight: 700;
+	border-radius: 2px;
+	font-size: 10px;
+	color: #151515;
+}
+
+.wrap .pro a {
+	color: #151515;
+	text-decoration: none;
+}
+
+.shortcode-attributes {
+	list-style-type: disc;
+}
+
+.shortcode-attributes li {
+	margin-left: 25px;
+	line-height: 20px;
+}
+
+.ss-box {
+	background: #fff;
+	border: 1px dashed #ccc;
+	font-size: 14px;
+	margin: 20px 0 10px 0;
+	padding: 15px 15px 10px 20px;
+}
+
+.ss-box p {
+	font-size: 14px;
+}
+
+#shortcodes-wrap,
+#attributes-wrap,
+#blocks-wrap {
+	display: none;
+}
+
+#attributes-btn,
+#shortcodes-btn,
+#blocks-btn {
+	margin-left: 10px;
+}
+
+.social-link {
+	display: inline-block;
+	line-height: 0;
+}
+
+/* Other wpgoplugins.com styles */
+
+.other-plugins-tbl {
+	display: inline-table;
+}
+
+.plugin-image-link {
+	line-height: 0;
+	display: block;
+	width: 144px;
+}
+
+.wrap .plugin-text-link {
+	padding: 0;
+	width: 144px;
+}
+
+.plugin-text-link div {
+	text-align: center;
+	margin: 0;
+}
+
+.plugin-text-link h3 {
+	margin: 0;
+	font-size: 15px;
+	margin-top: -5px;
+}
+
+.other-plugins-tbl img {
+	box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: 140px;
+	border-radius: 5px;
+	border: 1px #fff solid;
+}
+
+/* Misc */
+
+.code-link {
+	text-decoration: none;
+}

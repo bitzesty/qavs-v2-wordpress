@@ -43,10 +43,10 @@ const ButtonNext = ( { onClick, checkboxLabel, stepIndex } ) => {
 						setCheckboxChecked( ! isCheckboxChecked );
 					} }
 				/>
-				<label htmlFor={ inputId } className="ml-2 font-medium">{ checkboxLabel }</label>
+				<label htmlFor={ inputId } className="gb-checkbox-label">{ checkboxLabel }</label>
 			</form>
 			<button
-				className="btn"
+				className="gb-admin-button-primary"
 				onClick={ onClick }
 				disabled={ ! isCheckboxChecked }
 			>

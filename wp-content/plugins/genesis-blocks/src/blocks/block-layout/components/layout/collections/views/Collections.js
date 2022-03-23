@@ -14,12 +14,17 @@ import { CollectionCard } from './CollectionCard.js';
 /**
  * WordPress dependencies.
  */
+const { useDispatch, useSelect } = wp.data;
 const { __ } = wp.i18n;
 const { ButtonGroup } = wp.components;
 
 export function Collections( props ) {
-
-	const collectionsView = useCollectionsVisualState( { view: 'collections', collection: null } );
+	const { currentCollection } = useSelect( ( select ) => select( 'core/block-editor' ).getSettings() );
+	const collectionsView = useCollectionsVisualState( {
+		view: !! currentCollection ? 'collection' : 'collections',
+	} );
+	const { updateSettings } = useDispatch( 'core/block-editor' );
+	const setCurrentCollection = ( newCollection ) => updateSettings( { currentCollection: newCollection } );
 
 	function renderCollections( collections ) {
 
@@ -30,7 +35,13 @@ export function Collections( props ) {
 		const mapper = [];
 
 		for ( var collection in collections ) {
-			mapper.push( <CollectionCard key={collection} collectionSlug={collection} collectionsView={collectionsView} {...props} /> );
+			mapper.push( <CollectionCard
+				key={ collection }
+				collectionSlug={ collection }
+				collectionsView={ collectionsView }
+				setCurrentCollection={ setCurrentCollection }
+				{ ...props }
+			/> );
 		}
 
 		return(
@@ -49,7 +60,7 @@ export function Collections( props ) {
 
 		for ( var layoutKey in props.context[itemType] ) {
 			const item = props.context[itemType][layoutKey];
-			if ( item.hasOwnProperty( 'collection' ) && collectionsView.currentCollection === item.collection.slug ) {
+			if ( item.hasOwnProperty( 'collection' ) && currentCollection === item.collection.slug ) {
 				mapper.push(
 					<LayoutLibraryItemCard
 						key={item.key}
@@ -100,7 +111,13 @@ export function Collections( props ) {
 
 		return (
 			<div className="gb-collections-view-all-container">
-				<button className="gb-collections-view-all-link" onClick={() =>{ collectionsView.setCurrentView('collections') }}>
+				<button
+					className="gb-collections-view-all-link"
+					onClick={ () => {
+						collectionsView.setCurrentView('collections');
+						collectionsView.setCurrentCollection(null);
+					} }
+				>
 					<span className="dashicons dashicons-arrow-left-alt"></span>
 					{ __( 'View All Collections ', 'genesis-blocks' ) }
 				</button>
@@ -118,7 +135,7 @@ export function Collections( props ) {
 
 		if ( collectionsView.currentView === 'collection' ) {
 			return (
-				<h2 className="gb-collection-title">{ __( 'Browsing ', 'genesis-blocks' ) + props.context.collections[collectionsView.currentCollection].label }</h2>
+				<h2 className="gb-collection-title">{ __( 'Browsing ', 'genesis-blocks' ) + props.context.collections[currentCollection]?.label }</h2>
 			);
 		}
 

@@ -7,6 +7,7 @@
     "font-weight-notation": null,
     "declaration-property-unit-whitelist": null,
     "scss/selector-no-redundant-nesting-selector": null,
-    "function-url-quotes": null
+    "function-url-quotes": null,
+    "selector-type-no-unknown": [true, { "ignoreTypes": ["/^checked/"] }]
   }
 }

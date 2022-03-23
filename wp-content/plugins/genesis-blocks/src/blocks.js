@@ -44,3 +44,5 @@ import './blocks/block-layout/index.js';
  * Global styles.
  */
 import './blocks/global-styles/index.js';
+
+import './blocks/responsive-settings';

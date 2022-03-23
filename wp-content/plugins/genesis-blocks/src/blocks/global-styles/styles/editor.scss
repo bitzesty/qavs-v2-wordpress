@@ -117,3 +117,18 @@
 
 	@include fluid-font-size(36px, 60px, $vp-small, $vp-large);
 }
+
+.gb-responsive-toggle {
+
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+
+	.components-button.has-icon.has-text {
+		margin-right: 5px;
+	}
+
+	.components-button.has-icon .dashicon {
+		margin-right: 2px;
+		margin-left: 0;
+	}
+}

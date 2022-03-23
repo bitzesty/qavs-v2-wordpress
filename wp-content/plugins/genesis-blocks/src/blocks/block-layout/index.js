@@ -99,4 +99,5 @@ function appendImportButton() {
 function gbInsertLayout() {
 	const block = wp.blocks.createBlock( 'genesis-blocks/gb-layouts' );
 	wp.data.dispatch( 'core/block-editor' ).insertBlocks( block );
+	window.GenesisAnalytics.GAClient.send( 'Open Modal', { event_category: 'Layout Modal' });
 }

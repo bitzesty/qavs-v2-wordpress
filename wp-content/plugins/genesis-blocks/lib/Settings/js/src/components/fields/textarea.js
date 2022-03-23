@@ -16,6 +16,7 @@ import { dispatch, withDispatch } from '@wordpress/data';
 function TextareaComponent({ settings, field, onUpdate }) {
 	return (
 		<TextareaControl
+			className={field.class}
 			label={field.label ? field.label : ''}
 			help={field.help ? field.help : ''}
 			onChange={(newValue) =>

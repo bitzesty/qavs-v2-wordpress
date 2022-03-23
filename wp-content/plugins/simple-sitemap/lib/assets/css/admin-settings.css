@@ -1,0 +1,194 @@
+/* Plugin specific admin settings styles. */
+.about-con .sub-header .sub-header-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
+.about-con .sub-header .sub-header-title h1 {
+	margin: 0.2em 0 0 0;
+	font-size: 2.8em;
+}
+.about-con .sub-header .sub-header-title .title-ver {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.about-con .sub-header .title-desc p {
+	font-size: 1.2em;
+}
+
+.about-con .header {
+	display: flex;
+	grid-gap: 1.5em;
+}
+
+.premium-tbl {
+	background-color: #279a97a6;
+	border: #237976a1 dashed 4px;
+	margin: 20px 0 30px 0;
+	padding: 12px 20px;
+	color: #fff;
+}
+.premium-tbl .upgrade-txt-pc {
+	font-size: 16px;
+	font-weight: 700;
+	color: #237976;
+}
+.premium-tbl .upgrade-txt-pc:hover {
+	color: #237976;
+}
+.premium-tbl a.upgrade-link,
+.premium-tbl a.upgrade-link:hover {
+	color: #fff;
+	font-weight: 700;
+}
+.premium-tbl .detail-cel {
+	margin: 0 0 0 15px;
+	font-size: 18px;
+	font-style: italic;
+	line-height: 1.25em;
+}
+
+.about-con .header-img img {
+	margin: 1em 0 0 0;
+	box-shadow: 3px 3px 10px #aaa;
+	width: 130px;
+	height: auto;
+}
+
+.about-con .plugin-desc-con h2.sub-title {
+	text-align: left;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.about-con .plugin-desc-con .new-fea-con-img {
+	margin: 0 0 20px;
+}
+
+.about-con .plugin-desc-con .getting-start-desc {
+	padding: 0 0 0 20px;
+}
+
+.about-con .plugin-desc-con .getting-start-desc table td {
+	padding: 5px;
+}
+
+.about-con .plugin-desc-con .getting-start-desc table td:first-child {
+	width: 70px;
+}
+
+.about-con .plugin-desc-con .coming-soon-con .coming-soon-ul,
+.lets-get-started {
+	list-style: initial;
+	margin-left: 30px;
+}
+
+.about-con .plugin-desc-con .getting-more-btn {
+	cursor: pointer;
+	margin-left: -20px;
+}
+
+.about-con .plugin-desc-con .getting-more-btn h3 {
+	text-decoration: underline;
+}
+
+.about-con .plugin-desc-con .getting-more {
+	background-color: white;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+}
+
+.about-con .plugin-desc-con .getting-start-gen-con {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
+}
+
+.about-con .plugin-desc-con .getting-start-gen-con .getting-start-gen {
+	width: calc(100% - 360px);
+}
+
+.about-con .plugin-desc-con .getting-start-gen-con .getting-start-img {
+	width: 300px;
+	box-shadow: 3px 3px 10px #aaa;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
+	height: fit-content;
+}
+
+.font-setting-wrapper {
+	margin: 15px 15px 15px 0;
+}
+.font-setting-wrapper input {
+	width: 100%;
+	margin-left: 10px;
+}
+@media only screen and (min-width: 1200px) {
+	.font-setting-wrapper input {
+		width: 75%;
+	}
+}
+@media only screen and (min-width: 1500px) {
+	.font-setting-wrapper input {
+		width: 60%;
+	}
+}
+@media only screen and (min-width: 2000px) {
+	.font-setting-wrapper input {
+		width: 50%;
+	}
+}
+
+.plugin-btn.get-started-btn {
+	width: 230px;
+	display: flex;
+}
+.plugin-btn.get-started-btn .get-started-txt {
+	margin-left: 8px;
+}
+
+/*Settings page's header's styling*/
+.wpgo-settings-inner .wpgo-settings-page-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.wpgo-settings-inner .wpgo-settings-page-header .heading {
+	display: flex;
+	align-items: center;
+	grid-gap: 15px;
+}
+.wpgo-settings-inner .wpgo-settings-page-header .heading img {
+	max-width: 60px;
+	box-shadow: 5px 5px 10px #00000026;
+	border-radius: 3px;
+}
+.wpgo-settings-inner .wpgo-settings-page-header .wpgo-header-btns {
+	display: flex;
+	grid-gap: 10px;
+}
+.wpgo-settings-inner .wpgo-settings-page-header .wpgo-header-btns a {
+	color: #fff;
+	padding: 7px 10px;
+	text-decoration: none;
+}
+.wpgo-settings-inner .wpgo-settings-page-header .wpgo-header-btns a:first-of-type {
+	background: #59afad;
+	border: 2px solid #388d8c;
+}
+
+.wpgo-settings-inner .wpgo-header-description {
+	margin: 35px 0 0;
+}
+.wpgo-settings-inner .wpgo-header-description p.description-txt {
+	font-size: 17px;
+}
+
+.wpgo-settings-inner .wpgo-expand-box {
+	background: #fff;
+	padding: 20px 20px 15px 20px;
+}
+
+/*# sourceMappingURL=admin-settings.css.map*/

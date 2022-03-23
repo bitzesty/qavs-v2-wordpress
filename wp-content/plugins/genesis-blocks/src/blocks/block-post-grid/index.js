@@ -34,13 +34,6 @@ registerBlockType( 'genesis-blocks/gb-post-grid', {
 		__( 'atomic', 'genesis-blocks' )
 	],
 
-	getEditWrapperProps( attributes ) {
-		const { align } = attributes;
-		if ( -1 !== validAlignments.indexOf( align ) ) {
-			return { 'data-align': align };
-		}
-	},
-
 	edit,
 
 	gb_settings_data: {

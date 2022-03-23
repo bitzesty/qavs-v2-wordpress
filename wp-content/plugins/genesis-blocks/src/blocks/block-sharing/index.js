@@ -48,7 +48,7 @@ registerBlockType( 'genesis-blocks/gb-sharing', {
 
 	// Render the block components
 	edit: ( props ) => {
-		return <Edit { ...props } />;
+		return <Edit { ...props } clientId={ props.clientId } />;
 	},
 
 	// Render via PHP

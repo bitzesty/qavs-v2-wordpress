@@ -20,6 +20,10 @@ function genesis_blocks_register_sharing() {
 		array(
 			'style'           => 'genesis-blocks-style-css',
 			'attributes'      => array(
+				'clientId'         => array(
+					'type'    => 'string',
+					'default' => '',
+				),
 				'facebook'         => array(
 					'type'    => 'boolean',
 					'default' => true,
@@ -101,6 +105,8 @@ add_action( 'wp_footer', 'genesis_blocks_social_icon_footer_script' );
 function genesis_blocks_render_sharing( $attributes ) {
 	global $post;
 
+	$uuid = isset( $attributes['clientId'] ) && ! empty( $attributes['clientId'] ) ? $attributes['clientId'] : uniqid();
+
 	if ( has_post_thumbnail() ) {
 		$thumbnail_id = get_post_thumbnail_id( $post->ID );
 		$thumbnail    = $thumbnail_id ? current( wp_get_attachment_image_src( $thumbnail_id, 'large', true ) ) : '';
@@ -124,6 +130,8 @@ function genesis_blocks_render_sharing( $attributes ) {
 
 	$share_url = '';
 
+	$icons_url = plugin_dir_url( genesis_blocks_main_plugin_file() ) . 'dist/assets/social-icons/';
+
 	if ( isset( $attributes['twitter'] ) && $attributes['twitter'] ) {
 
 		$href_format = sprintf( 'href="javascript:void(0)" onClick="javascript:genesisBlocksShare(\'%1$s\', \'%2$s\', \'600\', \'600\')"', esc_url( $twitter_url ), esc_html__( 'Share on Twitter', 'genesis-blocks' ) );
@@ -138,11 +146,12 @@ function genesis_blocks_render_sharing( $attributes ) {
 				%1$s
 				class="gb-share-twitter"
 				title="%2$s">
-				<i class="fab fa-twitter"></i> <span class="gb-social-text">%2$s</span>
+				%3$s <span class="gb-social-text">%2$s</span>
 			</a>
 		</li>',
 			$href_format,
-			esc_html__( 'Share on Twitter', 'genesis-blocks' )
+			esc_html__( 'Share on Twitter', 'genesis-blocks' ),
+			genesis_blocks_get_svg( 'twitter', 'ui', '', $uuid, __( 'Share on Twitter', 'genesis-blocks' ) )
 		);
 	}
 
@@ -160,11 +169,12 @@ function genesis_blocks_render_sharing( $attributes ) {
 					%1$s
 					class="gb-share-facebook"
 					title="%2$s">
-					<i class="fab fa-facebook-f"></i> <span class="gb-social-text">%2$s</span>
+					%3$s <span class="gb-social-text">%2$s</span>
 				</a>
 			</li>',
 			$href_format,
-			esc_html__( 'Share on Facebook', 'genesis-blocks' )
+			esc_html__( 'Share on Facebook', 'genesis-blocks' ),
+			genesis_blocks_get_svg( 'facebook', 'ui', '', $uuid, __( 'Share on Facebook', 'genesis-blocks' ) )
 		);
 	}
 
@@ -182,11 +192,12 @@ function genesis_blocks_render_sharing( $attributes ) {
 					%1$s
 					class="gb-share-pinterest"
 					title="%2$s">
-					<i class="fab fa-pinterest-p"></i> <span class="gb-social-text">%2$s</span>
+					%3$s <span class="gb-social-text">%2$s</span>
 				</a>
 			</li>',
 			$href_format,
-			esc_html__( 'Share on Pinterest', 'genesis-blocks' )
+			esc_html__( 'Share on Pinterest', 'genesis-blocks' ),
+			genesis_blocks_get_svg( 'pinterest', 'ui', '', $uuid, __( 'Share on Pinterest', 'genesis-blocks' ) )
 		);
 	}
 
@@ -204,11 +215,12 @@ function genesis_blocks_render_sharing( $attributes ) {
 					%1$s
 					class="gb-share-linkedin"
 					title="%2$s">
-					<i class="fab fa-linkedin-in"></i> <span class="gb-social-text">%2$s</span>
+					%3$s <span class="gb-social-text">%2$s</span>
 				</a>
 			</li>',
 			$href_format,
-			esc_html__( 'Share on LinkedIn', 'genesis-blocks' )
+			esc_html__( 'Share on LinkedIn', 'genesis-blocks' ),
+			genesis_blocks_get_svg( 'linkedin', 'ui', '', $uuid, __( 'Share on LinkedIn', 'genesis-blocks' ) )
 		);
 	}
 
@@ -226,11 +238,12 @@ function genesis_blocks_render_sharing( $attributes ) {
 					%1$s
 					class="gb-share-reddit"
 					title="%2$s">
-					<i class="fab fa-reddit-alien"></i> <span class="gb-social-text">%2$s</span>
+					%3$s <span class="gb-social-text">%2$s</span>
 				</a>
 			</li>',
 			$href_format,
-			esc_html__( 'Share on Reddit', 'genesis-blocks' )
+			esc_html__( 'Share on Reddit', 'genesis-blocks' ),
+			genesis_blocks_get_svg( 'reddit', 'ui', '', $uuid, __( 'Share on Reddit', 'genesis-blocks' ) )
 		);
 	}
 
@@ -242,11 +255,12 @@ function genesis_blocks_render_sharing( $attributes ) {
 						href="%1$s"
 						class="gb-share-email"
 						title="%2$s">
-						<i class="fas fa-envelope"></i> <span class="gb-social-text">%2$s</span>
+						%3$s <span class="gb-social-text">%2$s</span>
 					</a>
 				</li>',
 				esc_url( $email_url ),
-				esc_html__( 'Share via Email', 'genesis-blocks' )
+				esc_html__( 'Share via Email', 'genesis-blocks' ),
+				genesis_blocks_get_svg( 'email', 'ui', '', $uuid, __( 'Share via Email', 'genesis-blocks' ) )
 			);
 		}
 	}

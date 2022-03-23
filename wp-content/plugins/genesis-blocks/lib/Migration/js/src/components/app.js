@@ -48,7 +48,7 @@ const App = () => {
 
 	return (
 		<div className="gb-migration__content-wrapper">
-			<div className="container gb-migration__content-container">
+			<div className="container gb-migration__content-container gb-admin-plugin-container">
 				<Intro />
 				{
 					steps.map( ( MigrationStep, index ) => {

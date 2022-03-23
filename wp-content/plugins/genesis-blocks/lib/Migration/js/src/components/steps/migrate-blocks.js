@@ -188,9 +188,9 @@ const MigrateBlocks = ( { isStepActive, isStepComplete, stepIndex, goToNext } ) 
 			>
 				{ ! isSuccess && <p>{ __( "Okay! Everything is ready. Let’s do this. While the migration is underway, don’t leave this page.", 'genesis-blocks' ) }</p> }
 				{ !! errorMessage && (
-					<div className="gb-migration__error">
-						<p>{ __( 'The following error occurred:', 'genesis-blocks' ) }</p>
-						<p>{ errorMessage }</p>
+					<div className="gb-migration__error inline-notice gb-error">
+						<p><span>{ __( 'The following error occurred:', 'genesis-blocks' ) }</span>
+						{ errorMessage }</p>
 					</div>
 				) }
 				{ ( isInProgress || isSuccess ) && (
@@ -203,7 +203,7 @@ const MigrateBlocks = ( { isStepActive, isStepComplete, stepIndex, goToNext } ) 
 				) }
 				{ ! isInProgress && ! isSuccess && (
 					<button
-						className="btn"
+						className="gb-admin-button-primary"
 						onClick={ migrate }
 					>
 						{ isError ? __( 'Try Again', 'genesis-blocks' ) : __( 'Migrate Now', 'genesis-blocks' ) }

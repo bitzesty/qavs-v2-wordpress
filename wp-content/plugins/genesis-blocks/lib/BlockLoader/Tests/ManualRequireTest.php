@@ -89,12 +89,21 @@ final class ManualRequireTest extends TestCase {
 			)
 		);
 
-		$this->assertTrue(
-			has_filter(
-				'block_categories',
-				'genesis_blocks_add_custom_block_category'
-			)
-		);
+		if ( class_exists( 'WP_Block_Editor_Context' ) ) {
+			$this->assertTrue(
+				has_filter(
+					'block_categories_all',
+					'genesis_blocks_add_custom_block_category'
+				)
+			);
+		} else {
+			$this->assertTrue(
+				has_filter(
+					'block_categories',
+					'genesis_blocks_add_custom_block_category'
+				)
+			);
+		}
 	}
 
 	/**

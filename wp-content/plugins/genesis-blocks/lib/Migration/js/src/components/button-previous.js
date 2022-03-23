@@ -23,7 +23,7 @@ import { __ } from '@wordpress/i18n';
  */
 const ButtonPrevious = ( { onClick } ) => {
 	return (
-		<button className="btn btn-secondary" onClick={ onClick }>
+		<button className="gb-admin-button-secondary" onClick={ onClick }>
 			{ __( 'Previous', 'genesis-blocks' ) }
 		</button>
 	);

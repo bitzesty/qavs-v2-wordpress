@@ -9,53 +9,113 @@
  * @link    https://github.com/studiopress/genesis-blocks/
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( '-1' );
+}
+
+// Nonce verification is being ignored here because no user action is being taken here, and no data is being saved. This simply loads the page in question.
+// Ignoring the nonce allows this page to be loaded from a bookmark, for example.
+// No saving logic should be added to this page. Rather, it should be handled in a separate function, or ideally through the REST api, which has nonce protection.
+$genesis_active_tab = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING, [ 'options' => [ 'default' => 'no-tab' ] ] );
+$tab_dir            = trailingslashit( plugin_dir_path( __FILE__ ) . 'tabs' );
+
+/**
+ * Callback function to Genesis 101 Tab
+ *
+ * @return void
+ */
+function genesis_blocks_genesis_101_tab_renderer() {
+	require_once trailingslashit( plugin_dir_path( __FILE__ ) . 'tabs' ) . 'genesis-101.php';
+}
+
+/**
+ * Callback function to Collections Tab
+ *
+ * @return void
+ */
+function genesis_blocks_collections_tab_renderer() {
+	require_once trailingslashit( plugin_dir_path( __FILE__ ) . 'tabs' ) . 'genesis-collections.php';
+}
+
+/**
+ * Callback function to Genesis Pro Tab
+ *
+ * @return void
+ */
+function genesis_blocks_genesis_pro_tab_renderer() {
+	require_once trailingslashit( plugin_dir_path( __FILE__ ) . 'tabs' ) . 'genesis-pro.php';
+}
+
 ?>
 
-<div class="wrap genesis-blocks-settings-page">
-	<div class="intro-wrap">
-		<div class="intro">
-			<img src="<?php echo esc_url( $this->context['url'] . 'lib/Settings/assets/images/genesis-planet-icon.svg' ); ?>" alt="<?php esc_html_e( 'Genesis Blocks', 'genesis-blocks' ); ?>" />
-			<h1 class="grow"><?php echo esc_html_e( 'Getting Started with Genesis Blocks', 'genesis-blocks' ); ?></h1>
-			<a class="components-button review-button hide-mobile" href="//wordpress.org/support/plugin/genesis-blocks/reviews/" target="_blank" rel="noopener noreferrer">
-				<span>&#9733;</span>
-				<?php esc_html_e( 'Leave a review!', 'genesis-blocks' ); ?>
-			</a>
-		</div>
-	</div>
-
-	<div class="genesis-blocks-settings-sections">
-		<div class="components-tab-panel__tab-content">
-			<div class="genesis-gs-intro genesis-blocks-grid-2">
-				<div class="genesis-gs-intro-text">
-					<span class="genesis-gs-intro-tag"><?php echo esc_html_e( 'Getting Started', 'genesis-blocks' ); ?></span>
-					<h2><?php echo esc_html_e( 'Welcome to the future of site building with WordPress and Genesis Blocks.', 'genesis-blocks' ); ?></h2>
-					<p><?php echo esc_html_e( 'The Genesis Blocks collection is now ready to use in your posts and pages. Simply search for "genesis" in the block inserter to display the Genesis Blocks collection. Check out the boxes below for help docs, tips and tricks, and additional resources.', 'genesis-blocks' ); ?></p>
-				</div>
-				<div class="genesis-gs-intro-image">
-					<img src="<?php echo esc_url( $this->context['url'] . 'lib/Settings/assets/images/genesis-intro.svg' ); ?>" alt="<?php esc_html_e( 'Genesis Blocks', 'genesis-blocks' ); ?>" />
-				</div>
+<div class="wrap">
+	<div id="gb-admin-plugin-admin">
+		<!-- Admin Header -->
+		<div class="gb-admin-plugin-admin-header gb-admin-plugin-grid-2">
+			<div class="gb-admin-plugin-header-title-area">
+				<h1><img class="gb-plugin-common-logo" src="<?php echo esc_url( $this->context['url'] . 'lib/Settings/assets/images/genesis-planet-icon.svg' ); ?>" alt="Genesis Logo">Genesis</h1>	
 			</div>
-
-			<div class="genesis-gs-resources genesis-blocks-grid-3">
-				<div class="genesis-gs-resource">
-					<img src="<?php echo esc_url( $this->context['url'] . 'lib/Settings/assets/images/help.svg' ); ?>" alt="<?php esc_html_e( 'Help and Documentation', 'genesis-blocks' ); ?>" />
-					<h3><?php echo esc_html_e( 'Help and Documentation', 'genesis-blocks' ); ?></h3>
-					<p><?php echo esc_html_e( 'The Genesis Blocks wiki has helpful documentation, tips and tricks, code snippets, and more to help you get started.', 'genesis-blocks' ); ?></p>
-					<a href="https://developer.wpengine.com/genesis-pro/" class="components-button is-primary"><?php echo esc_html_e( 'Browse the Docs', 'genesis-blocks' ); ?></a>
-				</div>
-				<div class="genesis-gs-resource">
-					<img src="<?php echo esc_url( $this->context['url'] . 'lib/Settings/assets/images/themes.svg' ); ?>" alt="<?php esc_html_e( 'Genesis Themes', 'genesis-blocks' ); ?>" />
-					<h3><?php echo esc_html_e( 'Browse Genesis Themes', 'genesis-blocks' ); ?></h3>
-					<p><?php echo esc_html_e( 'The Genesis theme collection has beautiful block-powered themes that help you quickly get started with the new block editor.', 'genesis-blocks' ); ?></p>
-					<a href="https://studiopress.com/themes" class="components-button is-primary"><?php echo esc_html_e( 'Browse Themes', 'genesis-blocks' ); ?></a>
-				</div>
-				<div class="genesis-gs-resource">
-					<img src="<?php echo esc_url( $this->context['url'] . 'lib/Settings/assets/images/review.svg' ); ?>" alt="<?php esc_html_e( 'Leave a review', 'genesis-blocks' ); ?>" />
-					<h3><?php echo esc_html_e( 'Enjoying Genesis Blocks?', 'genesis-blocks' ); ?></h3>
-					<p><?php echo esc_html_e( 'Leave a review on WordPress.org and help the rest of the community discover the potential of the block editor.', 'genesis-blocks' ); ?></p>
-					<a href="http://wordpress.org/support/plugin/genesis-blocks/reviews/" class="components-button is-primary"><?php echo esc_html_e( 'Leave a Review', 'genesis-blocks' ); ?></a>
-				</div>
+			<div class="gb-admin-plugin-header-controls-area">
+				<a href="https://wpengine.com/genesis/" class="gb-header-button" target="_blank"
+					rel="noopener noreferrer"><?php esc_html_e( 'About Genesis', 'genesis-blocks' ); ?></a>
 			</div>
+		</div>	
+		<!-- Admin Nav -->
+		<nav class="gb-nav-tab-wrapper">
+			<?php
+			$genesis_tabs = [
+				[
+					'tab_slug'     => 'genesis-101',
+					'tab_label'    => __( 'Genesis 101', 'genesis-blocks' ),
+					'tab_callback' => 'genesis_blocks_genesis_101_tab_renderer',
+				],
+				[
+					'tab_slug'     => 'collections',
+					'tab_label'    => __( 'Collections', 'genesis-blocks' ),
+					'tab_callback' => 'genesis_blocks_collections_tab_renderer',
+				],
+				[
+					'tab_slug'     => 'genesis-pro',
+					'tab_label'    => __( 'Genesis Pro', 'genesis-blocks' ),
+					'tab_callback' => 'genesis_blocks_genesis_pro_tab_renderer',
+					'tab_icon_url' => $this->context['url'] . 'lib/Settings/assets/images/genesis-planet-icon-dark.svg',
+					'tab_icon_alt' => __( 'Genesis Pro', 'genesis-blocks' ),
+				],
+			];
+
+			$genesis_tabs = apply_filters( 'genesis_blocks_setting_started_tabs', $genesis_tabs );
+			foreach ( $genesis_tabs as $key => $genesis_tab ) {
+				$tab_uri = "?page=genesis-blocks-getting-started&tab={$genesis_tab['tab_slug']}"
+				?>
+					<a
+						href=<?php echo esc_url( $tab_uri ); ?>
+						class="gb-nav-tab gb-admin-button 
+						<?php
+
+						if ( $genesis_active_tab === $genesis_tab['tab_slug'] || ( $genesis_active_tab === 'no-tab' && $key === 0 ) ) {
+							$genesis_tab_callback = $genesis_tab['tab_callback'];
+							echo 'gb-nav-tab-active';
+						}
+						?>
+						"
+					>
+					<?php
+					if ( isset( $genesis_tab['tab_icon_url'] ) ) {
+						$tab_alt = isset( $genesis_tab['tab_icon_alt'] ) ? $genesis_tab['tab_icon_alt'] : __( 'Tab icon', 'genesis-blocks' );
+						?>
+						<img class="gb-plugin-tab-icon" src="<?php echo esc_url( $genesis_tab['tab_icon_url'] ); ?>" alt="<?php echo esc_attr( $tab_alt ); ?>" >
+						<?php
+					}
+
+					echo esc_html( $genesis_tab['tab_label'] ) . '</a>';
+			}
+			?>
+		</nav>
+		<!-- Admin Body -->
+		<div class="gb-admin-plugin-admin-body">
+			<?php
+			isset( $genesis_tab_callback ) && call_user_func( $genesis_tab_callback );
+			?>
 		</div>
 	</div>
 </div>

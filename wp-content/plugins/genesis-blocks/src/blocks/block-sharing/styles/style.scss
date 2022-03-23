@@ -23,6 +23,7 @@
 
 		a {
 			background: #272c30;
+			border-width: 0;
 			color: #fff;
 			padding: 10px 15px;
 			text-align: center;
@@ -35,11 +36,15 @@
 				box-shadow: inset 0 0 200px rgba(255, 255, 255, 0.15);
 			}
 		}
+
+		svg {
+			vertical-align: text-top;
+		}
 	}
 
 	&.gb-share-icon-text {
 
-		i {
+		svg {
 			margin-right: 5px;
 		}
 	}
@@ -67,7 +72,7 @@
 
 	&.gb-share-text-only {
 
-		i {
+		svg {
 			display: none;
 		}
 	}
@@ -98,6 +103,11 @@
 		a {
 			font-size: 13px;
 		}
+
+		svg {
+			width: 13px;
+			height: 13px;
+		}
 	}
 
 	&.gb-share-size-small.gb-share-icon-only {
@@ -113,12 +123,22 @@
 		a {
 			font-size: 16px;
 		}
+
+		svg {
+			width: 16px;
+			height: 16px;
+		}
 	}
 
 	&.gb-share-size-large {
 
 		a {
 			font-size: 20px;
+		}
+
+		svg {
+			width: 26px;
+			height: 26px;
 		}
 	}
 
@@ -132,7 +152,7 @@
 
 	&.gb-share-size-large.gb-share-icon-text {
 
-		i {
+		svg {
 			margin-right: 10px;
 		}
 	}

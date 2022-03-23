@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Genesis\\Blocks\\Analytics\\AdminPage' => $baseDir . '/lib/Analytics/AdminPage.php',
+    'Genesis\\Blocks\\Analytics\\AssetManager' => $baseDir . '/lib/Analytics/AssetManager.php',
+    'Genesis\\Blocks\\Analytics\\Module' => $baseDir . '/lib/Analytics/Module.php',
     'Genesis\\Blocks\\BlockLoader\\ManualRequire' => $baseDir . '/lib/BlockLoader/ManualRequire.php',
     'Genesis\\Blocks\\BlockLoader\\Module' => $baseDir . '/lib/BlockLoader/Module.php',
     'Genesis\\Blocks\\BlockLoader\\Tests\\ManualRequireTest' => $baseDir . '/lib/BlockLoader/Tests/ManualRequireTest.php',

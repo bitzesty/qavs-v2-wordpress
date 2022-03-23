@@ -60,7 +60,7 @@ class Admin {
 	 */
 	public function add_submenu_page() {
 		add_submenu_page(
-			'genesis-blocks-settings',
+			'genesis-blocks-getting-started',
 			esc_html__( 'Migrate to Genesis Blocks', 'genesis-blocks' ),
 			esc_html__( 'Migrate', 'genesis-blocks' ),
 			'manage_options',
@@ -82,9 +82,16 @@ class Admin {
 		}
 
 		wp_enqueue_style(
+			'genesis-blocks-getting-started-style',
+			plugin_dir_url( genesis_blocks_main_plugin_file() ) . 'lib/Settings/assets/css/admin.css',
+			[],
+			$this->plugin_info['version']
+		);
+
+		wp_enqueue_style(
 			self::MENU_SLUG,
 			$this->plugin_info['url'] . '/lib/Migration/assets/css/admin.css',
-			[],
+			[ 'genesis-blocks-getting-started-style' ],
 			$this->plugin_info['version']
 		);
 
@@ -115,19 +122,23 @@ class Admin {
 	 * @since 1.1.0
 	 */
 	public function render_page() {
-		$title = __( 'Migrate from Atomic Blocks to Genesis Blocks', 'genesis-blocks' );
+		$page_title = __( 'Migrate from Atomic Blocks to Genesis Blocks', 'genesis-blocks' );
 		if ( genesis_blocks_is_pro() ) {
-			$title = __( 'Genesis Blocks Pro Migration Tool', 'genesis-blocks' );
+			$page_title = __( 'Genesis Blocks Pro Migration Tool', 'genesis-blocks' );
 		}
 		?>
-		<div class="intro-wrap">
-			<div class="intro">
-				<img src="<?php echo esc_url( $this->plugin_info['url'] . '/lib/Settings/assets/images/genesis-planet-icon.svg' ); ?>" alt="Genesis Blocks">
-				<h1><?php echo esc_html( $title ); ?></h1>
+
+		<div class="wrap">
+			<div id="gb-admin-plugin-admin">
+				<div class="gb-admin-plugin-admin-header">
+					<div class="gb-admin-plugin-header-title-area">
+						<h1><img class="gb-plugin-common-logo" src="<?php echo esc_url( plugin_dir_url( genesis_blocks_main_plugin_file() ) . 'lib/Settings/assets/images/genesis-planet-icon.svg' ); ?>" alt="<?php esc_html_e( 'Genesis Blocks', 'genesis-blocks' ); ?>" /><?php echo esc_html( $page_title ); ?></h1>
+					</div>
+				</div>
+				<div class="gb-migration__content gb-admin-plugin-admin-body"></div>
 			</div>
 		</div>
 
-		<div class="gb-migration__content"></div>
 		<?php
 	}
 }
