@@ -122,7 +122,7 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
       <div class="container">
         <p>
           <span>BETA</span>
-          This is a new website – your <a href="https://www.surveymonkey.co.uk/r/P7F52BK" target="_blank" rel="noopener nofollow">feedback</a> will help us to improve it.
+          This is a new website - your <a href="https://www.surveymonkey.co.uk/r/P7F52BK" target="_blank" rel="noopener nofollow">feedback</a> will help us to improve it.
         </p>
       </div>
     </div>
