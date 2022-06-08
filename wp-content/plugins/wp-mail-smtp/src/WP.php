@@ -2,6 +2,8 @@
 
 namespace WPMailSMTP;
 
+use WPMailSMTP\Helpers\Helpers;
+
 /**
  * Class WP provides WordPress shortcuts.
  *
@@ -16,7 +18,8 @@ class WP {
 	 *
 	 * @var array
 	 */
-	protected static $admin_notices = array();
+	protected static $admin_notices = [];
+
 	/**
 	 * CSS class for a success notice.
 	 *
@@ -25,6 +28,7 @@ class WP {
 	 * @var string
 	 */
 	const ADMIN_NOTICE_SUCCESS = 'notice-success';
+
 	/**
 	 * CSS class for an error notice.
 	 *
@@ -33,6 +37,7 @@ class WP {
 	 * @var string
 	 */
 	const ADMIN_NOTICE_ERROR = 'notice-error';
+
 	/**
 	 * CSS class for an info notice.
 	 *
@@ -41,6 +46,7 @@ class WP {
 	 * @var string
 	 */
 	const ADMIN_NOTICE_INFO = 'notice-info';
+
 	/**
 	 * CSS class for a warning notice.
 	 *
@@ -49,6 +55,15 @@ class WP {
 	 * @var string
 	 */
 	const ADMIN_NOTICE_WARNING = 'notice-warning';
+
+	/**
+	 * Cross-platform line break.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @var string
+	 */
+	const EOL = "\r\n";
 
 	/**
 	 * True if WP is processing an AJAX call.
@@ -254,7 +269,9 @@ class WP {
 	public static function get_default_email() {
 
 		if ( version_compare( get_bloginfo( 'version' ), '5.5-alpha', '<' ) ) {
-			$sitename = strtolower( $_SERVER['SERVER_NAME'] ); // phpcs:ignore
+			$sitename = ! empty( $_SERVER['SERVER_NAME'] ) ?
+				strtolower( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) ) :
+				wp_parse_url( get_home_url( get_current_blog_id() ), PHP_URL_HOST );
 		} else {
 			$sitename = wp_parse_url( network_home_url(), PHP_URL_HOST );
 		}
@@ -483,7 +500,8 @@ class WP {
 	 */
 	public static function is_doing_self_ajax() {
 
-		$action = isset( $_REQUEST['action'] ) ? sanitize_key( $_REQUEST['action'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$action = isset( $_REQUEST['action'] ) ? sanitize_key( $_REQUEST['action'] ) : false;
 
 		return self::is_doing_ajax() && $action && substr( $action, 0, 12 ) === 'wp_mail_smtp';
 	}
@@ -696,5 +714,30 @@ class WP {
 		$tz_offset = sprintf( '%s%02d:%02d', $sign, $abs_hour, $abs_mins );
 
 		return $tz_offset;
+	}
+
+	/**
+	 * Get wp remote response error message.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @param array $response Response array.
+	 */
+	public static function wp_remote_get_response_error_message( $response ) {
+
+		if ( is_wp_error( $response ) ) {
+			return '';
+		}
+
+		$body        = wp_remote_retrieve_body( $response );
+		$message     = wp_remote_retrieve_response_message( $response );
+		$code        = wp_remote_retrieve_response_code( $response );
+		$description = '';
+
+		if ( ! empty( $body ) ) {
+			$description = is_string( $body ) ? $body : wp_json_encode( $body );
+		}
+
+		return Helpers::format_error_message( $message, $code, $description );
 	}
 }

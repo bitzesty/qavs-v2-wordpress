@@ -151,14 +151,14 @@ abstract class Strings
     /**
      * Create SSH2-style string
      *
-     * @param string[] ...$elements
+     * @param string $format
+     * @param string|int|float|array|bool ...$elements
      * @access public
-     * @return mixed
+     * @return string
      */
-    public static function packSSH2(...$elements)
+    public static function packSSH2($format, ...$elements)
     {
-        $format = self::formatPack($elements[0]);
-        \array_shift($elements);
+        $format = self::formatPack($format);
         if (\strlen($format) != \count($elements)) {
             throw new \InvalidArgumentException('There must be as many arguments as there are characters in the $format string');
         }
@@ -290,7 +290,7 @@ abstract class Strings
      * @param string $x
      * @return string
      */
-    public static function bin2bits($x)
+    public static function bin2bits($x, $trim = \true)
     {
         /*
         // the pure-PHP approach is slower than the GMP approach BUT
@@ -316,7 +316,7 @@ abstract class Strings
                 $bits .= \sprintf('%064b', $digit);
             }
         }
-        return \ltrim($bits, '0');
+        return $trim ? \ltrim($bits, '0') : $bits;
     }
     /**
      * Switch Endianness Bit Order
@@ -328,12 +328,19 @@ abstract class Strings
     public static function switchEndianness($x)
     {
         $r = '';
-        // from http://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith32Bits
         for ($i = \strlen($x) - 1; $i >= 0; $i--) {
             $b = \ord($x[$i]);
-            $p1 = $b * 0x802 & 0x22110;
-            $p2 = $b * 0x8020 & 0x88440;
-            $r .= \chr(($p1 | $p2) * 0x10101 >> 16);
+            if (\PHP_INT_SIZE === 8) {
+                // 3 operations
+                // from http://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith64BitsDiv
+                $r .= \chr(($b * 0x202020202 & 0x10884422010) % 1023);
+            } else {
+                // 7 operations
+                // from http://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith32Bits
+                $p1 = $b * 0x802 & 0x22110;
+                $p2 = $b * 0x8020 & 0x88440;
+                $r .= \chr(($p1 | $p2) * 0x10101 >> 16);
+            }
         }
         return $r;
     }
@@ -346,6 +353,12 @@ abstract class Strings
      */
     public static function increment_str(&$var)
     {
+        if (\function_exists('sodium_increment')) {
+            $var = \strrev($var);
+            \sodium_increment($var);
+            $var = \strrev($var);
+            return $var;
+        }
         for ($i = 4; $i <= \strlen($var); $i += 4) {
             $temp = \substr($var, -$i, 4);
             switch ($temp) {
@@ -373,9 +386,9 @@ abstract class Strings
     /**
      * Find whether the type of a variable is string (or could be converted to one)
      *
-     * @param string|object $var
-     * @return boolean
-     * @access public
+     * @param mixed $var
+     * @return bool
+     * @psalm-assert-if-true string|\Stringable $var
      */
     public static function is_stringable($var)
     {
