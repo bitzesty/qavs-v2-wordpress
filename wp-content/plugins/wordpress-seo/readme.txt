@@ -4,8 +4,8 @@ Donate link: https://yoa.st/1up
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Content analysis, Readability, Schema
-Tested up to: 5.8
-Stable tag: 17.9
+Tested up to: 6.0
+Stable tag: 19.0
 Requires PHP: 5.6.20
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -126,7 +126,7 @@ Want more information on search engine optimization and Yoast SEO? Have a look a
 * Also follow Yoast on [Facebook](https://facebook.com/yoast), [Instagram](https://www.instagram.com/yoast/) & [Twitter](https://twitter.com/yoast).
 
 == Installation ==
-Starting with Yoast SEO consists of just two steps: installing and setting up the plugin. Yoast SEO is designed to work with your site’s specific needs, so don’t forget to go through the Yoast SEO configuration workout as explained in the ‘after activation’ step!
+Starting with Yoast SEO consists of just two steps: installing and setting up the plugin. Yoast SEO is designed to work with your site’s specific needs, so don’t forget to go through the Yoast SEO first-time configuration as explained in the ‘after activation’ step!
 
 ### INSTALL YOAST SEO FROM WITHIN WORDPRESS
 
@@ -143,8 +143,8 @@ Starting with Yoast SEO consists of just two steps: installing and setting up th
 
 ### AFTER ACTIVATION
 
-1. You should see (a notice to start) the Yoast SEO configuration workout;
-1. Go through the configuration workout and set up the plugin for your site;
+1. You should see (a notice to start) the Yoast SEO first-time configuration;
+1. Go through this configuration and set up the plugin for your site;
 1. You’re done!
 
 == Frequently Asked Questions ==
@@ -236,65 +236,56 @@ Your question has most likely been answered on our help center: [yoast.com/help/
 
 == Changelog ==
 
-= 17.9 =
-Release Date: January 11th, 2022
+= 19.0 =
+Release Date: May 31st, 2022
 
-Yoast SEO 17.9 is now available! Yoast SEO now comes with a keyphrase tracking tool powered by Wincher that lets you monitor your keyphrases, straight from the plugin! Make sure to try out this new keyphrase tracking feature and let us know what you think. Read more about what's new in Yoast SEO 17.9 in [our release post in English](https://yoa.st/release-17-9) or [our release post in Spanish](https://yoa.st/release-17-9-spanish)!
-
-Enhancements:
-
-* Introduces a keyphrase position tracking tool that gives insight into how your content ranks in the search results. Powered by Wincher.
-* Improves Japanese text analysis results by adding functionality to segment Japanese texts into sentences and words.
-* Adapts relevant assessments to count text length in characters instead of words in Japanese.
-* Completes the readability analysis for Japanese by adding the transition words and sentence beginnings assessments.
-* Improves keyword detection for Japanese by adding a function words list.
-* Adapts Keyphrase in title scoring criteria for Japanese: the exact match keyphrase is not required for Japanese unless the keyphrase is enclosed in double quotes.
-* Disables the Keyphrase in slug assessment for Japanese due to currently being unable to match keyphrases written in Japanese characters in slugs written in Latin characters.
-* Improves the accuracy of the Estimated Reading Time results for Japanese.
-* Adapts the recommended meta description length and meta description preview limit for Japanese.
-* Improves the Workouts overview for mobile screens.
-* Makes sure we don't output the same `sameAs` URL twice on `Person` and `Organization`.
-* Adds "Blog Post" / `BlogPosting` as a potential Schema `Article` type.
-
-Bugfixes:
-
-* Fixes a bug where a fatal error would be thrown when using PHP 8.1.
-* Fixes a bug where the `og:image:type` meta would not be output correctly. Props to [@dodomorandi](https://github.com/dodomorandi).
-* Fixes a bug where the incoming link count of a post would not return to zero if all incoming links were removed.
-* Fixes a bug where the meta description would get trimmed to an empty string if the text doesn't have any space. Props to [@waviaei](https://github.com/waviaei).
-* Fixes a bug where Link keyphrase assessment would not find a match when the keyphrase is enclosed in double quotes.
-* Fixes a bug where `<br>` tags with attributes in the text would not be converted to paragraph tags. As a result some long paragraphs in the text might not have been highlighted in the Paragraph length assessment.
-
-Other:
-
-* Improves compatibility with PHP 8.1 by adding validations and handling deprecations.
-* Reverts the removal of the deprecated `WPSEO_Frontend` class.
-* Changes the font size of the alerts from 14px to 13px.
-
-= 17.8 =
-Release Date: December 14th, 2021
-
-Yoast SEO 17.8 is out now and ready for you to download. In this release, we fix a number of bugs and added a few enhancements for you to enjoy! Read more about what's new in Yoast SEO 17.8 in [our release post in English](https://yoa.st/release-17-8) or [our release post in Spanish](https://yoa.st/release-17-8-spanish)!
+Say hi to Yoast SEO 19.0! This release helps make your sitemaps available to Bing, we've updated Yoast SEO to add your XML sitemap link(s) to your robots.txt file — if you want. Plus: we've fixed a couple of bugs with Elementor and our readability analyses. Happy updating! Read more about what's new in Yoast SEO 19.0 in [our release post in English](https://yoa.st/release-31-5-22) or [our release post in Spanish](https://yoa.st/release-31-5-22-spanish)!
 
 Enhancements:
 
-* Improves the user direction in the configuration workout.
-* Adds a sleep interval to the WP CLI index command to limit server load while this command is running. Props to [roborourke](https://github.com/roborourke).
+* Following a change of policy by Bing, we now reference the XML sitemap in the robots.txt file to make it discoverable for search engines.
+* Changes `Disallow: /wp-admin/` to `Disallow:` in the default robots.txt file to follow our best-practice guide.
 
 Bugfixes:
 
-* Fixes a bug where on small screens the advanced setting's search engine follow checkbox would have a misplaced center.
-* Fixes a bug where the styling of the introduction dialog in Elementor would be broken due to changes in Elementor.
-* Fixes a bug where the reading time functionality for languages other than English would incorrectly output English reading speed values.
-* Fixes a bug where certain text strings in the Google, Facebook and Twitter previews would not be translated.
-* Fixes a bug where the state of indexation was not persisted when switching between workouts and the workouts page.
-* Fixes a bug where the Workouts page wouldn't display translations.
+* Fixes a bug where an error in saving the Site representation step of the First-time configuration would not block the advancement to the next step.
+* Fixes a bug where editing an existing post created in the Block editor in Elementor would result in an analysis result discrepancy.
+* Fixes a bug where items in lists were not excluded for the readability assessment that checks whether consecutive sentences do not begin with the same words.
+* Fixes a bug where outdated information is shown in the First-time configuration Social profiles step
+* Fixes a bug where saving an invalid organization name in the First-time configuration would fail without feedback.
+* Fixes a bug where the schema would not be updated with the new logo when the user changed it via the First-time Configuration.
+* Fixes a bug where the titles of the steps in the First-time configuration would not be translated.
+* Fixes a bug where users would be able to leave a step containing errors by clicking another step's edit button.
 
 Other:
 
-* Fixes some styling issues in the configuration workout.
-* Prevents SEO managers from changing the site description in the configuration workout.
-* Optimizes and compresses several .png images to reduce their size. Props to [lowwebtech](https://github.com/lowwebtech).
+* Adds a Crawl settings tab in the General page with an upsell to Premium.
+* Adds a Redirects page with an upsell to Premium.
+* Deprecates the configuration workout classes.
+* Sets the WordPress tested up to version to 6.0.
+
+= 18.9 =
+Release Date: May 17th, 2022
+
+Yoast SEO 18.9 is out now! In this release, we have improved the first experience users have with the plugin. The first-time configuration takes users by the hand and guides them in properly setting everything up so that search engines understand their site. Make sure to run that first-time configuration to see if you’ve filled everything in correctly! Read more about what's new in Yoast SEO 18.9 in [our release post in English](https://yoa.st/release-17-5-22) or [our release post in Spanish](https://yoa.st/release-17-5-22-spanish)!
+
+Enhancements:
+
+* Adds an `installation successful` page to welcome first-time users.
+* Introduces the First-time configuration, replacing and improving the Configuration Workout.
+* Renames the main admin menu item to `Yoast SEO` instead of `SEO`.
+
+Bugfixes:
+
+* Fixes a bug that would lead to race conditions when using persistent object caching.
+* Fixes a bug where a 403 error page would be thrown when a user tried to access the old configuration wizard.
+* Fixes a bug where our How To and FAQ blocks would not handle focus correctly when using WordPress 6.0.
+* Fixes a bug where the global var $post is sometimes modified unexpectedly. Props to [grantalltodavid](https://github.com/grantalltodavid).
+
+Other:
+
+* Adds a `Premium` badge to the Workouts menu item.
+* Updates the look of the Accounts tab in the Social page.
 
 = Earlier versions =
 For the changelog of earlier versions, please refer to [the changelog on yoast.com](https://yoa.st/yoast-seo-changelog).

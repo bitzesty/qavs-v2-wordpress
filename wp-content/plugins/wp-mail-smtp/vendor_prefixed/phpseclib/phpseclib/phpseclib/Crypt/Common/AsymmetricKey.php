@@ -14,13 +14,12 @@
  */
 namespace WPMailSMTP\Vendor\phpseclib3\Crypt\Common;
 
-use WPMailSMTP\Vendor\phpseclib3\Exception\UnsupportedFormatException;
-use WPMailSMTP\Vendor\phpseclib3\Exception\NoKeyLoadedException;
-use WPMailSMTP\Vendor\phpseclib3\Math\BigInteger;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\DSA;
 use WPMailSMTP\Vendor\phpseclib3\Crypt\Hash;
 use WPMailSMTP\Vendor\phpseclib3\Crypt\RSA;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\DSA;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\ECDSA;
+use WPMailSMTP\Vendor\phpseclib3\Exception\NoKeyLoadedException;
+use WPMailSMTP\Vendor\phpseclib3\Exception\UnsupportedFormatException;
+use WPMailSMTP\Vendor\phpseclib3\Math\BigInteger;
 /**
  * Base Class for all asymmetric cipher classes
  *
@@ -110,6 +109,11 @@ abstract class AsymmetricKey
      * @access private
      */
     private $comment;
+    /**
+     * @param string $type
+     * @return string
+     */
+    public abstract function toString($type, array $options = []);
     /**
      * The constructor
      */
@@ -219,7 +223,7 @@ abstract class AsymmetricKey
      * @param string $type
      * @param string $key
      * @param string $password optional
-     * @return AsymmetricKey
+     * @return static
      */
     public static function loadFormat($type, $key, $password = \false)
     {
@@ -296,7 +300,7 @@ abstract class AsymmetricKey
      * @param string $method optional
      * @return mixed
      */
-    protected static function validatePlugin($format, $type, $method = NULL)
+    protected static function validatePlugin($format, $type, $method = null)
     {
         $type = \strtolower($type);
         if (!isset(self::$plugins[static::ALGORITHM][$format][$type])) {
@@ -510,12 +514,10 @@ abstract class AsymmetricKey
         $rolen = $this->q->getLengthInBytes();
         if (\strlen($out) < $rolen) {
             return \str_pad($out, $rolen, "\0", \STR_PAD_LEFT);
+        } elseif (\strlen($out) > $rolen) {
+            return \substr($out, -$rolen);
         } else {
-            if (\strlen($out) > $rolen) {
-                return \substr($out, -$rolen);
-            } else {
-                return $out;
-            }
+            return $out;
         }
     }
     /**

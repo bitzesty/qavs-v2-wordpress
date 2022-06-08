@@ -12,18 +12,18 @@
  */
 namespace WPMailSMTP\Vendor\phpseclib3\Crypt\EC;
 
-use WPMailSMTP\Vendor\phpseclib3\Crypt\EC;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Formats\Signature\ASN1 as ASN1Signature;
-use WPMailSMTP\Vendor\phpseclib3\Math\BigInteger;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\TwistedEdwards as TwistedEdwardsCurve;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\Montgomery as MontgomeryCurve;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\Hash;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Curves\Ed25519;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Curves\Curve25519;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Formats\Keys\PKCS1;
-use WPMailSMTP\Vendor\phpseclib3\Crypt\Common;
-use WPMailSMTP\Vendor\phpseclib3\Exception\UnsupportedOperationException;
 use WPMailSMTP\Vendor\phpseclib3\Common\Functions\Strings;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\Common;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\EC;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\Montgomery as MontgomeryCurve;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\TwistedEdwards as TwistedEdwardsCurve;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Curves\Curve25519;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Curves\Ed25519;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Formats\Keys\PKCS1;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Formats\Signature\ASN1 as ASN1Signature;
+use WPMailSMTP\Vendor\phpseclib3\Crypt\Hash;
+use WPMailSMTP\Vendor\phpseclib3\Exception\UnsupportedOperationException;
+use WPMailSMTP\Vendor\phpseclib3\Math\BigInteger;
 /**
  * EC Private Key
  *
@@ -88,7 +88,7 @@ class PrivateKey extends \WPMailSMTP\Vendor\phpseclib3\Crypt\EC implements \WPMa
         if ($this->curve instanceof \WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\Montgomery) {
             throw new \WPMailSMTP\Vendor\phpseclib3\Exception\UnsupportedOperationException('Montgomery Curves cannot be used to create signatures');
         }
-        $dA = $this->dA->toBigInteger();
+        $dA = $this->dA;
         $order = $this->curve->getOrder();
         $shortFormat = $this->shortFormat;
         $format = $this->sigFormat;
@@ -97,7 +97,7 @@ class PrivateKey extends \WPMailSMTP\Vendor\phpseclib3\Crypt\EC implements \WPMa
         }
         if ($this->curve instanceof \WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\TwistedEdwards) {
             if ($this->curve instanceof \WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Curves\Ed25519 && self::$engines['libsodium'] && !isset($this->context)) {
-                $result = \sodium_crypto_sign_detached($message, $this->toString('libsodium'));
+                $result = \sodium_crypto_sign_detached($message, $this->withPassword()->toString('libsodium'));
                 return $shortFormat == 'SSH2' ? \WPMailSMTP\Vendor\phpseclib3\Common\Functions\Strings::packSSH2('ss', 'ssh-' . \strtolower($this->getCurve()), $result) : $result;
             }
             // contexts (Ed25519ctx) are supported but prehashing (Ed25519ph) is not.
@@ -118,7 +118,7 @@ class PrivateKey extends \WPMailSMTP\Vendor\phpseclib3\Crypt\EC implements \WPMa
             $r = \strrev($r);
             $r = new \WPMailSMTP\Vendor\phpseclib3\Math\BigInteger($r, 256);
             list(, $r) = $r->divide($order);
-            $R = $curve->multiplyPoint($curve->getBasePoint(), $curve->convertInteger($r));
+            $R = $curve->multiplyPoint($curve->getBasePoint(), $r);
             $R = $curve->encodePoint($R);
             $k = $hash->hash($dom . $R . $A . $message);
             $k = \strrev($k);
@@ -151,7 +151,7 @@ class PrivateKey extends \WPMailSMTP\Vendor\phpseclib3\Crypt\EC implements \WPMa
         $z = $Ln > 0 ? $e->bitwise_rightShift($Ln) : $e;
         while (\true) {
             $k = \WPMailSMTP\Vendor\phpseclib3\Math\BigInteger::randomRange(self::$one, $order->subtract(self::$one));
-            list($x, $y) = $this->curve->multiplyPoint($this->curve->getBasePoint(), $this->curve->convertInteger($k));
+            list($x, $y) = $this->curve->multiplyPoint($this->curve->getBasePoint(), $k);
             $x = $x->toBigInteger();
             list(, $r) = $x->divide($order);
             if ($r->equals(self::$zero)) {
@@ -177,7 +177,7 @@ class PrivateKey extends \WPMailSMTP\Vendor\phpseclib3\Crypt\EC implements \WPMa
         
         $h1 = $this->hash->hash($message);
         $k = $this->computek($h1);
-        list($x, $y) = $this->curve->multiplyPoint($this->curve->getBasePoint(), $this->curve->convertInteger($k));
+        list($x, $y) = $this->curve->multiplyPoint($this->curve->getBasePoint(), $k);
         $x = $x->toBigInteger();
         list(, $r) = $x->divide($this->q);
         $kinv = $k->modInverse($this->q);

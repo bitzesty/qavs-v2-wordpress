@@ -14,9 +14,9 @@
 namespace WPMailSMTP\Vendor\phpseclib3\Crypt\EC\Curves;
 
 use WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\TwistedEdwards;
-use WPMailSMTP\Vendor\phpseclib3\Math\BigInteger;
 use WPMailSMTP\Vendor\phpseclib3\Crypt\Hash;
 use WPMailSMTP\Vendor\phpseclib3\Crypt\Random;
+use WPMailSMTP\Vendor\phpseclib3\Math\BigInteger;
 class Ed448 extends \WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\TwistedEdwards
 {
     const HASH = 'shake256-912';
@@ -100,7 +100,6 @@ class Ed448 extends \WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\TwistedEdw
         // 3.  Interpret the buffer as the little-endian integer, forming a
         //     secret scalar s.
         $dA = new \WPMailSMTP\Vendor\phpseclib3\Math\BigInteger($h, 256);
-        $dA = $this->factory->newInteger($dA);
         $dA->secret = $str;
         return $dA;
     }

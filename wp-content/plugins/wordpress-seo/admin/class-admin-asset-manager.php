@@ -89,6 +89,10 @@ class WPSEO_Admin_Asset_Manager {
 			$script->get_version(),
 			$script->is_in_footer()
 		);
+
+		if ( in_array( 'wp-i18n', $script->get_deps(), true ) ) {
+			wp_set_script_translations( $this->prefix . $script->get_name(), 'wordpress-seo' );
+		}
 	}
 
 	/**
@@ -369,6 +373,30 @@ class WPSEO_Admin_Asset_Manager {
 			'version' => $scripts['workouts']['version'],
 		];
 
+		$scripts['first-time-configuration'] = [
+			'name'    => 'first-time-configuration',
+			'src'     => 'first-time-configuration.js',
+			'deps'    => [
+				'lodash',
+				'wp-api-fetch',
+				'wp-a11y',
+				'wp-components',
+				'wp-compose',
+				'wp-data',
+				'wp-dom-ready',
+				'wp-element',
+				'wp-i18n',
+				self::PREFIX . 'api-client',
+				self::PREFIX . 'externals-components',
+				self::PREFIX . 'externals-contexts',
+				self::PREFIX . 'externals-redux',
+				self::PREFIX . 'analysis',
+				self::PREFIX . 'react-select',
+				self::PREFIX . 'yoast-components',
+			],
+			'version' => $scripts['first-time-configuration']['version'],
+		];
+
 		// Add the current language to every script that requires the analysis package.
 		foreach ( $scripts as $name => $script ) {
 			if ( substr( $name, -8 ) === 'language' ) {
@@ -478,7 +506,7 @@ class WPSEO_Admin_Asset_Manager {
 			'deps'    => [
 				'jquery',
 			],
-			'version' => '4.1.0-rc.0',
+			'version' => '4.0.13',
 		];
 		$scripts['select2-translations'] = [
 			'name'    => 'select2-translations',
@@ -487,7 +515,7 @@ class WPSEO_Admin_Asset_Manager {
 				'jquery',
 				self::PREFIX . 'select2-core',
 			],
-			'version' => '4.1.0-rc.0',
+			'version' => '4.0.13',
 		];
 
 		return $scripts;
@@ -612,7 +640,7 @@ class WPSEO_Admin_Asset_Manager {
 				'name'    => 'select2',
 				'src'     => 'select2/select2',
 				'suffix'  => '.min',
-				'version' => '4.1.0-rc.0',
+				'version' => '4.0.13',
 				'rtl'     => false,
 			],
 			[
@@ -659,14 +687,15 @@ class WPSEO_Admin_Asset_Manager {
 				'src'  => 'elementor-' . $flat_version,
 			],
 			[
-				'name' => 'workouts',
-				'src'  => 'workouts-' . $flat_version,
-				'deps' => [ self::PREFIX . 'monorepo' ],
+				'name' => 'tailwind',
+				'src'  => 'tailwind-' . $flat_version,
 			],
 			[
-				'name' => 'installation-success',
-				'src'  => 'installation-success-' . $flat_version,
-				'deps' => [ self::PREFIX . 'monorepo' ],
+				'name' => 'workouts',
+				'src'  => 'workouts-' . $flat_version,
+				'deps' => [
+					self::PREFIX . 'monorepo',
+				],
 			],
 		];
 	}

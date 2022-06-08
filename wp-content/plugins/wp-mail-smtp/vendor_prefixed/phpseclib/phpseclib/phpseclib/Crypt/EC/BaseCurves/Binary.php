@@ -22,9 +22,8 @@
  */
 namespace WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves;
 
-use WPMailSMTP\Vendor\phpseclib3\Common\Functions\Strings;
-use WPMailSMTP\Vendor\phpseclib3\Math\BinaryField;
 use WPMailSMTP\Vendor\phpseclib3\Math\BigInteger;
+use WPMailSMTP\Vendor\phpseclib3\Math\BinaryField;
 use WPMailSMTP\Vendor\phpseclib3\Math\BinaryField\Integer as BinaryInteger;
 /**
  * Curves over y^2 + x*y = x^3 + a*x^2 + b
@@ -240,7 +239,7 @@ class Binary extends \WPMailSMTP\Vendor\phpseclib3\Crypt\EC\BaseCurves\Base
      *
      * Not supported because it is covered by patents.
      * Quoting https://www.openssl.org/docs/man1.1.0/apps/ecparam.html ,
-     * 
+     *
      * "Due to patent issues the compressed option is disabled by default for binary curves
      *  and can be enabled by defining the preprocessor macro OPENSSL_EC_BIN_PT_COMP at
      *  compile time."
