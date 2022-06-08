@@ -20,6 +20,13 @@ if ( ! defined( 'WPINC' ) ) {
 class Core extends Stats {
 
 	/**
+	 * Animated status.
+	 *
+	 * @var int
+	 */
+	const STATUS_ANIMATED = 2;
+
+	/**
 	 * S3 module
 	 *
 	 * @var Integrations\S3
@@ -176,6 +183,12 @@ class Core extends Stats {
 		 * work, also load after settings have been saved on init action.
 		 */
 		add_action( 'plugins_loaded', array( $this, 'load_libs' ), 90 );
+
+		/**
+		 * Maybe need to load some modules in REST API mode.
+		 * E.g. S3.
+		 */
+		add_action( 'rest_api_init', array( $this, 'load_libs_for_rest_api' ), 99 );
 	}
 
 	/**
@@ -200,19 +213,25 @@ class Core extends Stats {
 
 		new Integrations\Gutenberg();
 		new Integrations\Composer();
+		new Integrations\Gravity_Forms();
 		new Integrations\Envira( $this->mod->cdn );
 		new Integrations\Avada( $this->mod->cdn );
+	}
+
+	/**
+	 * Load lib for REST API.
+	 */
+	public function load_libs_for_rest_api() {
+		// Load S3 if there is media REST API.
+		if ( ! Helper::is_non_rest_media() && ! $this->s3 ) {
+			$this->s3 = new Integrations\S3();
+		}
 	}
 
 	/**
 	 * Initialize the Smush Async class.
 	 */
 	private function wp_smush_async() {
-		// Don't load the Async task, if user not logged in or not in backend.
-		if ( ! is_admin() || ! is_user_logged_in() ) {
-			return;
-		}
-
 		// Check if Async is disabled.
 		if ( defined( 'WP_SMUSH_ASYNC' ) && ! WP_SMUSH_ASYNC ) {
 			return;
@@ -220,7 +239,11 @@ class Core extends Stats {
 
 		// Instantiate class.
 		new Modules\Async\Async();
-		new Modules\Async\Editor();
+
+		// Load the Editor Async task only if user logged in or in backend.
+		if ( is_admin() && is_user_logged_in() ) {
+			new Modules\Async\Editor();
+		}
 	}
 
 	/**
@@ -553,7 +576,7 @@ class Core extends Stats {
 			return false;
 		}
 
-		if ( ! Settings::get_instance()->get( 'resize' ) ) {
+		if ( ! $this->mod->resize->is_active() ) {
 			return $threshold;
 		}
 

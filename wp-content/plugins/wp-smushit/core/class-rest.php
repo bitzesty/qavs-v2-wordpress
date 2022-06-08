@@ -72,7 +72,7 @@ class Rest {
 	 * @return array|string
 	 */
 	public function register_image_stats( $image ) {
-		if ( get_option( 'smush-in-progress-' . $image['id'], false ) ) {
+		if ( Helper::file_in_progress( $image['id'], 'smush' ) ) {
 			return __( 'Smushing in progress', 'wp-smushit' );
 		}
 

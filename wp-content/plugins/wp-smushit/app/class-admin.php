@@ -231,8 +231,9 @@ class Admin {
 		$settings_page            = is_multisite() && is_network_admin() ? network_admin_url( 'admin.php?page=smush' ) : menu_page_url( 'smush', false );
 		$links['smush_dashboard'] = '<a href="' . $settings_page . '" aria-label="' . esc_attr( __( 'Go to Smush Dashboard', 'wp-smushit' ) ) . '">' . esc_html__( 'Settings', 'wp-smushit' ) . '</a>';
 
-		if ( is_network_admin() && ! is_plugin_active_for_network( WP_SMUSH_BASENAME ) ) {
-			// Remove links for network admin when plugin is not activated for network.
+		$access = get_site_option( 'wp-smush-networkwide' );
+		if ( ! is_network_admin() && is_plugin_active_for_network( WP_SMUSH_BASENAME ) && ! $access ) {
+			// Remove settings link for subsites if Subsite Controls is not set on network permissions tab.
 			unset( $links['smush_dashboard'] );
 		}
 
@@ -576,7 +577,7 @@ class Admin {
 			<i class="sui-icon-info sui-warning" aria-hidden="true"></i>
 		</span>
 		<p id="wp-smush-bulk-image-count-description">
-			<?php echo $image_count_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo wp_kses_post( $image_count_description ); ?>
 		</p>
 		<?php
 	}

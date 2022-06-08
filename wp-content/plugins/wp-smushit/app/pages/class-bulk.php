@@ -311,7 +311,7 @@ class Bulk extends Abstract_Summary_Page implements Interface_Page {
 		}
 
 		// Additional image sizes.
-		$image_sizes = $this->settings->get_setting( 'wp-smush-image_sizes', false );
+		$image_sizes = $this->settings->get_setting( 'wp-smush-image_sizes' );
 		$sizes       = WP_Smush::get_instance()->core()->image_dimensions();
 
 		$all_selected = false === $image_sizes || count( $image_sizes ) === count( $sizes );
@@ -339,7 +339,7 @@ class Bulk extends Abstract_Summary_Page implements Interface_Page {
 								$checked = true;
 							} else {
 								// WPMDUDEV hosting support: cast $size_k to string to properly work with object cache.
-								$checked = is_array( $image_sizes ) ? in_array( (string) $size_k, $image_sizes, true ) : false;
+								$checked = is_array( $image_sizes ) && in_array( (string) $size_k, $image_sizes, true );
 							}
 							?>
 							<label class="sui-checkbox sui-checkbox-stacked sui-checkbox-sm">
@@ -419,10 +419,10 @@ class Bulk extends Abstract_Summary_Page implements Interface_Page {
 				<span id="backup-label" class="sui-toggle-label">
 					<?php echo esc_html( Settings::get_setting_data( 'backup', 'label' ) ); ?>
 				</span>
+				<span class="sui-description sui-toggle-description" id="backup-desc">
+					<?php echo esc_html( Settings::get_setting_data( 'backup', 'desc' ) ); ?>
+				</span>
 			</label>
-			<span class="sui-description sui-toggle-description" id="backup-desc">
-				<?php echo esc_html( Settings::get_setting_data( 'backup', 'desc' ) ); ?>
-			</span>
 
 			<div class="sui-toggle-content <?php echo $this->settings->get( 'original' ) ? 'sui-hidden' : ''; ?>" id="backup-notice">
 				<div class="sui-notice" style="margin-top: 10px">
@@ -481,10 +481,10 @@ class Bulk extends Abstract_Summary_Page implements Interface_Page {
 				<span id="no_scale-label" class="sui-toggle-label">
 					<?php echo esc_html( Settings::get_setting_data( 'no_scale', 'label' ) ); ?>
 				</span>
+				<span class="sui-description sui-toggle-description" id="no_scale-desc">
+					<?php echo esc_html( Settings::get_setting_data( 'no_scale', 'desc' ) ); ?>
+				</span>
 			</label>
-			<span class="sui-description sui-toggle-description" id="no_scale-desc">
-				<?php echo esc_html( Settings::get_setting_data( 'no_scale', 'desc' ) ); ?>
-			</span>
 		</div>
 		<?php
 	}

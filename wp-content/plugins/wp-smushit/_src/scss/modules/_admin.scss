@@ -522,105 +522,112 @@
 		.smush-final-log {
 			margin-top: 30px;
 
-			.smush-bulk-error-row {
-				align-content: center;
-				align-items: center;
-				border-bottom: 1px solid #E6E6E6;
-				box-shadow: inset 2px 0 0 0 #FECF2F;
-				display: flex;
-				height: 52px;
-				justify-content: space-between;
-				margin: 0 -30px;
-				padding: 0 20px;
-				font-size: 13px;
-				letter-spacing: -0.25px;
+			.smush-bulk-errors {
+				overflow-y: scroll;
+            	height: 200px;
+            	padding-left: 30px;
+    			padding-right: 30px;
 
-				&:first-child {
-					border-top: 1px solid #E6E6E6;
-				}
-
-				.smush-bulk-image-data {
-					display: flex;
+				.smush-bulk-error-row {
 					align-content: center;
 					align-items: center;
-					flex-basis: 100%;
+					border-bottom: 1px solid #E6E6E6;
+					box-shadow: inset 2px 0 0 0 #FECF2F;
+					display: flex;
+					height: 52px;
+					justify-content: space-between;
+					margin: 0 -30px;
+					padding: 0 20px;
+					font-size: 13px;
+					letter-spacing: -0.25px;
 
-					&:before {
-						content: "I";
-						font-family: wpmudev-plugin-icons !important;
-						speak: none;
-						font-size: 16px;
-						font-style: normal;
-						font-weight: 400;
-						font-variant: normal;
-						text-transform: none;
-						line-height: 1;
-						text-rendering: auto;
-						display: inline-block;
-						margin-right: 10px;
-						color: #FECF2F;
+					&:first-child {
+						border-top: 1px solid #E6E6E6;
 					}
-
-					.sui-icon-photo-picture {
-						font-size: 12px;
-						border-radius: 4px;
-						background-color: #E6E6E6;
-						margin-right: 10px;
-						padding-left: 9px;
-						padding-top: 1px;
-						width: 30px;
-						height: 30px;
-
-						&:before {
-							width: 30px;
-							height: 30px;
-						}
-					}
-
-					.attachment-thumbnail {
-						border-radius: 4px;
-						width: 30px;
-						height: 30px;
-						margin-right: 10px;
-					}
-
-					.smush-image-name {
-						line-height: 15px;
-						font-weight: 500;
-						margin-right: 10px;
-						word-break: break-all;
-					}
-
-					.smush-image-error {
-						line-height: 15px;
-						word-break: break-all;
-						margin-right: 10px;
-					}
-				}
-
-				.smush-bulk-image-actions {
-					flex-basis: 30px;
-
-					button:disabled {
-						background-color: #F2F2F2;
-						cursor: default;
-
-						.sui-icon-eye-hide:before {
-							color: lighten( #333333, 50% );
-						}
-					}
-				}
-
-				@media screen and (max-width: 600px) {
-					height: auto;
 
 					.smush-bulk-image-data {
-						flex-wrap: wrap;
-						padding: 10px 20px;
+						display: flex;
+						align-content: center;
+						align-items: center;
+						flex-basis: 100%;
+
+						&:before {
+							content: "I";
+							font-family: wpmudev-plugin-icons !important;
+							speak: none;
+							font-size: 16px;
+							font-style: normal;
+							font-weight: 400;
+							font-variant: normal;
+							text-transform: none;
+							line-height: 1;
+							text-rendering: auto;
+							display: inline-block;
+							margin-right: 10px;
+							color: #FECF2F;
+						}
+
+						.sui-icon-photo-picture {
+							font-size: 12px;
+							border-radius: 4px;
+							background-color: #E6E6E6;
+							margin-right: 10px;
+							padding-left: 9px;
+							padding-top: 1px;
+							width: 30px;
+							height: 30px;
+
+							&:before {
+								width: 30px;
+								height: 30px;
+							}
+						}
+
+						.attachment-thumbnail {
+							border-radius: 4px;
+							width: 30px;
+							height: 30px;
+							margin-right: 10px;
+						}
+
+						.smush-image-name {
+							line-height: 15px;
+							font-weight: 500;
+							margin-right: 10px;
+							word-break: break-all;
+						}
+
+						.smush-image-error {
+							line-height: 15px;
+							word-break: break-all;
+							margin-right: 10px;
+						}
 					}
 
-					.smush-image-error {
-						margin-top: 10px;
+					.smush-bulk-image-actions {
+						flex-basis: 30px;
+
+						button:disabled {
+							background-color: #F2F2F2;
+							cursor: default;
+
+							.sui-icon-eye-hide:before {
+								color: lighten( #333333, 50% );
+							}
+						}
+					}
+
+					@media screen and (max-width: 600px) {
+						height: auto;
+
+						.smush-bulk-image-data {
+							flex-wrap: wrap;
+							padding: 10px 20px;
+						}
+
+						.smush-image-error {
+							margin-top: 10px;
+						}
 					}
 				}
 			}
