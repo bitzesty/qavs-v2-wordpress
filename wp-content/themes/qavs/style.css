@@ -2212,15 +2212,15 @@ p.has-medium-font-size {
 @media (min-width: 801px) {
   .featured-awardee:nth-child(1) .featured-awardee__details,
   .featured-awardee:nth-child(3) .featured-awardee__details {
-    padding-left: 2rem;
+    padding: 0 2rem;
   }
 
   .featured-awardee:nth-child(2) .featured-awardee__details {
-    padding-right: 2rem;
+    padding: 0 2rem;
   }
 
   .featured-awardee:nth-child(2) {
-    padding-left: 2rem;
+    padding: 0 2rem;
   }
 }
 
@@ -2231,11 +2231,11 @@ p.has-medium-font-size {
 
   .featured-awardee:nth-child(1) .featured-awardee__details,
   .featured-awardee:nth-child(3) .featured-awardee__details {
-    padding-right: 1.25rem;
+    padding: 0 1.25rem;
   }
 
   .featured-awardee:nth-child(2) .featured-awardee__details {
-    padding-left: 1.25rem;
+    padding: 0 1.25rem;
   }
 }
 
