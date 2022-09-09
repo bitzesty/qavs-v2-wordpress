@@ -87,7 +87,7 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
     </section>
 
     <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' )) || !empty(carbon_get_theme_option( 'qavs_twitter' )) || !empty(carbon_get_theme_option( 'qavs_facebook' )) || !empty(carbon_get_theme_option( 'qavs_login' )) || $pageLanguage == 'cy'): ?>
-    <section class="pre-header" title="Top bar links">
+    <section class="pre-header-black" title="Top bar links">
       <div class="container">
         <?php if (!empty(carbon_get_theme_option( 'qavs_linkedin' ))): ?>
           <a href="<?php echo carbon_get_theme_option( 'qavs_linkedin' );?>" class="pre-header__social-link linkedin" aria-label="LinkedIn profile" title="Click to read" target="_blank" rel="noopener nofollow">
