@@ -1224,19 +1224,7 @@ p:last-child {
   color: white;
 }
 
-.pre-header-black {
-  background: black;
-  color: white;
-}
-
 .pre-header .container {
-  height: 45px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.pre-header-black .container {
   height: 45px;
   display: flex;
   justify-content: flex-end;
