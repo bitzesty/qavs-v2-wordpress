@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function qavs_custom_blocks_cgb_block_assets() { // phpcs:ignore
 	// Register block styles for both frontend + backend.
-	wp_register_style(
+	wp_enqueue_style(
 		'qavs_custom_blocks-cgb-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
 		is_admin() ? array( 'wp-editor' ) : null, // Dependency to include the CSS after it.
@@ -37,7 +37,7 @@ function qavs_custom_blocks_cgb_block_assets() { // phpcs:ignore
 	);
 
 	// Register block editor script for backend.
-	wp_register_script(
+	wp_enqueue_script(
 		'qavs_custom_blocks-cgb-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
@@ -46,7 +46,7 @@ function qavs_custom_blocks_cgb_block_assets() { // phpcs:ignore
 	);
 
 	// Register block editor styles for backend.
-	wp_register_style(
+	wp_enqueue_style(
 		'qavs_custom_blocks-cgb-block-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
