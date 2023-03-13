@@ -44,12 +44,12 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
       <div class="cookie-banner hidden">
         <div class="container">
           <div class="initial-content">
-            <h2>Cookies on QAVS.UK</h2>
+            <h2>Cookies on KAVS.UK</h2>
             <p>
               We use some essential cookies to make this website work.
             </p>
             <p>
-              We’d like to set additional cookies to understand how you use QAVS.UK, remember your settings and improve our services.
+              We’d like to set additional cookies to understand how you use KAVS.UK, remember your settings and improve our services.
             </p>
 
             <div class="cookie-banner__buttons">
@@ -122,7 +122,7 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
       <div class="container">
         <p>
           <span>BETA</span>
-          This is a new website – your <a href="https://www.surveymonkey.co.uk/r/P7F52BK" target="_blank" rel="noopener nofollow">feedback</a> will help us to improve it.
+          This is a new website - your <a href="https://www.surveymonkey.co.uk/r/P7F52BK" target="_blank" rel="noopener nofollow">feedback</a> will help us to improve it.
         </p>
       </div>
     </div>
