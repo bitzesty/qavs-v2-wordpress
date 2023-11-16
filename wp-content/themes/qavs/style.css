@@ -2443,9 +2443,19 @@ p.has-medium-font-size {
 
 .promoted-article {
   display: flex;
+  margin-bottom: 2rem;
+  margin-top: 4rem;
+  background: #f7f7f7;
+  border-left: 10px solid #8A0DA6;
+  padding: 2rem 0;
+  align-items: center;
+}
+
+.promoted-article-purple {
+  display: flex;
   margin: 2rem 0;
   background: #f7f7f7;
-  border-right: 10px solid #47A14E;
+  border-left: 10px solid #8A0DA6;
   padding: 2rem 0;
   align-items: center;
 }
