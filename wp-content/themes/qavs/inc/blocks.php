@@ -107,13 +107,14 @@ function qavs_block__promoted_article( $block_attributes, $content ) {
 
   foreach($featured_news as $news) {
     $html .= '<article id="post-' . $news["ID"]. '" class="promoted-article">';
-    $html .= qavs_post_thumbnail($news["ID"]);
     $html .= '<div class="promoted-article__details">';
     $html .= '<h3 class="promoted-article__title" id="title-' . $news["ID"] . '">' . get_the_title($news["ID"]) . '</h3>';
     $html .= '<div class="promoted-article__meta">';
     $html .= qavs_posted_on($news["ID"]);
     $html .= '</div>';
-    $html .= '<a href="' . esc_url( get_permalink($news["ID"]) ) . '" rel="bookmark" aria-label="Read article: ' .  get_the_title($news["ID"]) . '" title="Click to read article" class="promoted-article__cta arrow-link">Read article</a></div></article>';
+    $html .= '<a href="' . esc_url( get_permalink($news["ID"]) ) . '" rel="bookmark" aria-label="Read article: ' .  get_the_title($news["ID"]) . '" title="Click to read article" class="promoted-article__cta arrow-link">Read article</a></div>';
+    $html .= qavs_post_thumbnail($news["ID"]);
+    $html .= '</article>';
   }
 
   return $html;
