@@ -129,7 +129,7 @@ $pageLanguage = carbon_get_post_meta(get_the_ID(), "page_language");
     <div id="masthead" class="site-header">
       <div class="container">
         <a href='/' class="site-branding">
-          <img src="/wp-content/themes/qavs/images/QAVS_logo_web_3x.png" alt="The Queen's Award for Voluntary Service" />
+          <img src="/wp-content/themes/qavs/images/KAVS_logo_black.png" alt="The King's Award for Voluntary Service" />
         </a><!-- .site-branding -->
 
         <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'qavs' ); ?></button>
