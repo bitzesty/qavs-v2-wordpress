@@ -3172,21 +3172,24 @@ p.arrow-link a:active:after {
 }
 
 .past-awardees-filter form {
-  display: flex;
   margin-bottom: 0;
+}
+
+.past-awardees-filter form .top-row {
+  width: 38%;
+  max-width: 390px;
+  margin-bottom: 0.75rem;
+}
+
+.past-awardees-filter form .bottom-row {
+  display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
 }
 
-@media (max-width: 767px) {
-  .past-awardees-filter form {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .past-awardees-filter .filter-button {
-    margin-top: 0.35rem !important;
-  }
+.past-awardees-filter form .top-row .form-group {
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .past-awardees-filter .form-group {
@@ -3195,32 +3198,80 @@ p.arrow-link a:active:after {
   color: #333333;
 }
 
-.past-awardees-filter .form-group:nth-child(1) {
-  width: 10%;
-  min-width: 200px;
+.past-awardees-filter .bottom-row .form-group:nth-child(1) {
+  width: 14%;
+  min-width: 150px;
 }
 
-.past-awardees-filter .form-group:nth-child(2) {
-  width: 20%;
+.past-awardees-filter .bottom-row .form-group:nth-child(2) {
+  width: 38%;
   min-width: 250px;
 }
 
-.past-awardees-filter .form-group:nth-child(3) {
-  width: 20%;
+.past-awardees-filter .bottom-row .form-group:nth-child(3) {
+  width: 38%;
   min-width: 250px;
-  flex: 1;
+}
+
+@media (max-width: 767px) {
+  .past-awardees-filter form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .past-awardees-filter .filter-button {
+    margin-top: 0.35rem !important;
+  }
+
+  .past-awardees-filter form .top-row {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .past-awardees-filter form .bottom-row {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .past-awardees-filter .bottom-row .form-group:nth-child(2) {
+    width: 100%;
+  }
+
+  .past-awardees-filter .bottom-row .form-group:nth-child(3) {
+    width: 100%;
+  }
 }
 
 .past-awardees-filter .form-group select {
   background-color: white;
   border-color: #919191;
   padding: 0.2rem 0.5rem;
-  text-align: center;
+  text-align: left;
   width: 100%;
   color: #1F1F1F !important;
 }
 
 .past-awardees-filter .form-group select:focus {
+  border: 1px solid #8A0DA6;
+  outline: 2px solid #8A0DA6;
+}
+
+.past-awardees-filter .form-group input {
+  background-color: white;
+  border-color: #919191;
+  padding: 0.2rem 0.5rem;
+  text-align: left;
+  width: 100%;
+  color: #1F1F1F !important;
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 400;
+  border-radius: 0;
+}
+
+.past-awardees-filter .form-group input:focus {
   border: 1px solid #8A0DA6;
   outline: 2px solid #8A0DA6;
 }
