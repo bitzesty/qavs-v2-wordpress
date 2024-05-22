@@ -296,6 +296,7 @@ class QavsWebsite {
 
   public static function getAwardeeFilters() {
     $filters = [
+      'group_name' => '',
       'year_awarded' => null,
       'type_of_group' => null,
       'ceremonial_county' => null
@@ -425,36 +426,45 @@ function qavs_load() {
         $filters = QavsWebsite::getAwardeeFilters();
         ?>
         <section class="past-awardees-filter" aria-label="Past awardees filter">
-          <h3 id="past-awardees-filter-title">Filter awardees by</h3>
+          <h3 id="past-awardees-filter-title">Search awardees</h3>
           <form action="" method='get' aria-labelledby="past-awardees-filter-title">
-            <div class="form-group">
-              <label for="year_awarded">Year awarded</label>
-              <select name="awardee_filters[year_awarded]" id="year_awarded">
-                <?php foreach($years as $year): ?>
-                  <option value="<?php echo $year; ?>" <?php echo $filters["year_awarded"] == $year ? 'selected="selected"' : ''; ?>><?php echo $year; ?></option>
-                <?php endforeach; ?>
-              </select>
+          <div class="top-row">
+              <div class="form-group">
+                <label for="group_name">Group name</label>
+                <input id="group_name" name="awardee_filters[group_name]" type="text" value="<?php echo htmlspecialchars($filters['group_name']); ?>" />
+              </div>
             </div>
-            <div class="form-group">
-              <label for="type_of_group">Type of group</label>
-              <select name="awardee_filters[type_of_group]" id="type_of_group">
-                <option value="">Show all</option>
-                <?php foreach(QavsWebsite::groupTypeMapping() as $key => $value): ?>
-                  <option value="<?php echo $key; ?>" <?php echo $filters["type_of_group"] == $key ? 'selected="selected"' : ''; ?>><?php echo $value; ?></option>
-                <?php endforeach; ?>
-              </select>
+            <div class="bottom-row">
+              <div class="form-group">
+                <label for="year_awarded">Year awarded</label>
+                <select name="awardee_filters[year_awarded]" id="year_awarded">
+                  <option value="">Show all</option>
+                  <?php foreach($years as $year): ?>
+                    <option value="<?php echo $year; ?>" <?php echo $filters["year_awarded"] == $year ? 'selected="selected"' : ''; ?>><?php echo $year; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="type_of_group">Type of group</label>
+                <select name="awardee_filters[type_of_group]" id="type_of_group">
+                  <option value="">Show all</option>
+                  <?php foreach(QavsWebsite::groupTypeMapping() as $key => $value): ?>
+                    <option value="<?php echo $key; ?>" <?php echo $filters["type_of_group"] == $key ? 'selected="selected"' : ''; ?>><?php echo $value; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="ceremonial_county">Ceremonial county</label>
+                <select name="awardee_filters[ceremonial_county]" id="ceremonial_county">
+                  <option value="">Show all</option>
+                  <?php foreach(QavsWebsite::lieutenanciesMapping() as $key => $value): ?>
+                    <option value="<?php echo $key; ?>" <?php echo $filters["ceremonial_county"] == $key ? 'selected="selected"' : ''; ?>><?php echo $value; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="ceremonial_county">Ceremonial county</label>
-              <select name="awardee_filters[ceremonial_county]" id="ceremonial_county">
-                <option value="">Show all</option>
-                <?php foreach(QavsWebsite::lieutenanciesMapping() as $key => $value): ?>
-                  <option value="<?php echo $key; ?>" <?php echo $filters["ceremonial_county"] == $key ? 'selected="selected"' : ''; ?>><?php echo $value; ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-            <button type="submit" class="filter-button">Filter</button>
-            <a href="/awardees">Clear filter</a>
+            <button type="submit" class="filter-button">Search</button>
+            <a href="/awardees">Clear</a>
           </form>
         </section>
         <?php
@@ -471,6 +481,13 @@ function qavs_load() {
           'orderby' => [ 'meta_value_num' => 'DESC', 'title' => 'ASC' ]
         ];
 
+        if (isset($_GET['awardee_filters'])) {
+          $filters = QavsWebsite::getAwardeeFilters();
+          if ($filters['group_name']) {
+            $options['s'] = $filters['group_name'];
+          }
+        }
+
         $meta_query = QavsWebsite::getMetaQuery();
         if (!empty($meta_query)) {
           $options['meta_query'] = $meta_query;
@@ -478,7 +495,7 @@ function qavs_load() {
         
         $query = new WP_Query($options);
         ?>
-        
+
         <?php if($query->have_posts()): ?>
           <div class="past-awardees-pagination-info" role="status">
             <?php echo qavs_pagination_information($query); ?>
@@ -543,7 +560,7 @@ function qavs_load() {
         <?php else: ?>
           <h2>0 awardees found</h2>
 
-          <p>Please try changing filter criteria</p>
+          <p>Please try changing search criteria</p>
         <?php endif; ?>
 
         <?php
