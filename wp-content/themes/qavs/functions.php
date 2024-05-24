@@ -463,8 +463,10 @@ function qavs_load() {
                 </select>
               </div>
             </div>
-            <button type="submit" class="filter-button">Search</button>
-            <a href="/awardees">Clear</a>
+            <div class="search_buttons">
+              <button type="submit" class="filter-button">Search</button>
+              <a href="/awardees">Clear</a>
+            </div>
           </form>
         </section>
         <?php
@@ -560,7 +562,7 @@ function qavs_load() {
         <?php else: ?>
           <h2>0 awardees found</h2>
 
-          <p>Please try changing search criteria</p>
+          <p>Please try changing your search criteria</p>
         <?php endif; ?>
 
         <?php

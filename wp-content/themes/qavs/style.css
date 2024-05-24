@@ -3185,6 +3185,7 @@ p.arrow-link a:active:after {
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
+  margin-bottom: 0.75rem
 }
 
 .past-awardees-filter form .top-row .form-group {
@@ -3297,6 +3298,11 @@ p.arrow-link a:active:after {
 .past-awardees-filter a {
   display: inline-block;
   margin-bottom: 0.9rem;
+}
+
+.past-awardees-filter .search_buttons {
+  display: flex;
+  align-items: center;
 }
 
 .past-awardees-pagination-info {
