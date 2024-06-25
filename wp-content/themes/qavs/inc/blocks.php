@@ -141,7 +141,7 @@ function qavs_block__parental_tabs( $block_attributes, $content ) {
 function qavs_block__parental_pagination( $block_attributes, $content ) {
 
   $parent_id = wp_get_post_parent_id(get_the_ID());
-  $pages = get_pages();
+  $pages = get_pages([ 'sort_column' => 'menu_order' ]);
   $children = get_page_children( $parent_id, $pages );
   $index = null;
   $found = false;
