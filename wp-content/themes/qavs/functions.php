@@ -823,6 +823,7 @@ function qavs_allowed_block_types( $allowed_blocks, $post ) {
 		$allowed_blocks[] = 'qavs/notice';
 		$allowed_blocks[] = 'qavs/parental-tabs';
 		$allowed_blocks[] = 'qavs/parental-navigation';
+    $allowed_blocks[] = 'qavs/parental-pagination';
 		$allowed_blocks[] = 'qavs/commitee-member';
 		$allowed_blocks[] = 'qavs/resource';
 		$allowed_blocks[] = 'atomic-blocks/ab-cta';
