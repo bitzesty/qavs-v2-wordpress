@@ -33,6 +33,7 @@ namespace Carbon_Fields;
  * @method static \Carbon_Fields\Field\Text_Field make_text( string $name, string $label = null )
  * @method static \Carbon_Fields\Field\Textarea_Field make_textarea( string $name, string $label = null )
  * @method static \Carbon_Fields\Field\Time_Field make_time( string $name, string $label = null )
+ * @method static \Carbon_Fields\Field\Block_Preview_Field make_html( string $name, string $label = null )
  */
 class Field {
 
@@ -53,7 +54,7 @@ class Field {
 	 * @return \Carbon_Fields\Field\Field
 	 */
 	public static function make() {
-		return call_user_func_array( array( get_class(), 'factory' ), func_get_args() );
+		return call_user_func_array( array( static::class, 'factory' ), func_get_args() );
 	}
 
 	/**
@@ -66,9 +67,9 @@ class Field {
 		if ( strpos( $method, 'make_' ) === 0 ) {
 			$raw_type = substr_replace( $method, '', 0, 5 );
 			array_unshift( $arguments, $raw_type );
-			return call_user_func_array( array( get_class(), 'factory' ), $arguments );
+			return call_user_func_array( array( static::class, 'factory' ), $arguments );
 		} else {
-			trigger_error( sprintf( 'Call to undefined function: %s::%s().', get_class(), $method ), E_USER_ERROR );
+			trigger_error( sprintf( 'Call to undefined function: %s::%s().', static::class, $method ), E_USER_ERROR );
 		}
 	}
 }

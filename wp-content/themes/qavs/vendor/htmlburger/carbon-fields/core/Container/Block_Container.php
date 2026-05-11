@@ -122,7 +122,7 @@ class Block_Container extends Container {
 	 * {@inheritDoc}
 	 */
 	public function attach() {
-		add_filter( 'block_categories', array( $this, 'attach_block_category' ), 10, 2 );
+		add_filter( 'block_categories_all', array( $this, 'attach_block_category' ), 10, 2 );
 
 		$this->register_block();
 	}
@@ -212,8 +212,8 @@ class Block_Container extends Container {
 	 * @return Block_Container
 	 */
 	protected function set_style_handle( $key, $handle ) {
-		if ( ! wp_style_is( $handle ) ) {
-			throw new \Exception( __( "Style '$handle' is not enqueued.", 'crb' ) );
+		if ( ! wp_style_is( $handle, 'registered' ) ) {
+			throw new \Exception( __( "Style '$handle' is not registered.", 'crb' ) );
 		}
 
 		$this->settings[ $key ] = $handle;
@@ -400,23 +400,55 @@ class Block_Container extends Container {
 	}
 
 	/**
+	 * Get the post id where the block is used in.
+	 * Try with the GET param, and if this is an
+	 * AJAX request get previuos (admin) edit page.
+	 * 
+	 * @return int $post_id
+	 */
+	public function get_post_id() {
+		$post_id = isset( $_GET['post'] ) && (int) $_GET['post'] > 0 ? (int) $_GET['post'] : null;
+		if ( ! empty( $post_id ) ) {
+			return $post_id;
+		}
+
+        $admin_url = isset( $_SERVER['HTTP_REFERER'] ) && ! empty( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : null;
+        if ( ! empty( $admin_url ) ) {
+            $parsed_url = parse_url( $admin_url );
+            if ( isset( $parsed_url['query']) && ! empty( $parsed_url['query'] ) ) {
+                $params = explode( '&', $parsed_url['query'] );
+                foreach ( $params as $param ) {
+                    $param = explode( '=', $param );
+                    if ( $param[0] === 'post' ) {
+                        $post_id = $param[1];
+                    }
+                }
+            }
+        }
+
+		if ( empty( $post_id ) ) {
+			$post_id = get_the_ID();
+		}
+
+        return $post_id;
+	}
+
+	/**
 	 * Render the block type.
 	 *
 	 * @param  array  $attributes
 	 * @param  string $content
+	 * @param  \WP_Block $block
 	 * @return string
 	 */
-	public function render_block( $attributes, $content ) {
+	public function render_block( $attributes, $content, $block = null ) { // added variable at the end 
 		$fields = $attributes['data'];
-
+		$post_id = $this->get_post_id();
 		// Unset the "data" property because we
 		// pass it as separate argument to the callback.
 		unset($attributes['data']);
-
 		ob_start();
-
-		call_user_func( $this->render_callback , $fields, $attributes, $content );
-
+		call_user_func( $this->render_callback , $fields, $attributes, $content, $post_id, $block );
 		return ob_get_clean();
 	}
 

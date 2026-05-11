@@ -9,115 +9,115 @@ class ComposerStaticInit251cc393c354705115aefcfc25fbe0f4
     public static $files = array (
         '3937806105cc8e221b8fa8db5b70d2f2' => __DIR__ . '/..' . '/wp-cli/mustangostang-spyc/includes/functions.php',
         'be01b9b16925dcb22165c40b46681ac6' => __DIR__ . '/..' . '/wp-cli/php-cli-tools/lib/cli/cli.php',
-        'ffb465a494c3101218c4417180c2c9a2' => __DIR__ . '/..' . '/wp-cli/i18n-command/i18n-command.php',
         '9e4824c5afbdc1482b6025ce3d4dfde8' => __DIR__ . '/..' . '/league/csv/src/functions_include.php',
+        'ffb465a494c3101218c4417180c2c9a2' => __DIR__ . '/..' . '/wp-cli/i18n-command/i18n-command.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'W' => 
+        'W' =>
         array (
             'WP_CLI\\I18n\\' => 12,
         ),
-        'S' => 
+        'S' =>
         array (
             'Symfony\\Component\\Finder\\' => 25,
         ),
-        'P' => 
+        'P' =>
         array (
             'Peast\\test\\' => 11,
             'Peast\\' => 6,
         ),
-        'M' => 
+        'M' =>
         array (
             'Mustangostang\\' => 14,
         ),
-        'L' => 
+        'L' =>
         array (
             'League\\Csv\\' => 11,
         ),
-        'G' => 
+        'G' =>
         array (
             'Gettext\\Languages\\' => 18,
             'Gettext\\' => 8,
         ),
-        'D' => 
+        'D' =>
         array (
             'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 55,
         ),
-        'C' => 
+        'C' =>
         array (
             'Carbon_Fields\\' => 14,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'WP_CLI\\I18n\\' => 
+        'WP_CLI\\I18n\\' =>
         array (
             0 => __DIR__ . '/..' . '/wp-cli/i18n-command/src',
         ),
-        'Symfony\\Component\\Finder\\' => 
+        'Symfony\\Component\\Finder\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
         ),
-        'Peast\\test\\' => 
+        'Peast\\test\\' =>
         array (
             0 => __DIR__ . '/..' . '/mck89/peast/test/Peast',
         ),
-        'Peast\\' => 
+        'Peast\\' =>
         array (
             0 => __DIR__ . '/..' . '/mck89/peast/lib/Peast',
         ),
-        'Mustangostang\\' => 
+        'Mustangostang\\' =>
         array (
             0 => __DIR__ . '/..' . '/wp-cli/mustangostang-spyc/src',
         ),
-        'League\\Csv\\' => 
+        'League\\Csv\\' =>
         array (
             0 => __DIR__ . '/..' . '/league/csv/src',
         ),
-        'Gettext\\Languages\\' => 
+        'Gettext\\Languages\\' =>
         array (
             0 => __DIR__ . '/..' . '/gettext/languages/src',
         ),
-        'Gettext\\' => 
+        'Gettext\\' =>
         array (
             0 => __DIR__ . '/..' . '/gettext/gettext/src',
         ),
-        'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 
+        'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' =>
         array (
             0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
-        'Carbon_Fields\\' => 
+        'Carbon_Fields\\' =>
         array (
             0 => __DIR__ . '/..' . '/htmlburger/carbon-fields/core',
         ),
     );
 
     public static $prefixesPsr0 = array (
-        'c' => 
+        'c' =>
         array (
-            'cli' => 
+            'cli' =>
             array (
                 0 => __DIR__ . '/..' . '/wp-cli/php-cli-tools/lib',
             ),
         ),
-        'W' => 
+        'W' =>
         array (
-            'WP_CLI\\' => 
+            'WP_CLI\\' =>
             array (
                 0 => __DIR__ . '/..' . '/wp-cli/wp-cli/php',
             ),
         ),
-        'R' => 
+        'R' =>
         array (
-            'Requests' => 
+            'Requests' =>
             array (
                 0 => __DIR__ . '/..' . '/rmccue/requests/library',
             ),
         ),
-        'M' => 
+        'M' =>
         array (
-            'Mustache' => 
+            'Mustache' =>
             array (
                 0 => __DIR__ . '/..' . '/mustache/mustache/src',
             ),
