@@ -326,7 +326,7 @@ class QavsWebsite {
       $years = QavsWebsite::getAwardeeYears();
       $meta_query[] = [
         'key' => 'awardee_award_year',
-        'value' => $years[0]
+        'value' => $years
       ];
     }
 
@@ -428,7 +428,7 @@ function qavs_load() {
         <section class="past-awardees-filter" aria-label="Past awardees filter">
           <h3 id="past-awardees-filter-title">Search awardees</h3>
           <form action="" method='get' aria-labelledby="past-awardees-filter-title">
-          <div class="top-row">
+            <div class="top-row">
               <div class="form-group">
                 <label for="group_name">Group name</label>
                 <input id="group_name" name="awardee_filters[group_name]" type="text" value="<?php echo htmlspecialchars($filters['group_name']); ?>" />
@@ -494,7 +494,7 @@ function qavs_load() {
         if (!empty($meta_query)) {
           $options['meta_query'] = $meta_query;
         }
-        
+
         $query = new WP_Query($options);
         ?>
 
@@ -751,7 +751,7 @@ function qavs_load() {
         ]),
         Field::make( 'select', 'awardee_news_article', __( 'News article' ) )->add_options('qavs_list_featured_awardees_articles')
       ) );
-    
+
     Container::make( 'post_meta', __( 'Page language', 'qavs' ) )
       ->where( 'post_type', '=', 'page' )
       ->set_context('side')
@@ -779,7 +779,7 @@ function qavs_list_featured_awardees_articles() {
   ) );
 
   $dictionary = ["Select a news article"];
-  
+
   foreach ($featured_awardees as $awardee) {
     $dictionary[$awardee->ID] = $awardee->post_title;
   }
@@ -792,9 +792,9 @@ function generateRandomString($length = 10) {
 }
 
 add_filter( 'allowed_block_types', 'qavs_allowed_block_types', 10, 2 );
- 
+
 function qavs_allowed_block_types( $allowed_blocks, $post ) {
- 
+
 	$allowed_blocks = array(
 		'core/image',
 		'core/paragraph',
@@ -814,7 +814,7 @@ function qavs_allowed_block_types( $allowed_blocks, $post ) {
     'carbon-fields/accessible-video',
     'carbon-fields/privacy-aware-youtube'
 	);
- 
+
 	if( $post->post_type === 'page' ) {
 		$allowed_blocks[] = 'qavs/section';
 		$allowed_blocks[] = 'qavs/promoted-article';
@@ -823,7 +823,7 @@ function qavs_allowed_block_types( $allowed_blocks, $post ) {
 		$allowed_blocks[] = 'qavs/notice';
 		$allowed_blocks[] = 'qavs/parental-tabs';
 		$allowed_blocks[] = 'qavs/parental-navigation';
-    $allowed_blocks[] = 'qavs/parental-pagination';
+		$allowed_blocks[] = 'qavs/parental-pagination';
 		$allowed_blocks[] = 'qavs/commitee-member';
 		$allowed_blocks[] = 'qavs/resource';
 		$allowed_blocks[] = 'atomic-blocks/ab-cta';
@@ -833,7 +833,7 @@ function qavs_allowed_block_types( $allowed_blocks, $post ) {
 		$allowed_blocks[] = 'carbon-fields/past-awardees';
 		$allowed_blocks[] = 'carbon-fields/past-awardees-filters';
 	}
- 
+
 	return $allowed_blocks;
- 
+
 }

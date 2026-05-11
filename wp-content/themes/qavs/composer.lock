@@ -8,24 +8,25 @@
     "packages": [
         {
             "name": "htmlburger/carbon-fields",
-            "version": "v3.3.2",
+            "version": "v3.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/htmlburger/carbon-fields.git",
-                "reference": "dd5663e14c6db365323b688dbae1cfbeaf14bee7"
+                "reference": "f82e80e3e3469d6e86cc17a8950b918ad448a059"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/dd5663e14c6db365323b688dbae1cfbeaf14bee7",
-                "reference": "dd5663e14c6db365323b688dbae1cfbeaf14bee7",
+                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/f82e80e3e3469d6e86cc17a8950b918ad448a059",
+                "reference": "f82e80e3e3469d6e86cc17a8950b918ad448a059",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3"
+                "php": ">=5.6.20"
             },
             "require-dev": {
-                "mockery/mockery": "^0.9.7",
-                "phpunit/phpunit": "~4.8"
+                "mockery/mockery": "1.3.6",
+                "phpunit/phpunit": "7.5.20|9.6.3",
+                "yoast/phpunit-polyfills": "^1.0"
             },
             "type": "library",
             "autoload": {
@@ -143,7 +144,7 @@
                 "issues": "https://github.com/htmlburger/carbon-fields/issues",
                 "source": "https://github.com/htmlburger/carbon-fields"
             },
-            "time": "2021-04-22T13:24:34+00:00"
+            "time": "2025-06-11T11:23:23+00:00"
         },
         {
             "name": "league/csv",
@@ -1317,12 +1318,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.6"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

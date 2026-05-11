@@ -3,6 +3,7 @@
  */
 import { __, sprintf } from '@wordpress/i18n';
 import { get, map } from 'lodash';
+import { createRoot } from '@wordpress/element';
 
 /**
  * Internal dependencies.
@@ -15,6 +16,7 @@ import postTemplate from '../conditions/post-template';
 import postAncestorId from '../conditions/post-ancestor-id';
 import termParentId from '../conditions/term-parent-id';
 import termAncestorId from '../conditions/term-ancestor-id';
+import { getContainerRoot } from '../../../containers/root-registry';
 
 /**
  * Keeps track of supported conditions.
@@ -96,25 +98,37 @@ export default function handler( { containers, context } ) {
 		results.forEach( ( [ id, result ] ) => {
 			const postboxNode = document.getElementById( id );
 			const containerNode = document.querySelector( `.container-${ id }` );
-			const isMounted = !! containerNode.dataset.mounted;
+			const isMounted = !! containerNode?.dataset?.mounted;
 
 			if ( postboxNode ) {
 				postboxNode.hidden = ! result;
 			}
 
 			if ( containerNode ) {
-				if ( result && ! isMounted ) {
-					renderContainer( containers[ id ], context );
-				}
+				if ( createRoot ) {
+					const containerRoot = getContainerRoot( id );
 
-				if ( ! result && isMounted ) {
-					delete containerNode.dataset.mounted;
+					if ( result && ! containerRoot ) {
+						renderContainer( containers[ id ], context );
+					}
 
-					// Rely on React's internals instead of `unmountComponentAtNode`
-					// due to https://github.com/facebook/react/issues/13690.
-					// TODO: Conditionally render the fields in the container, this way
-					// we can move away from mount/unmount cycles.
-					containerNode._reactRootContainer.unmount();
+					if ( ! result && containerRoot ) {
+						containerRoot.unmount();
+					}
+				} else {
+					if ( result && ! isMounted ) {
+						renderContainer( containers[ id ], context );
+					}
+
+					if ( ! result && isMounted ) {
+						delete containerNode?.dataset?.mounted;
+
+						// Rely on React's internals instead of `unmountComponentAtNode`
+						// due to https://github.com/facebook/react/issues/13690.
+						// TODO: Conditionally render the fields in the container, this way
+						// we can move away from mount/unmount cycles.
+						containerNode?._reactRootContainer?.unmount();
+					}
 				}
 			}
 		} );
