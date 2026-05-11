@@ -2451,15 +2451,6 @@ p.has-medium-font-size {
   align-items: center;
 }
 
-.promoted-article-purple {
-  display: flex;
-  margin: 2rem 0;
-  background: #f7f7f7;
-  border-left: 10px solid #8A0DA6;
-  padding: 2rem 0;
-  align-items: center;
-}
-
 .promoted-article img {
   max-width: 50%;
   width: 580px;
@@ -3185,8 +3176,9 @@ p.arrow-link a:active:after {
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
-  margin-bottom: 0.75rem
+  margin-bottom: 0.75rem;
 }
+
 
 .past-awardees-filter form .top-row .form-group {
   margin-right: 0 !important;
@@ -3234,6 +3226,7 @@ p.arrow-link a:active:after {
     display: flex;
     align-items: flex-end;
     flex-wrap: wrap;
+    margin-bottom: 0.75rem;
   }
 
   .past-awardees-filter .bottom-row .form-group:nth-child(2) {
